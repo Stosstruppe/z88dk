@@ -1,0 +1,19 @@
+1     0000              MODULE pc80_crt0_asm
+2     0000              LINE 0, "C:\etc\z88dk\lib\config\..\..\\lib\target\pc80\classic\pc80_crt0.asm"
+0     0000              
+1     0000              	EXTERN    _main
+2     0000              	INCLUDE	"target/pc80/classic/monitor.asm"
+1     0000                      IFNDEF CRT_ORG_CODE
+2     0000                          defc CRT_ORG_CODE  = $8A00
+3     0000                      ENDIF
+4     0000              
+5     0000              	org CRT_ORG_CODE
+6     0000              
+7     0000              ;----------------------
+8     0000              ; Execution starts here
+9     0000              ;----------------------
+10    0000              start:
+11    0000  CD 00 00    	call    _main
+12    0003  C3 66 5C    	jp	$5c66
+13    0006              
+3     0006              

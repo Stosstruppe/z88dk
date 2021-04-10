@@ -1,0 +1,934 @@
+1     0000              MODULE pset_c
+2     0000              LINE 0, "pset.c"
+0     0000              
+1     0000              ;--------------------------------------------------------
+2     0000              ; File Created by SDCC : free open source ANSI-C Compiler
+3     0000              ; Version 4.1.0 #12069 (MINGW64)
+4     0000              ;--------------------------------------------------------
+5     0000              ; Processed by Z88DK
+6     0000              ;--------------------------------------------------------
+7     0000              
+8     0000              	EXTERN __divschar
+9     0000              	EXTERN __divschar_callee
+10    0000              	EXTERN __divsint
+11    0000              	EXTERN __divsint_callee
+12    0000              	EXTERN __divslong
+13    0000              	EXTERN __divslong_callee
+14    0000              	EXTERN __divslonglong
+15    0000              	EXTERN __divslonglong_callee
+16    0000              	EXTERN __divsuchar
+17    0000              	EXTERN __divsuchar_callee
+18    0000              	EXTERN __divuchar
+19    0000              	EXTERN __divuchar_callee
+20    0000              	EXTERN __divuint
+21    0000              	EXTERN __divuint_callee
+22    0000              	EXTERN __divulong
+23    0000              	EXTERN __divulong_callee
+24    0000              	EXTERN __divulonglong
+25    0000              	EXTERN __divulonglong_callee
+26    0000              	EXTERN __divuschar
+27    0000              	EXTERN __divuschar_callee
+28    0000              	EXTERN __modschar
+29    0000              	EXTERN __modschar_callee
+30    0000              	EXTERN __modsint
+31    0000              	EXTERN __modsint_callee
+32    0000              	EXTERN __modslong
+33    0000              	EXTERN __modslong_callee
+34    0000              	EXTERN __modslonglong
+35    0000              	EXTERN __modslonglong_callee
+36    0000              	EXTERN __modsuchar
+37    0000              	EXTERN __modsuchar_callee
+38    0000              	EXTERN __moduchar
+39    0000              	EXTERN __moduchar_callee
+40    0000              	EXTERN __moduint
+41    0000              	EXTERN __moduint_callee
+42    0000              	EXTERN __modulong
+43    0000              	EXTERN __modulong_callee
+44    0000              	EXTERN __modulonglong
+45    0000              	EXTERN __modulonglong_callee
+46    0000              	EXTERN __moduschar
+47    0000              	EXTERN __moduschar_callee
+48    0000              	EXTERN __mulint
+49    0000              	EXTERN __mulint_callee
+50    0000              	EXTERN __mullong
+51    0000              	EXTERN __mullong_callee
+52    0000              	EXTERN __mullonglong
+53    0000              	EXTERN __mullonglong_callee
+54    0000              	EXTERN __mulschar
+55    0000              	EXTERN __mulschar_callee
+56    0000              	EXTERN __mulsuchar
+57    0000              	EXTERN __mulsuchar_callee
+58    0000              	EXTERN __muluchar
+59    0000              	EXTERN __muluchar_callee
+60    0000              	EXTERN __muluschar
+61    0000              	EXTERN __muluschar_callee
+62    0000              	EXTERN __rlslonglong
+63    0000              	EXTERN __rlslonglong_callee
+64    0000              	EXTERN __rlulonglong
+65    0000              	EXTERN __rlulonglong_callee
+66    0000              	EXTERN __rrslonglong
+67    0000              	EXTERN __rrslonglong_callee
+68    0000              	EXTERN __rrulonglong
+69    0000              	EXTERN __rrulonglong_callee
+70    0000              	EXTERN ___sdcc_call_hl
+71    0000              	EXTERN ___sdcc_call_iy
+72    0000              	EXTERN ___sdcc_enter_ix
+73    0000              	EXTERN banked_call
+74    0000              	EXTERN _banked_ret
+75    0000              	EXTERN ___fs2schar
+76    0000              	EXTERN ___fs2schar_callee
+77    0000              	EXTERN ___fs2sint
+78    0000              	EXTERN ___fs2sint_callee
+79    0000              	EXTERN ___fs2slong
+80    0000              	EXTERN ___fs2slong_callee
+81    0000              	EXTERN ___fs2slonglong
+82    0000              	EXTERN ___fs2slonglong_callee
+83    0000              	EXTERN ___fs2uchar
+84    0000              	EXTERN ___fs2uchar_callee
+85    0000              	EXTERN ___fs2uint
+86    0000              	EXTERN ___fs2uint_callee
+87    0000              	EXTERN ___fs2ulong
+88    0000              	EXTERN ___fs2ulong_callee
+89    0000              	EXTERN ___fs2ulonglong
+90    0000              	EXTERN ___fs2ulonglong_callee
+91    0000              	EXTERN ___fsadd
+92    0000              	EXTERN ___fsadd_callee
+93    0000              	EXTERN ___fsdiv
+94    0000              	EXTERN ___fsdiv_callee
+95    0000              	EXTERN ___fseq
+96    0000              	EXTERN ___fseq_callee
+97    0000              	EXTERN ___fsgt
+98    0000              	EXTERN ___fsgt_callee
+99    0000              	EXTERN ___fslt
+100   0000              	EXTERN ___fslt_callee
+101   0000              	EXTERN ___fsmul
+102   0000              	EXTERN ___fsmul_callee
+103   0000              	EXTERN ___fsneq
+104   0000              	EXTERN ___fsneq_callee
+105   0000              	EXTERN ___fssub
+106   0000              	EXTERN ___fssub_callee
+107   0000              	EXTERN ___schar2fs
+108   0000              	EXTERN ___schar2fs_callee
+109   0000              	EXTERN ___sint2fs
+110   0000              	EXTERN ___sint2fs_callee
+111   0000              	EXTERN ___slong2fs
+112   0000              	EXTERN ___slong2fs_callee
+113   0000              	EXTERN ___slonglong2fs
+114   0000              	EXTERN ___slonglong2fs_callee
+115   0000              	EXTERN ___uchar2fs
+116   0000              	EXTERN ___uchar2fs_callee
+117   0000              	EXTERN ___uint2fs
+118   0000              	EXTERN ___uint2fs_callee
+119   0000              	EXTERN ___ulong2fs
+120   0000              	EXTERN ___ulong2fs_callee
+121   0000              	EXTERN ___ulonglong2fs
+122   0000              	EXTERN ___ulonglong2fs_callee
+123   0000              	EXTERN ____sdcc_2_copy_src_mhl_dst_deix
+124   0000              	EXTERN ____sdcc_2_copy_src_mhl_dst_bcix
+125   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_deix
+126   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_bcix
+127   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_mbc
+128   0000              	EXTERN ____sdcc_4_ldi_nosave_bc
+129   0000              	EXTERN ____sdcc_4_ldi_save_bc
+130   0000              	EXTERN ____sdcc_4_push_hlix
+131   0000              	EXTERN ____sdcc_4_push_mhl
+132   0000              	EXTERN ____sdcc_lib_setmem_hl
+133   0000              	EXTERN ____sdcc_ll_add_de_bc_hl
+134   0000              	EXTERN ____sdcc_ll_add_de_bc_hlix
+135   0000              	EXTERN ____sdcc_ll_add_de_hlix_bc
+136   0000              	EXTERN ____sdcc_ll_add_de_hlix_bcix
+137   0000              	EXTERN ____sdcc_ll_add_deix_bc_hl
+138   0000              	EXTERN ____sdcc_ll_add_deix_hlix
+139   0000              	EXTERN ____sdcc_ll_add_hlix_bc_deix
+140   0000              	EXTERN ____sdcc_ll_add_hlix_deix_bc
+141   0000              	EXTERN ____sdcc_ll_add_hlix_deix_bcix
+142   0000              	EXTERN ____sdcc_ll_asr_hlix_a
+143   0000              	EXTERN ____sdcc_ll_asr_mbc_a
+144   0000              	EXTERN ____sdcc_ll_copy_src_de_dst_hlix
+145   0000              	EXTERN ____sdcc_ll_copy_src_de_dst_hlsp
+146   0000              	EXTERN ____sdcc_ll_copy_src_deix_dst_hl
+147   0000              	EXTERN ____sdcc_ll_copy_src_deix_dst_hlix
+148   0000              	EXTERN ____sdcc_ll_copy_src_deixm_dst_hlsp
+149   0000              	EXTERN ____sdcc_ll_copy_src_desp_dst_hlsp
+150   0000              	EXTERN ____sdcc_ll_copy_src_hl_dst_de
+151   0000              	EXTERN ____sdcc_ll_copy_src_hlsp_dst_de
+152   0000              	EXTERN ____sdcc_ll_copy_src_hlsp_dst_deixm
+153   0000              	EXTERN ____sdcc_ll_lsl_hlix_a
+154   0000              	EXTERN ____sdcc_ll_lsl_mbc_a
+155   0000              	EXTERN ____sdcc_ll_lsr_hlix_a
+156   0000              	EXTERN ____sdcc_ll_lsr_mbc_a
+157   0000              	EXTERN ____sdcc_ll_push_hlix
+158   0000              	EXTERN ____sdcc_ll_push_mhl
+159   0000              	EXTERN ____sdcc_ll_sub_de_bc_hl
+160   0000              	EXTERN ____sdcc_ll_sub_de_bc_hlix
+161   0000              	EXTERN ____sdcc_ll_sub_de_hlix_bc
+162   0000              	EXTERN ____sdcc_ll_sub_de_hlix_bcix
+163   0000              	EXTERN ____sdcc_ll_sub_deix_bc_hl
+164   0000              	EXTERN ____sdcc_ll_sub_deix_hlix
+165   0000              	EXTERN ____sdcc_ll_sub_hlix_bc_deix
+166   0000              	EXTERN ____sdcc_ll_sub_hlix_deix_bc
+167   0000              	EXTERN ____sdcc_ll_sub_hlix_deix_bcix
+168   0000              	EXTERN ____sdcc_load_debc_deix
+169   0000              	EXTERN ____sdcc_load_dehl_deix
+170   0000              	EXTERN ____sdcc_load_debc_mhl
+171   0000              	EXTERN ____sdcc_load_hlde_mhl
+172   0000              	EXTERN ____sdcc_store_dehl_bcix
+173   0000              	EXTERN ____sdcc_store_debc_hlix
+174   0000              	EXTERN ____sdcc_store_debc_mhl
+175   0000              	EXTERN ____sdcc_cpu_pop_ei
+176   0000              	EXTERN ____sdcc_cpu_pop_ei_jp
+177   0000              	EXTERN ____sdcc_cpu_push_di
+178   0000              	EXTERN ____sdcc_outi
+179   0000              	EXTERN ____sdcc_outi_128
+180   0000              	EXTERN ____sdcc_outi_256
+181   0000              	EXTERN ____sdcc_ldi
+182   0000              	EXTERN ____sdcc_ldi_128
+183   0000              	EXTERN ____sdcc_ldi_256
+184   0000              	EXTERN ____sdcc_4_copy_srcd_hlix_dst_deix
+185   0000              	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_deix
+186   0000              	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_deix
+187   0000              	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_deix
+188   0000              	EXTERN ____sdcc_4_or_src_dehl_dst_bcix
+189   0000              	EXTERN ____sdcc_4_xor_src_dehl_dst_bcix
+190   0000              	EXTERN ____sdcc_4_and_src_dehl_dst_bcix
+191   0000              	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_debc
+192   0000              	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_debc
+193   0000              	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_debc
+194   0000              	EXTERN ____sdcc_4_cpl_src_mhl_dst_debc
+195   0000              	EXTERN ____sdcc_4_xor_src_debc_mhl_dst_debc
+196   0000              	EXTERN ____sdcc_4_or_src_debc_mhl_dst_debc
+197   0000              	EXTERN ____sdcc_4_and_src_debc_mhl_dst_debc
+198   0000              	EXTERN ____sdcc_4_and_src_debc_hlix_dst_debc
+199   0000              	EXTERN ____sdcc_4_or_src_debc_hlix_dst_debc
+200   0000              	EXTERN ____sdcc_4_xor_src_debc_hlix_dst_debc
+201   0000              
+202   0000              ;--------------------------------------------------------
+203   0000              ; Public variables in this module
+204   0000              ;--------------------------------------------------------
+205   0000              	GLOBAL _main
+206   0000              	GLOBAL _draw
+207   0000              	GLOBAL _fpset
+208   0000              	GLOBAL _pset
+209   0000              	GLOBAL _cls
+210   0000              	GLOBAL _crtset
+211   0000              	GLOBAL _dir
+212   0000              	GLOBAL _vram
+213   0000              	GLOBAL _sint
+214   0000              ;--------------------------------------------------------
+215   0000              ; Externals used
+216   0000              ;--------------------------------------------------------
+217   0000              ;--------------------------------------------------------
+218   0000              ; special function registers
+219   0000              ;--------------------------------------------------------
+220   0000              ;--------------------------------------------------------
+221   0000              ; ram data
+222   0000              ;--------------------------------------------------------
+223   0000              	SECTION bss_compiler
+224   0000              ;--------------------------------------------------------
+225   0000              ; ram data
+226   0000              ;--------------------------------------------------------
+227   0000              
+228   0000              IF 0
+229   0000              
+230   0000              ; .area _INITIALIZED removed by z88dk
+231   0000              
+232   0000              _vram:
+233   0000              	DEFS 2
+234   0000              _dir:
+235   0000              	DEFS 1
+236   0000              
+237   0000              ENDIF
+238   0000              
+239   0000              ;--------------------------------------------------------
+240   0000              ; absolute external ram data
+241   0000              ;--------------------------------------------------------
+242   0000              	SECTION IGNORE
+243   0000              ;--------------------------------------------------------
+244   0000              ; global & static initialisations
+245   0000              ;--------------------------------------------------------
+246   0000              	SECTION code_crt_init
+247   0000              ;--------------------------------------------------------
+248   0000              ; Home
+249   0000              ;--------------------------------------------------------
+250   0000              	SECTION IGNORE
+251   0000              ;--------------------------------------------------------
+252   0000              ; code
+253   0000              ;--------------------------------------------------------
+254   0000              	SECTION code_compiler
+255   0000              ;	---------------------------------
+256   0000              ; Function crtset
+257   0000              ; ---------------------------------
+258   0000              _crtset:
+259   0000  01 00 00    	ld	bc, 0000h
+260   0003  CD F7 08    	call	08f7h
+261   0006  01 19 50    	ld	bc, 80*256+25
+262   0009  CD 3A 09    	call	093ah
+263   000C  CD D2 0B    	call	0bd2h
+264   000F  C9          	ret
+265   0010              	SECTION code_compiler
+266   0010              ;	---------------------------------
+267   0010              ; Function cls
+268   0010              ; ---------------------------------
+269   0010              _cls:
+270   0010  2A 00 00    	ld	hl, (_vram)
+271   0013  0E 64       	ld	c, 64h
+272   0015  ED 69       	out	(c), l
+273   0017  ED 61       	out	(c), h
+274   0019  7C          	ld	a, h
+275   001A  EE 20       	xor	20h
+276   001C  67          	ld	h, a
+277   001D  22 00 00    	ld	(_vram), hl
+278   0020  11 28 00    	ld	de, 40
+279   0023  AF          	xor	a
+280   0024  0E 19       	ld	c, 25
+281   0026              	cls1:
+282   0026  06 50       	ld	b, 80
+283   0028              	cls2:
+284   0028  77          	ld	(hl), a
+285   0029  23          	inc	hl
+286   002A  10 FC       	djnz	cls2
+287   002C  19          	add	hl, de
+288   002D  0D          	dec	c
+289   002E  C2 26 00    	jp	nz, cls1
+290   0031  C9          	ret
+291   0032              	SECTION code_compiler
+292   0032              ;	---------------------------------
+293   0032              ; Function pset
+294   0032              ; ---------------------------------
+295   0032              _pset:
+296   0032  DD E5       	push	ix
+297   0034  DD 21 00 00 	ld	ix,0
+298   0038  DD 39       	add	ix,sp
+299   003A  F5          	push	af
+300   003B  DD 7E 05    	ld	a,(ix+5)
+301   003E  DD 77 FE    	ld	(ix-2),a
+302   0041  AF          	xor	a, a
+303   0042  DD 77 FF    	ld	(ix-1),a
+304   0045  C1          	pop	bc
+305   0046  C5          	push	bc
+306   0047  DD CB FF 7E 	bit	7,(ix-1)
+307   004B  28 05       	jr	Z,l_pset_00103
+308   004D  C1          	pop	bc
+309   004E  C5          	push	bc
+310   004F  03          	inc	bc
+311   0050  03          	inc	bc
+312   0051  03          	inc	bc
+313   0052              l_pset_00103:
+314   0052  CB 28       	sra	b
+315   0054  CB 19       	rr	c
+316   0056  CB 28       	sra	b
+317   0058  CB 19       	rr	c
+318   005A  69          	ld	l, c
+319   005B  60          	ld	h, b
+320   005C  29          	add	hl, hl
+321   005D  09          	add	hl, bc
+322   005E  29          	add	hl, hl
+323   005F  09          	add	hl, bc
+324   0060  29          	add	hl, hl
+325   0061  09          	add	hl, bc
+326   0062  29          	add	hl, hl
+327   0063  29          	add	hl, hl
+328   0064  29          	add	hl, hl
+329   0065  EB          	ex	de, hl
+330   0066  2A 00 00    	ld	hl, (_vram)
+331   0069  19          	add	hl, de
+332   006A  DD 5E 04    	ld	e,(ix+4)
+333   006D  16 00       	ld	d,0x00
+334   006F  4B          	ld	c, e
+335   0070  42          	ld	b, d
+336   0071  CB 7A       	bit	7, d
+337   0073  28 03       	jr	Z,l_pset_00104
+338   0075  4B          	ld	c, e
+339   0076  42          	ld	b, d
+340   0077  03          	inc	bc
+341   0078              l_pset_00104:
+342   0078  CB 28       	sra	b
+343   007A  CB 19       	rr	c
+344   007C  09          	add	hl, bc
+345   007D  4E          	ld	c, (hl)
+346   007E  7B          	ld	a, e
+347   007F  E6 01       	and	a,0x01
+348   0081  87          	add	a, a
+349   0082  87          	add	a, a
+350   0083  5F          	ld	e, a
+351   0084  DD 7E FE    	ld	a,(ix-2)
+352   0087  E6 03       	and	a,0x03
+353   0089  83          	add	a, e
+354   008A  47          	ld	b, a
+355   008B  3E 01       	ld	a,0x01
+356   008D  04          	inc	b
+357   008E  18 01       	jr	l_pset_00116
+358   0090              l_pset_00115:
+359   0090  87          	add	a, a
+360   0091              l_pset_00116:
+361   0091  10 FD       	djnz	l_pset_00115
+362   0093  B1          	or	a, c
+363   0094  77          	ld	(hl), a
+364   0095  DD F9       	ld	sp, ix
+365   0097  DD E1       	pop	ix
+366   0099  C9          	ret
+367   009A              	SECTION code_compiler
+368   009A              ;	---------------------------------
+369   009A              ; Function fpset
+370   009A              ; ---------------------------------
+371   009A              _fpset:
+372   009A  C1          	pop	bc
+373   009B  E1          	pop	hl
+374   009C  E5          	push	hl
+375   009D  C5          	push	bc
+376   009E  29          	add	hl, hl
+377   009F  29          	add	hl, hl
+378   00A0  29          	add	hl, hl
+379   00A1  29          	add	hl, hl
+380   00A2  29          	add	hl, hl
+381   00A3  44          	ld	b, h
+382   00A4  CB 7C       	bit	7, h
+383   00A6  28 07       	jr	Z,l_fpset_00103
+384   00A8  7D          	ld	a, l
+385   00A9  C6 FF       	add	a,0xff
+386   00AB  7C          	ld	a, h
+387   00AC  CE 00       	adc	a,0x00
+388   00AE  47          	ld	b, a
+389   00AF              l_fpset_00103:
+390   00AF  48          	ld	c, b
+391   00B0  79          	ld	a, c
+392   00B1  07          	rlca
+393   00B2  9F          	sbc	a, a
+394   00B3  79          	ld	a, c
+395   00B4  C6 50       	add	a,0x50
+396   00B6  47          	ld	b, a
+397   00B7  21 04 00    	ld	hl,4
+398   00BA  39          	add	hl, sp
+399   00BB  7E          	ld	a, (hl)
+400   00BC  23          	inc	hl
+401   00BD  66          	ld	h, (hl)
+402   00BE  6F          	ld	l, a
+403   00BF  29          	add	hl, hl
+404   00C0  29          	add	hl, hl
+405   00C1  29          	add	hl, hl
+406   00C2  29          	add	hl, hl
+407   00C3  29          	add	hl, hl
+408   00C4  EB          	ex	de,hl
+409   00C5  62          	ld	h, d
+410   00C6  CB 7A       	bit	7, d
+411   00C8  28 04       	jr	Z,l_fpset_00104
+412   00CA  21 FF 00    	ld	hl,0x00ff
+413   00CD  19          	add	hl, de
+414   00CE              l_fpset_00104:
+415   00CE  5C          	ld	e, h
+416   00CF  7B          	ld	a, e
+417   00D0  07          	rlca
+418   00D1  9F          	sbc	a, a
+419   00D2  7B          	ld	a, e
+420   00D3  C6 32       	add	a,0x32
+421   00D5  F5          	push	af
+422   00D6  33          	inc	sp
+423   00D7  C5          	push	bc
+424   00D8  33          	inc	sp
+425   00D9  CD 32 00    	call	_pset
+426   00DC  F1          	pop	af
+427   00DD  C9          	ret
+428   00DE              	SECTION code_compiler
+429   00DE              ;	---------------------------------
+430   00DE              ; Function draw
+431   00DE              ; ---------------------------------
+432   00DE              _draw:
+433   00DE  DD E5       	push	ix
+434   00E0  DD 21 00 00 	ld	ix,0
+435   00E4  DD 39       	add	ix,sp
+436   00E6  21 F9 FF    	ld	hl, -7
+437   00E9  39          	add	hl, sp
+438   00EA  F9          	ld	sp, hl
+439   00EB  21 02 00    	ld	hl,_dir + 0
+440   00EE  5E          	ld	e, (hl)
+441   00EF  01 00 00    	ld	bc,_sint+0
+442   00F2  6B          	ld	l, e
+443   00F3  26 00       	ld	h,0x00
+444   00F5  29          	add	hl, hl
+445   00F6  09          	add	hl, bc
+446   00F7  7E          	ld	a, (hl)
+447   00F8  DD 77 F9    	ld	(ix-7),a
+448   00FB  23          	inc	hl
+449   00FC  7E          	ld	a, (hl)
+450   00FD  DD 77 FA    	ld	(ix-6),a
+451   0100  7B          	ld	a, e
+452   0101  C6 40       	add	a,0x40
+453   0103  6F          	ld	l, a
+454   0104  26 00       	ld	h,0x00
+455   0106  29          	add	hl, hl
+456   0107  09          	add	hl, bc
+457   0108  5E          	ld	e, (hl)
+458   0109  23          	inc	hl
+459   010A  56          	ld	d, (hl)
+460   010B  E1          	pop	hl
+461   010C  E5          	push	hl
+462   010D  DD CB FA 7E 	bit	7,(ix-6)
+463   0111  28 06       	jr	Z,l_draw_00112
+464   0113  E1          	pop	hl
+465   0114  E5          	push	hl
+466   0115  01 0F 00    	ld	bc,0x000f
+467   0118  09          	add	hl, bc
+468   0119              l_draw_00112:
+469   0119  DD 75 FB    	ld	(ix-5),l
+470   011C  DD 74 FC    	ld	(ix-4),h
+471   011F  DD CB FC 2E 	sra	(ix-4)
+472   0123  DD CB FB 1E 	rr	(ix-5)
+473   0127  DD CB FC 2E 	sra	(ix-4)
+474   012B  DD CB FB 1E 	rr	(ix-5)
+475   012F  DD CB FC 2E 	sra	(ix-4)
+476   0133  DD CB FB 1E 	rr	(ix-5)
+477   0137  DD CB FC 2E 	sra	(ix-4)
+478   013B  DD CB FB 1E 	rr	(ix-5)
+479   013F  6B          	ld	l, e
+480   0140  62          	ld	h, d
+481   0141  CB 7A       	bit	7, d
+482   0143  28 04       	jr	Z,l_draw_00113
+483   0145  21 0F 00    	ld	hl,0x000f
+484   0148  19          	add	hl, de
+485   0149              l_draw_00113:
+486   0149  DD 75 FD    	ld	(ix-3),l
+487   014C  DD 74 FE    	ld	(ix-2),h
+488   014F  DD CB FE 2E 	sra	(ix-2)
+489   0153  DD CB FD 1E 	rr	(ix-3)
+490   0157  DD CB FE 2E 	sra	(ix-2)
+491   015B  DD CB FD 1E 	rr	(ix-3)
+492   015F  DD CB FE 2E 	sra	(ix-2)
+493   0163  DD CB FD 1E 	rr	(ix-3)
+494   0167  DD CB FE 2E 	sra	(ix-2)
+495   016B  DD CB FD 1E 	rr	(ix-3)
+496   016F  D5          	push	de
+497   0170  CD 10 00    	call	_cls
+498   0173  D1          	pop	de
+499   0174  4B          	ld	c, e
+500   0175  42          	ld	b, d
+501   0176  E1          	pop	hl
+502   0177  E5          	push	hl
+503   0178  E5          	push	hl
+504   0179  C5          	push	bc
+505   017A  D5          	push	de
+506   017B  E5          	push	hl
+507   017C  DD 6E F9    	ld	l,(ix-7)
+508   017F  DD 66 FA    	ld	h,(ix-6)
+509   0182  E3          	ex	(sp), hl
+510   0183  D5          	push	de
+511   0184  CD 9A 00    	call	_fpset
+512   0187  F1          	pop	af
+513   0188  F1          	pop	af
+514   0189  D1          	pop	de
+515   018A  C1          	pop	bc
+516   018B  E1          	pop	hl
+517   018C  AF          	xor	a, a
+518   018D  DD 77 FF    	ld	(ix-1),a
+519   0190              l_draw_00104:
+520   0190  79          	ld	a, c
+521   0191  DD 96 FB    	sub	a,(ix-5)
+522   0194  4F          	ld	c, a
+523   0195  78          	ld	a, b
+524   0196  DD 9E FC    	sbc	a,(ix-4)
+525   0199  47          	ld	b, a
+526   019A  7D          	ld	a, l
+527   019B  DD 86 FD    	add	a,(ix-3)
+528   019E  6F          	ld	l, a
+529   019F  7C          	ld	a, h
+530   01A0  DD 8E FE    	adc	a,(ix-2)
+531   01A3  67          	ld	h, a
+532   01A4  E5          	push	hl
+533   01A5  C5          	push	bc
+534   01A6  D5          	push	de
+535   01A7  E5          	push	hl
+536   01A8  C5          	push	bc
+537   01A9  CD 9A 00    	call	_fpset
+538   01AC  F1          	pop	af
+539   01AD  F1          	pop	af
+540   01AE  D1          	pop	de
+541   01AF  C1          	pop	bc
+542   01B0  E1          	pop	hl
+543   01B1  DD 34 FF    	inc	(ix-1)
+544   01B4  DD 7E FF    	ld	a,(ix-1)
+545   01B7  D6 08       	sub	a,0x08
+546   01B9  38 D5       	jr	C,l_draw_00104
+547   01BB  4B          	ld	c, e
+548   01BC  42          	ld	b, d
+549   01BD  E1          	pop	hl
+550   01BE  E5          	push	hl
+551   01BF  AF          	xor	a, a
+552   01C0  DD 77 FF    	ld	(ix-1),a
+553   01C3              l_draw_00106:
+554   01C3  79          	ld	a, c
+555   01C4  DD 86 FB    	add	a,(ix-5)
+556   01C7  4F          	ld	c, a
+557   01C8  78          	ld	a, b
+558   01C9  DD 8E FC    	adc	a,(ix-4)
+559   01CC  47          	ld	b, a
+560   01CD  7D          	ld	a, l
+561   01CE  DD 96 FD    	sub	a,(ix-3)
+562   01D1  6F          	ld	l, a
+563   01D2  7C          	ld	a, h
+564   01D3  DD 9E FE    	sbc	a,(ix-2)
+565   01D6  67          	ld	h, a
+566   01D7  E5          	push	hl
+567   01D8  C5          	push	bc
+568   01D9  D5          	push	de
+569   01DA  E5          	push	hl
+570   01DB  C5          	push	bc
+571   01DC  CD 9A 00    	call	_fpset
+572   01DF  F1          	pop	af
+573   01E0  F1          	pop	af
+574   01E1  D1          	pop	de
+575   01E2  C1          	pop	bc
+576   01E3  E1          	pop	hl
+577   01E4  DD 34 FF    	inc	(ix-1)
+578   01E7  DD 7E FF    	ld	a,(ix-1)
+579   01EA  D6 08       	sub	a,0x08
+580   01EC  38 D5       	jr	C,l_draw_00106
+581   01EE  4B          	ld	c, e
+582   01EF  42          	ld	b, d
+583   01F0  D1          	pop	de
+584   01F1  D5          	push	de
+585   01F2  C5          	push	bc
+586   01F3  D5          	push	de
+587   01F4  21 00 00    	ld	hl,0x0000
+588   01F7  E5          	push	hl
+589   01F8  6C          	ld	l, h
+590   01F9  E5          	push	hl
+591   01FA  CD 9A 00    	call	_fpset
+592   01FD  F1          	pop	af
+593   01FE  F1          	pop	af
+594   01FF  D1          	pop	de
+595   0200  C1          	pop	bc
+596   0201  2E 00       	ld	l,0x00
+597   0203              l_draw_00108:
+598   0203  79          	ld	a, c
+599   0204  DD 96 FD    	sub	a,(ix-3)
+600   0207  4F          	ld	c, a
+601   0208  78          	ld	a, b
+602   0209  DD 9E FE    	sbc	a,(ix-2)
+603   020C  47          	ld	b, a
+604   020D  7B          	ld	a, e
+605   020E  DD 96 FB    	sub	a,(ix-5)
+606   0211  5F          	ld	e, a
+607   0212  7A          	ld	a, d
+608   0213  DD 9E FC    	sbc	a,(ix-4)
+609   0216  57          	ld	d, a
+610   0217  E5          	push	hl
+611   0218  C5          	push	bc
+612   0219  D5          	push	de
+613   021A  D5          	push	de
+614   021B  C5          	push	bc
+615   021C  CD 9A 00    	call	_fpset
+616   021F  F1          	pop	af
+617   0220  F1          	pop	af
+618   0221  D1          	pop	de
+619   0222  C1          	pop	bc
+620   0223  E1          	pop	hl
+621   0224  2C          	inc	l
+622   0225  7D          	ld	a, l
+623   0226  D6 08       	sub	a,0x08
+624   0228  38 D9       	jr	C,l_draw_00108
+625   022A  DD F9       	ld	sp, ix
+626   022C  DD E1       	pop	ix
+627   022E  C9          	ret
+628   022F              	SECTION rodata_compiler
+629   0000              _sint:
+630   0000  00 00       	DEFW +0x0000
+631   0002  06 00       	DEFW +0x0006
+632   0004  0D 00       	DEFW +0x000d
+633   0006  13 00       	DEFW +0x0013
+634   0008  19 00       	DEFW +0x0019
+635   000A  1F 00       	DEFW +0x001f
+636   000C  26 00       	DEFW +0x0026
+637   000E  2C 00       	DEFW +0x002c
+638   0010  32 00       	DEFW +0x0032
+639   0012  38 00       	DEFW +0x0038
+640   0014  3E 00       	DEFW +0x003e
+641   0016  44 00       	DEFW +0x0044
+642   0018  4A 00       	DEFW +0x004a
+643   001A  50 00       	DEFW +0x0050
+644   001C  56 00       	DEFW +0x0056
+645   001E  5C 00       	DEFW +0x005c
+646   0020  62 00       	DEFW +0x0062
+647   0022  68 00       	DEFW +0x0068
+648   0024  6D 00       	DEFW +0x006d
+649   0026  73 00       	DEFW +0x0073
+650   0028  79 00       	DEFW +0x0079
+651   002A  7E 00       	DEFW +0x007e
+652   002C  84 00       	DEFW +0x0084
+653   002E  89 00       	DEFW +0x0089
+654   0030  8E 00       	DEFW +0x008e
+655   0032  93 00       	DEFW +0x0093
+656   0034  98 00       	DEFW +0x0098
+657   0036  9D 00       	DEFW +0x009d
+658   0038  A2 00       	DEFW +0x00a2
+659   003A  A7 00       	DEFW +0x00a7
+660   003C  AC 00       	DEFW +0x00ac
+661   003E  B1 00       	DEFW +0x00b1
+662   0040  B5 00       	DEFW +0x00b5
+663   0042  B9 00       	DEFW +0x00b9
+664   0044  BE 00       	DEFW +0x00be
+665   0046  C2 00       	DEFW +0x00c2
+666   0048  C6 00       	DEFW +0x00c6
+667   004A  CA 00       	DEFW +0x00ca
+668   004C  CE 00       	DEFW +0x00ce
+669   004E  D1 00       	DEFW +0x00d1
+670   0050  D5 00       	DEFW +0x00d5
+671   0052  D8 00       	DEFW +0x00d8
+672   0054  DC 00       	DEFW +0x00dc
+673   0056  DF 00       	DEFW +0x00df
+674   0058  E2 00       	DEFW +0x00e2
+675   005A  E5 00       	DEFW +0x00e5
+676   005C  E7 00       	DEFW +0x00e7
+677   005E  EA 00       	DEFW +0x00ea
+678   0060  ED 00       	DEFW +0x00ed
+679   0062  EF 00       	DEFW +0x00ef
+680   0064  F1 00       	DEFW +0x00f1
+681   0066  F3 00       	DEFW +0x00f3
+682   0068  F5 00       	DEFW +0x00f5
+683   006A  F7 00       	DEFW +0x00f7
+684   006C  F8 00       	DEFW +0x00f8
+685   006E  FA 00       	DEFW +0x00fa
+686   0070  FB 00       	DEFW +0x00fb
+687   0072  FC 00       	DEFW +0x00fc
+688   0074  FD 00       	DEFW +0x00fd
+689   0076  FE 00       	DEFW +0x00fe
+690   0078  FF 00       	DEFW +0x00ff
+691   007A  FF 00       	DEFW +0x00ff
+692   007C  00 01       	DEFW +0x0100
+693   007E  00 01       	DEFW +0x0100
+694   0080  00 01       	DEFW +0x0100
+695   0082  00 01       	DEFW +0x0100
+696   0084  00 01       	DEFW +0x0100
+697   0086  FF 00       	DEFW +0x00ff
+698   0088  FF 00       	DEFW +0x00ff
+699   008A  FE 00       	DEFW +0x00fe
+700   008C  FD 00       	DEFW +0x00fd
+701   008E  FC 00       	DEFW +0x00fc
+702   0090  FB 00       	DEFW +0x00fb
+703   0092  FA 00       	DEFW +0x00fa
+704   0094  F8 00       	DEFW +0x00f8
+705   0096  F7 00       	DEFW +0x00f7
+706   0098  F5 00       	DEFW +0x00f5
+707   009A  F3 00       	DEFW +0x00f3
+708   009C  F1 00       	DEFW +0x00f1
+709   009E  EF 00       	DEFW +0x00ef
+710   00A0  ED 00       	DEFW +0x00ed
+711   00A2  EA 00       	DEFW +0x00ea
+712   00A4  E7 00       	DEFW +0x00e7
+713   00A6  E5 00       	DEFW +0x00e5
+714   00A8  E2 00       	DEFW +0x00e2
+715   00AA  DF 00       	DEFW +0x00df
+716   00AC  DC 00       	DEFW +0x00dc
+717   00AE  D8 00       	DEFW +0x00d8
+718   00B0  D5 00       	DEFW +0x00d5
+719   00B2  D1 00       	DEFW +0x00d1
+720   00B4  CE 00       	DEFW +0x00ce
+721   00B6  CA 00       	DEFW +0x00ca
+722   00B8  C6 00       	DEFW +0x00c6
+723   00BA  C2 00       	DEFW +0x00c2
+724   00BC  BE 00       	DEFW +0x00be
+725   00BE  B9 00       	DEFW +0x00b9
+726   00C0  B5 00       	DEFW +0x00b5
+727   00C2  B1 00       	DEFW +0x00b1
+728   00C4  AC 00       	DEFW +0x00ac
+729   00C6  A7 00       	DEFW +0x00a7
+730   00C8  A2 00       	DEFW +0x00a2
+731   00CA  9D 00       	DEFW +0x009d
+732   00CC  98 00       	DEFW +0x0098
+733   00CE  93 00       	DEFW +0x0093
+734   00D0  8E 00       	DEFW +0x008e
+735   00D2  89 00       	DEFW +0x0089
+736   00D4  84 00       	DEFW +0x0084
+737   00D6  7E 00       	DEFW +0x007e
+738   00D8  79 00       	DEFW +0x0079
+739   00DA  73 00       	DEFW +0x0073
+740   00DC  6D 00       	DEFW +0x006d
+741   00DE  68 00       	DEFW +0x0068
+742   00E0  62 00       	DEFW +0x0062
+743   00E2  5C 00       	DEFW +0x005c
+744   00E4  56 00       	DEFW +0x0056
+745   00E6  50 00       	DEFW +0x0050
+746   00E8  4A 00       	DEFW +0x004a
+747   00EA  44 00       	DEFW +0x0044
+748   00EC  3E 00       	DEFW +0x003e
+749   00EE  38 00       	DEFW +0x0038
+750   00F0  32 00       	DEFW +0x0032
+751   00F2  2C 00       	DEFW +0x002c
+752   00F4  26 00       	DEFW +0x0026
+753   00F6  1F 00       	DEFW +0x001f
+754   00F8  19 00       	DEFW +0x0019
+755   00FA  13 00       	DEFW +0x0013
+756   00FC  0D 00       	DEFW +0x000d
+757   00FE  06 00       	DEFW +0x0006
+758   0100  00 00       	DEFW +0x0000
+759   0102  FA FF       	DEFW +0xfffa
+760   0104  F3 FF       	DEFW +0xfff3
+761   0106  ED FF       	DEFW +0xffed
+762   0108  E7 FF       	DEFW +0xffe7
+763   010A  E1 FF       	DEFW +0xffe1
+764   010C  DA FF       	DEFW +0xffda
+765   010E  D4 FF       	DEFW +0xffd4
+766   0110  CE FF       	DEFW +0xffce
+767   0112  C8 FF       	DEFW +0xffc8
+768   0114  C2 FF       	DEFW +0xffc2
+769   0116  BC FF       	DEFW +0xffbc
+770   0118  B6 FF       	DEFW +0xffb6
+771   011A  B0 FF       	DEFW +0xffb0
+772   011C  AA FF       	DEFW +0xffaa
+773   011E  A4 FF       	DEFW +0xffa4
+774   0120  9E FF       	DEFW +0xff9e
+775   0122  98 FF       	DEFW +0xff98
+776   0124  93 FF       	DEFW +0xff93
+777   0126  8D FF       	DEFW +0xff8d
+778   0128  87 FF       	DEFW +0xff87
+779   012A  82 FF       	DEFW +0xff82
+780   012C  7C FF       	DEFW +0xff7c
+781   012E  77 FF       	DEFW +0xff77
+782   0130  72 FF       	DEFW +0xff72
+783   0132  6D FF       	DEFW +0xff6d
+784   0134  68 FF       	DEFW +0xff68
+785   0136  63 FF       	DEFW +0xff63
+786   0138  5E FF       	DEFW +0xff5e
+787   013A  59 FF       	DEFW +0xff59
+788   013C  54 FF       	DEFW +0xff54
+789   013E  4F FF       	DEFW +0xff4f
+790   0140  4B FF       	DEFW +0xff4b
+791   0142  47 FF       	DEFW +0xff47
+792   0144  42 FF       	DEFW +0xff42
+793   0146  3E FF       	DEFW +0xff3e
+794   0148  3A FF       	DEFW +0xff3a
+795   014A  36 FF       	DEFW +0xff36
+796   014C  32 FF       	DEFW +0xff32
+797   014E  2F FF       	DEFW +0xff2f
+798   0150  2B FF       	DEFW +0xff2b
+799   0152  28 FF       	DEFW +0xff28
+800   0154  24 FF       	DEFW +0xff24
+801   0156  21 FF       	DEFW +0xff21
+802   0158  1E FF       	DEFW +0xff1e
+803   015A  1B FF       	DEFW +0xff1b
+804   015C  19 FF       	DEFW +0xff19
+805   015E  16 FF       	DEFW +0xff16
+806   0160  13 FF       	DEFW +0xff13
+807   0162  11 FF       	DEFW +0xff11
+808   0164  0F FF       	DEFW +0xff0f
+809   0166  0D FF       	DEFW +0xff0d
+810   0168  0B FF       	DEFW +0xff0b
+811   016A  09 FF       	DEFW +0xff09
+812   016C  08 FF       	DEFW +0xff08
+813   016E  06 FF       	DEFW +0xff06
+814   0170  05 FF       	DEFW +0xff05
+815   0172  04 FF       	DEFW +0xff04
+816   0174  03 FF       	DEFW +0xff03
+817   0176  02 FF       	DEFW +0xff02
+818   0178  01 FF       	DEFW +0xff01
+819   017A  01 FF       	DEFW +0xff01
+820   017C  00 FF       	DEFW +0xff00
+821   017E  00 FF       	DEFW +0xff00
+822   0180  00 FF       	DEFW +0xff00
+823   0182  00 FF       	DEFW +0xff00
+824   0184  00 FF       	DEFW +0xff00
+825   0186  01 FF       	DEFW +0xff01
+826   0188  01 FF       	DEFW +0xff01
+827   018A  02 FF       	DEFW +0xff02
+828   018C  03 FF       	DEFW +0xff03
+829   018E  04 FF       	DEFW +0xff04
+830   0190  05 FF       	DEFW +0xff05
+831   0192  06 FF       	DEFW +0xff06
+832   0194  08 FF       	DEFW +0xff08
+833   0196  09 FF       	DEFW +0xff09
+834   0198  0B FF       	DEFW +0xff0b
+835   019A  0D FF       	DEFW +0xff0d
+836   019C  0F FF       	DEFW +0xff0f
+837   019E  11 FF       	DEFW +0xff11
+838   01A0  13 FF       	DEFW +0xff13
+839   01A2  16 FF       	DEFW +0xff16
+840   01A4  19 FF       	DEFW +0xff19
+841   01A6  1B FF       	DEFW +0xff1b
+842   01A8  1E FF       	DEFW +0xff1e
+843   01AA  21 FF       	DEFW +0xff21
+844   01AC  24 FF       	DEFW +0xff24
+845   01AE  28 FF       	DEFW +0xff28
+846   01B0  2B FF       	DEFW +0xff2b
+847   01B2  2F FF       	DEFW +0xff2f
+848   01B4  32 FF       	DEFW +0xff32
+849   01B6  36 FF       	DEFW +0xff36
+850   01B8  3A FF       	DEFW +0xff3a
+851   01BA  3E FF       	DEFW +0xff3e
+852   01BC  42 FF       	DEFW +0xff42
+853   01BE  47 FF       	DEFW +0xff47
+854   01C0  4B FF       	DEFW +0xff4b
+855   01C2  4F FF       	DEFW +0xff4f
+856   01C4  54 FF       	DEFW +0xff54
+857   01C6  59 FF       	DEFW +0xff59
+858   01C8  5E FF       	DEFW +0xff5e
+859   01CA  63 FF       	DEFW +0xff63
+860   01CC  68 FF       	DEFW +0xff68
+861   01CE  6D FF       	DEFW +0xff6d
+862   01D0  72 FF       	DEFW +0xff72
+863   01D2  77 FF       	DEFW +0xff77
+864   01D4  7C FF       	DEFW +0xff7c
+865   01D6  82 FF       	DEFW +0xff82
+866   01D8  87 FF       	DEFW +0xff87
+867   01DA  8D FF       	DEFW +0xff8d
+868   01DC  93 FF       	DEFW +0xff93
+869   01DE  98 FF       	DEFW +0xff98
+870   01E0  9E FF       	DEFW +0xff9e
+871   01E2  A4 FF       	DEFW +0xffa4
+872   01E4  AA FF       	DEFW +0xffaa
+873   01E6  B0 FF       	DEFW +0xffb0
+874   01E8  B6 FF       	DEFW +0xffb6
+875   01EA  BC FF       	DEFW +0xffbc
+876   01EC  C2 FF       	DEFW +0xffc2
+877   01EE  C8 FF       	DEFW +0xffc8
+878   01F0  CE FF       	DEFW +0xffce
+879   01F2  D4 FF       	DEFW +0xffd4
+880   01F4  DA FF       	DEFW +0xffda
+881   01F6  E1 FF       	DEFW +0xffe1
+882   01F8  E7 FF       	DEFW +0xffe7
+883   01FA  ED FF       	DEFW +0xffed
+884   01FC  F3 FF       	DEFW +0xfff3
+885   01FE  FA FF       	DEFW +0xfffa
+886   0200              	SECTION code_compiler
+887   022F              ;	---------------------------------
+888   022F              ; Function main
+889   022F              ; ---------------------------------
+890   022F              _main:
+891   022F  CD 00 00    	call	_crtset
+892   0232  CD 10 00    	call	_cls
+893   0235  21 51 F3    	ld	hl,0xf351
+894   0238  01 19 00    	ld	bc,0x0019
+895   023B              l_main_00106:
+896   023B  36 80       	ld	(hl),0x80
+897   023D  11 78 00    	ld	de,0x0078
+898   0240  19          	add	hl, de
+899   0241  0B          	dec	bc
+900   0242  78          	ld	a, b
+901   0243  B1          	or	a, c
+902   0244  20 F5       	jr	NZ,l_main_00106
+903   0246  01 00 F3    	ld	bc,0xf300
+904   0249  21 00 D3    	ld	hl,0xd300
+905   024C  11 00 00    	ld	de,0x0000
+906   024F              l_main_00107:
+907   024F  0A          	ld	a, (bc)
+908   0250  03          	inc	bc
+909   0251  77          	ld	(hl), a
+910   0252  23          	inc	hl
+911   0253  13          	inc	de
+912   0254  7B          	ld	a, e
+913   0255  D6 B8       	sub	a,0xb8
+914   0257  7A          	ld	a, d
+915   0258  17          	rla
+916   0259  3F          	ccf
+917   025A  1F          	rra
+918   025B  DE 8B       	sbc	a,0x8b
+919   025D  38 F0       	jr	C,l_main_00107
+920   025F              l_main_00109:
+921   025F  CD DE 00    	call	_draw
+922   0262  21 02 00    	ld	hl,_dir+0
+923   0265  34          	inc	(hl)
+924   0266  18 F7       	jr	l_main_00109
+925   0268              	SECTION data_compiler
+926   0000              _vram:
+927   0000  00 F3       	DEFW +0xf300
+928   0002              _dir:
+929   0002  00          	DEFB +0x00
+930   0003              	SECTION IGNORE
+931   0000              
