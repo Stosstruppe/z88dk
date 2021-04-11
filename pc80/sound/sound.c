@@ -5,6 +5,7 @@ typedef unsigned char BYTE;
 typedef unsigned short WORD;
 
 typedef struct {
+	BYTE port;
 	BYTE index;
 	BYTE tick;
 } SEQ;
@@ -19,9 +20,25 @@ const WORD tones[] = {
 	 3822, 3608, 3405, 3214, 3034, 2863, 2703, 2551, 2408, 2273, 2145, 2025, // O6
 };
 
-const BYTE data[] = {
-	36,15, 40,15, 43,15, 48,15, 0xff
+const BYTE data0[] = {
+	53,24, 0,16, 48,8, 53,8, 57,8, 60,8, 57,8, 0,8, 53,8,
+	55,8, 0,8, 55,8, 55,8, 0,8, 50,8+8, 0,8, 55,8, 53,8, 0,8, 52,8,
+	53,24, 0,16, 48,8, 53,8, 57,8, 60,8, 57,8, 0,8, 53,8,
+	54,8, 0,8, 54,8, 54,8, 0,8, 53,8+48, 0xff
 };
+const BYTE data1[] = {
+	45,24, 0,16, 45,8, 45,8, 48,8, 53,8, 48,8, 0,8, 45,8,
+	46,8, 0,8, 46,8, 46,8, 0,8, 46,8+8, 0,8, 46,8, 46,8, 0,8, 46,8,
+	45,24, 0,16, 45,8, 45,8, 45,8, 45,8, 45,8, 0,8, 45,8,
+	46,8, 0,8, 46,8, 46,8, 0,8, 45,8+48, 0xff
+};
+const BYTE data2[] = {
+	29,8, 29,8, 29,8, 29,8, 0,16, 29,8, 29,8, 29,8, 29,8, 0,16,
+	29,8, 29,8, 29,8, 29,8, 0,16, 29,8, 29,8, 29,8, 29,8, 0,16,
+	29,8, 29,8, 29,8, 29,8, 0,16, 29,8, 29,8, 29,8, 29,8, 0,16,
+	29,8, 29,8, 29,8, 29,8, 0,8, 29,8, 0,48, 0xff
+};
+const BYTE *data[3] = { data0, data1, data2 };
 
 void outp(BYTE port, BYTE value) __naked
 {
@@ -51,41 +68,53 @@ vsync2:
 __endasm;
 }
 
-SEQ seq;
+SEQ seq[3];
 
 void init()
 {
-	seq.index = 0;
-	seq.tick = 0;
+	int i;
+	SEQ *pSeq;
 
+	for (i = 0; i < 3; i++) {
+		pSeq = seq + i;
+		pSeq->port = 0x0c + i;
+		pSeq->index = 0;
+		pSeq->tick = 1;
+	}
 	outp(0x0f, 0x36);	// ch0
-//	outp(0x02, 0xc8);
-	outp(0x02, 0x08);	// ch0
+	outp(0x0f, 0x76);	// ch1
+	outp(0x0f, 0xb6);	// ch2
+	outp(0x02, 0xc8);
 }
 
-void play()
+void play(int ch)
 {
-	BYTE i, t;
+	BYTE p, i;
 	WORD w;
+	SEQ *pSeq = &seq[ch];
+	const BYTE *pData;
 
-	if (seq.tick) {
-		seq.tick--;
+	p = pSeq->port;
+	if (--pSeq->tick) {
+		if (pSeq->tick < 2) {
+			outp(p, 0);
+			outp(p, 0);
+		}
 		return;
 	}
 
-	i = seq.index;
-	t = data[i];
-	if (t == 0xff) {
+	pData = data[ch];
+	i = pSeq->index;
+	if (pData[i] == 0xff) {
 		i = 0;
-		t = data[i];
 	}
 
-	w = tones[t];
-	outp(0x0c, w % 256);	// ch0
-	outp(0x0c, w / 256);	// ch0
+	w = tones[pData[i]];
+	outp(p, w % 256);
+	outp(p, w / 256);
 
-	seq.tick = data[++i];
-	seq.index = ++i;
+	pSeq->tick = pData[++i];
+	pSeq->index = ++i;
 }
 
 void main()
@@ -93,6 +122,8 @@ void main()
 	init();
 	for (;;) {
 		vsync();
-		play();
+		play(0);
+		play(1);
+		play(2);
 	}
 }
