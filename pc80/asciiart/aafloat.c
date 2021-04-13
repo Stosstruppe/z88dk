@@ -26,6 +26,20 @@ void bcde() __naked
 	__endasm;
 }
 
+void getFloat(FLOAT *p) __z88dk_fastcall __naked
+{
+	p;
+	__asm
+	ex	de, hl
+	ld	hl, 0f0a8h	; FAcc
+	ldi
+	ldi
+	ldi
+	ldi
+	ret
+	__endasm;
+}
+
 void setFloat(FLOAT *p) __z88dk_fastcall __naked
 {
 	p;
@@ -41,12 +55,41 @@ void setFloat(FLOAT *p) __z88dk_fastcall __naked
 	__endasm;
 }
 
+void addFloat(FLOAT *p) __z88dk_fastcall __naked
+{
+	p;
+	__asm
+	call	_bcde
+	jp	2412h		; 単精度加算
+	__endasm;
+}
+
+void subFloat(FLOAT *p) __z88dk_fastcall __naked
+{
+	p;
+	__asm
+	call	_bcde
+	jp	240fh		; 単精度減算 (FAcc)←(bc de)-(FAcc)
+	__endasm;
+}
+
 void mulFloat(FLOAT *p) __z88dk_fastcall __naked
 {
 	p;
 	__asm
 	call	_bcde
 	jp	2541h		; 単精度乗算 (FAcc)←(bc de)*(FAcc)
+	__endasm;
+}
+
+signed char cmpFloat(FLOAT *p) __z88dk_fastcall __naked
+{
+	p;
+	__asm
+	call	_bcde
+	call	270ch		; 単精度比較
+	ld	l, a		; FAcc ? p <:ff =:00 >:01
+	ret
 	__endasm;
 }
 
@@ -72,28 +115,62 @@ void printFAcc() __naked
 void main()
 {
 	int i, x, y;
-//	FLOAT a, b, ca, cb, t;
+	FLOAT a, b, ca, cb, t;
+	FLOAT f4 = 0x83000000;
 	FLOAT f_0458 = 0x7c3b98c8;
+	FLOAT f_08333 = 0x7d2aa8eb;
 
-	for (y = 0; y <= 0; y++) {
-		for (x = 0; x <= 5; x++) {
-			//ca = x * 0.0458;
+	for (y = -12; y <= 12; y++) {
+		for (x = -39; x <= 39; x++) {
+			// ca = x * 0.0458;
 			setShort(x);
 			mulFloat(&f_0458);
-//			getFloat(&ca);
+			getFloat(&ca);
+			getFloat(&a);
 
-			printFAcc();
-			putch('\r');
-			putch('\n');
-/*
+			// cb = y * 0.08333;
+			setShort(y);
+			mulFloat(&f_08333);
+			getFloat(&cb);
+			getFloat(&b);
+
 			for (i = 0; i <= 15; i++) {
-				if (y < i) {
+				// t = a * a - b * b + ca;
+				setFloat(&a);
+				mulFloat(&a);
+				getFloat(&t);
+				setFloat(&b);
+				mulFloat(&b);
+				subFloat(&t);
+				addFloat(&ca);
+				getFloat(&t);
+
+				// b = 2 * a * b + cb;
+				setShort(2);
+				mulFloat(&a);
+				mulFloat(&b);
+				addFloat(&cb);
+				getFloat(&b);
+
+				// a = t;
+				setFloat(&t);
+				getFloat(&a);
+
+				// if (a * a + b * b > 4)
+				setFloat(&a);
+				mulFloat(&a);
+				getFloat(&t);
+				setFloat(&b);
+				mulFloat(&b);
+				addFloat(&t);
+				if (cmpFloat(&f4) > 0) {
 					break;
 				}
 			}
 			putch("0123456789ABCDEF "[i]);
-*/
 		}
+		putch('\r');
+		putch('\n');
 	}
 }
 

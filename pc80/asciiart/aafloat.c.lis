@@ -208,153 +208,382 @@
 205   0000              	GLOBAL _main
 206   0000              	GLOBAL _printFAcc
 207   0000              	GLOBAL _setShort
-208   0000              	GLOBAL _mulFloat
-209   0000              	GLOBAL _setFloat
-210   0000              	GLOBAL _bcde
-211   0000              	GLOBAL _putch
-212   0000              ;--------------------------------------------------------
-213   0000              ; Externals used
-214   0000              ;--------------------------------------------------------
-215   0000              ;--------------------------------------------------------
-216   0000              ; special function registers
-217   0000              ;--------------------------------------------------------
+208   0000              	GLOBAL _cmpFloat
+209   0000              	GLOBAL _mulFloat
+210   0000              	GLOBAL _subFloat
+211   0000              	GLOBAL _addFloat
+212   0000              	GLOBAL _setFloat
+213   0000              	GLOBAL _getFloat
+214   0000              	GLOBAL _bcde
+215   0000              	GLOBAL _putch
+216   0000              ;--------------------------------------------------------
+217   0000              ; Externals used
 218   0000              ;--------------------------------------------------------
-219   0000              ; ram data
-220   0000              ;--------------------------------------------------------
-221   0000              	SECTION bss_compiler
+219   0000              ;--------------------------------------------------------
+220   0000              ; special function registers
+221   0000              ;--------------------------------------------------------
 222   0000              ;--------------------------------------------------------
 223   0000              ; ram data
 224   0000              ;--------------------------------------------------------
-225   0000              
-226   0000              IF 0
-227   0000              
-228   0000              ; .area _INITIALIZED removed by z88dk
+225   0000              	SECTION bss_compiler
+226   0000              ;--------------------------------------------------------
+227   0000              ; ram data
+228   0000              ;--------------------------------------------------------
 229   0000              
-230   0000              
-231   0000              ENDIF
-232   0000              
-233   0000              ;--------------------------------------------------------
-234   0000              ; absolute external ram data
-235   0000              ;--------------------------------------------------------
-236   0000              	SECTION IGNORE
+230   0000              IF 0
+231   0000              
+232   0000              ; .area _INITIALIZED removed by z88dk
+233   0000              
+234   0000              
+235   0000              ENDIF
+236   0000              
 237   0000              ;--------------------------------------------------------
-238   0000              ; global & static initialisations
+238   0000              ; absolute external ram data
 239   0000              ;--------------------------------------------------------
-240   0000              	SECTION code_crt_init
+240   0000              	SECTION IGNORE
 241   0000              ;--------------------------------------------------------
-242   0000              ; Home
+242   0000              ; global & static initialisations
 243   0000              ;--------------------------------------------------------
-244   0000              	SECTION IGNORE
+244   0000              	SECTION code_crt_init
 245   0000              ;--------------------------------------------------------
-246   0000              ; code
+246   0000              ; Home
 247   0000              ;--------------------------------------------------------
-248   0000              	SECTION code_compiler
-249   0000              ;	---------------------------------
-250   0000              ; Function putch
-251   0000              ; ---------------------------------
-252   0000              _putch:
-253   0000  7D          	ld	a, l
-254   0001  DF          	rst	18h
-255   0002  C9          	ret
-256   0003              ;	---------------------------------
-257   0003              ; Function bcde
-258   0003              ; ---------------------------------
-259   0003              _bcde:
-260   0003  5E          	ld	e, (hl)
-261   0004  23          	inc	hl
-262   0005  56          	ld	d, (hl)
-263   0006  23          	inc	hl
-264   0007  4E          	ld	c, (hl)
-265   0008  23          	inc	hl
-266   0009  46          	ld	b, (hl)
-267   000A  C9          	ret
-268   000B              ;	---------------------------------
-269   000B              ; Function setFloat
-270   000B              ; ---------------------------------
-271   000B              _setFloat:
-272   000B  11 A8 F0    	ld	de, 0f0a8h
-273   000E  ED A0       	ldi
-274   0010  ED A0       	ldi
-275   0012  ED A0       	ldi
-276   0014  ED A0       	ldi
-277   0016  3E 04       	ld	a, 4
-278   0018  32 45 EF    	ld	(0ef45h), a
-279   001B  C9          	ret
-280   001C              ;	---------------------------------
-281   001C              ; Function mulFloat
-282   001C              ; ---------------------------------
-283   001C              _mulFloat:
-284   001C  CD 03 00    	call	_bcde
-285   001F  C3 41 25    	jp	2541h
-286   0022              ;	---------------------------------
-287   0022              ; Function setShort
-288   0022              ; ---------------------------------
-289   0022              _setShort:
-290   0022  22 A8 F0    	ld	(0f0a8h), hl
-291   0025  3E 02       	ld	a, 2
-292   0027  32 45 EF    	ld	(0ef45h), a
-293   002A  C3 B3 27    	jp	27b3h
-294   002D              ;	---------------------------------
-295   002D              ; Function printFAcc
-296   002D              ; ---------------------------------
-297   002D              _printFAcc:
-298   002D  CD 22 2D    	call	2d22h
-299   0030  C3 ED 52    	jp	52edh
-300   0033              ;	---------------------------------
-301   0033              ; Function main
-302   0033              ; ---------------------------------
-303   0033              _main:
-304   0033  DD E5       	push	ix
-305   0035  DD 21 00 00 	ld	ix,0
-306   0039  DD 39       	add	ix,sp
-307   003B  F5          	push	af
-308   003C  F5          	push	af
-309   003D  DD 36 FC C8 	ld	(ix-4),0xc8
-310   0041  DD 36 FD 98 	ld	(ix-3),0x98
-311   0045  DD 36 FE 3B 	ld	(ix-2),0x3b
-312   0049  DD 36 FF 7C 	ld	(ix-1),0x7c
-313   004D  01 00 00    	ld	bc,0x0000
-314   0050              l_main_00109:
-315   0050  11 00 00    	ld	de,0x0000
-316   0053              l_main_00103:
-317   0053  6B          	ld	l, e
-318   0054  62          	ld	h, d
-319   0055  C5          	push	bc
-320   0056  D5          	push	de
-321   0057  CD 22 00    	call	_setShort
-322   005A  D1          	pop	de
-323   005B  C1          	pop	bc
-324   005C  21 00 00    	ld	hl,0
-325   005F  39          	add	hl, sp
-326   0060  C5          	push	bc
-327   0061  D5          	push	de
-328   0062  CD 1C 00    	call	_mulFloat
-329   0065  CD 2D 00    	call	_printFAcc
-330   0068  2E 0D       	ld	l,0x0d
-331   006A  CD 00 00    	call	_putch
-332   006D  2E 0A       	ld	l,0x0a
-333   006F  CD 00 00    	call	_putch
-334   0072  D1          	pop	de
-335   0073  C1          	pop	bc
-336   0074  13          	inc	de
-337   0075  3E 05       	ld	a,0x05
-338   0077  BB          	cp	a, e
-339   0078  3E 00       	ld	a,0x00
-340   007A  9A          	sbc	a, d
-341   007B  E2 80 00    	jp	PO, l_main_00126
-342   007E  EE 80       	xor	a,0x80
-343   0080              l_main_00126:
-344   0080  F2 53 00    	jp	P, l_main_00103
-345   0083  03          	inc	bc
-346   0084  AF          	xor	a, a
-347   0085  B9          	cp	a, c
-348   0086  98          	sbc	a, b
-349   0087  E2 8C 00    	jp	PO, l_main_00127
-350   008A  EE 80       	xor	a,0x80
-351   008C              l_main_00127:
-352   008C  F2 50 00    	jp	P, l_main_00109
-353   008F  DD F9       	ld	sp, ix
-354   0091  DD E1       	pop	ix
-355   0093  C9          	ret
-356   0094              	SECTION IGNORE
-357   0000              
+248   0000              	SECTION IGNORE
+249   0000              ;--------------------------------------------------------
+250   0000              ; code
+251   0000              ;--------------------------------------------------------
+252   0000              	SECTION code_compiler
+253   0000              ;	---------------------------------
+254   0000              ; Function putch
+255   0000              ; ---------------------------------
+256   0000              _putch:
+257   0000  7D          	ld	a, l
+258   0001  DF          	rst	18h
+259   0002  C9          	ret
+260   0003              ;	---------------------------------
+261   0003              ; Function bcde
+262   0003              ; ---------------------------------
+263   0003              _bcde:
+264   0003  5E          	ld	e, (hl)
+265   0004  23          	inc	hl
+266   0005  56          	ld	d, (hl)
+267   0006  23          	inc	hl
+268   0007  4E          	ld	c, (hl)
+269   0008  23          	inc	hl
+270   0009  46          	ld	b, (hl)
+271   000A  C9          	ret
+272   000B              ;	---------------------------------
+273   000B              ; Function getFloat
+274   000B              ; ---------------------------------
+275   000B              _getFloat:
+276   000B  EB          	ex	de, hl
+277   000C  21 A8 F0    	ld	hl, 0f0a8h
+278   000F  ED A0       	ldi
+279   0011  ED A0       	ldi
+280   0013  ED A0       	ldi
+281   0015  ED A0       	ldi
+282   0017  C9          	ret
+283   0018              ;	---------------------------------
+284   0018              ; Function setFloat
+285   0018              ; ---------------------------------
+286   0018              _setFloat:
+287   0018  11 A8 F0    	ld	de, 0f0a8h
+288   001B  ED A0       	ldi
+289   001D  ED A0       	ldi
+290   001F  ED A0       	ldi
+291   0021  ED A0       	ldi
+292   0023  3E 04       	ld	a, 4
+293   0025  32 45 EF    	ld	(0ef45h), a
+294   0028  C9          	ret
+295   0029              ;	---------------------------------
+296   0029              ; Function addFloat
+297   0029              ; ---------------------------------
+298   0029              _addFloat:
+299   0029  CD 03 00    	call	_bcde
+300   002C  C3 12 24    	jp	2412h
+301   002F              ;	---------------------------------
+302   002F              ; Function subFloat
+303   002F              ; ---------------------------------
+304   002F              _subFloat:
+305   002F  CD 03 00    	call	_bcde
+306   0032  C3 0F 24    	jp	240fh
+307   0035              ;	---------------------------------
+308   0035              ; Function mulFloat
+309   0035              ; ---------------------------------
+310   0035              _mulFloat:
+311   0035  CD 03 00    	call	_bcde
+312   0038  C3 41 25    	jp	2541h
+313   003B              ;	---------------------------------
+314   003B              ; Function cmpFloat
+315   003B              ; ---------------------------------
+316   003B              _cmpFloat:
+317   003B  CD 03 00    	call	_bcde
+318   003E  CD 0C 27    	call	270ch
+319   0041  6F          	ld	l, a
+320   0042  C9          	ret
+321   0043              ;	---------------------------------
+322   0043              ; Function setShort
+323   0043              ; ---------------------------------
+324   0043              _setShort:
+325   0043  22 A8 F0    	ld	(0f0a8h), hl
+326   0046  3E 02       	ld	a, 2
+327   0048  32 45 EF    	ld	(0ef45h), a
+328   004B  C3 B3 27    	jp	27b3h
+329   004E              ;	---------------------------------
+330   004E              ; Function printFAcc
+331   004E              ; ---------------------------------
+332   004E              _printFAcc:
+333   004E  CD 22 2D    	call	2d22h
+334   0051  C3 ED 52    	jp	52edh
+335   0054              ;	---------------------------------
+336   0054              ; Function main
+337   0054              ; ---------------------------------
+338   0054              _main:
+339   0054  DD E5       	push	ix
+340   0056  DD 21 00 00 	ld	ix,0
+341   005A  DD 39       	add	ix,sp
+342   005C  21 BC FF    	ld	hl, -68
+343   005F  39          	add	hl, sp
+344   0060  F9          	ld	sp, hl
+345   0061  AF          	xor	a, a
+346   0062  DD 77 D0    	ld	(ix-48),a
+347   0065  DD 77 D1    	ld	(ix-47),a
+348   0068  DD 77 D2    	ld	(ix-46),a
+349   006B  DD 36 D3 83 	ld	(ix-45),0x83
+350   006F  DD 36 D4 C8 	ld	(ix-44),0xc8
+351   0073  DD 36 D5 98 	ld	(ix-43),0x98
+352   0077  DD 36 D6 3B 	ld	(ix-42),0x3b
+353   007B  DD 36 D7 7C 	ld	(ix-41),0x7c
+354   007F  DD 36 D8 EB 	ld	(ix-40),0xeb
+355   0083  DD 36 D9 A8 	ld	(ix-39),0xa8
+356   0087  DD 36 DA 2A 	ld	(ix-38),0x2a
+357   008B  DD 36 DB 7D 	ld	(ix-37),0x7d
+358   008F  DD 36 FA F4 	ld	(ix-6),0xf4
+359   0093  DD 36 FB FF 	ld	(ix-5),0xff
+360   0097              l_main_00116:
+361   0097  DD 36 FC D9 	ld	(ix-4),0xd9
+362   009B  DD 36 FD FF 	ld	(ix-3),0xff
+363   009F              l_main_00108:
+364   009F  DD 6E FC    	ld	l,(ix-4)
+365   00A2  DD 66 FD    	ld	h,(ix-3)
+366   00A5  CD 43 00    	call	_setShort
+367   00A8  21 18 00    	ld	hl,24
+368   00AB  39          	add	hl, sp
+369   00AC  CD 35 00    	call	_mulFloat
+370   00AF  21 08 00    	ld	hl,8
+371   00B2  39          	add	hl, sp
+372   00B3  DD 75 FE    	ld	(ix-2),l
+373   00B6  DD 74 FF    	ld	(ix-1),h
+374   00B9  DD 6E FE    	ld	l,(ix-2)
+375   00BC  DD 66 FF    	ld	h,(ix-1)
+376   00BF  CD 0B 00    	call	_getFloat
+377   00C2  21 00 00    	ld	hl,0
+378   00C5  39          	add	hl, sp
+379   00C6  E5          	push	hl
+380   00C7  CD 0B 00    	call	_getFloat
+381   00CA  C1          	pop	bc
+382   00CB  DD 6E FA    	ld	l,(ix-6)
+383   00CE  DD 66 FB    	ld	h,(ix-5)
+384   00D1  C5          	push	bc
+385   00D2  CD 43 00    	call	_setShort
+386   00D5  C1          	pop	bc
+387   00D6  21 1C 00    	ld	hl,28
+388   00D9  39          	add	hl, sp
+389   00DA  C5          	push	bc
+390   00DB  CD 35 00    	call	_mulFloat
+391   00DE  C1          	pop	bc
+392   00DF  21 0C 00    	ld	hl,12
+393   00E2  39          	add	hl, sp
+394   00E3  EB          	ex	de, hl
+395   00E4  6B          	ld	l, e
+396   00E5  62          	ld	h, d
+397   00E6  C5          	push	bc
+398   00E7  D5          	push	de
+399   00E8  CD 0B 00    	call	_getFloat
+400   00EB  D1          	pop	de
+401   00EC  C1          	pop	bc
+402   00ED  21 04 00    	ld	hl,4
+403   00F0  39          	add	hl, sp
+404   00F1  DD 75 F8    	ld	(ix-8),l
+405   00F4  DD 74 F9    	ld	(ix-7),h
+406   00F7  E5          	push	hl
+407   00F8  C5          	push	bc
+408   00F9  D5          	push	de
+409   00FA  DD 6E F8    	ld	l,(ix-8)
+410   00FD  DD 66 F9    	ld	h,(ix-7)
+411   0100  CD 0B 00    	call	_getFloat
+412   0103  D1          	pop	de
+413   0104  C1          	pop	bc
+414   0105  E1          	pop	hl
+415   0106  DD 71 DC    	ld	(ix-36),c
+416   0109  DD 70 DD    	ld	(ix-35),b
+417   010C  DD 71 DE    	ld	(ix-34),c
+418   010F  DD 70 DF    	ld	(ix-33),b
+419   0112  DD 75 E0    	ld	(ix-32),l
+420   0115  DD 74 E1    	ld	(ix-31),h
+421   0118  DD 75 E2    	ld	(ix-30),l
+422   011B  DD 74 E3    	ld	(ix-29),h
+423   011E  DD 7E FE    	ld	a,(ix-2)
+424   0121  DD 77 E4    	ld	(ix-28),a
+425   0124  DD 7E FF    	ld	a,(ix-1)
+426   0127  DD 77 E5    	ld	(ix-27),a
+427   012A  DD 71 E6    	ld	(ix-26),c
+428   012D  DD 70 E7    	ld	(ix-25),b
+429   0130  DD 75 E8    	ld	(ix-24),l
+430   0133  DD 74 E9    	ld	(ix-23),h
+431   0136  DD 73 EA    	ld	(ix-22),e
+432   0139  DD 72 EB    	ld	(ix-21),d
+433   013C  DD 75 EC    	ld	(ix-20),l
+434   013F  DD 74 ED    	ld	(ix-19),h
+435   0142  DD 71 EE    	ld	(ix-18),c
+436   0145  DD 70 EF    	ld	(ix-17),b
+437   0148  DD 71 F0    	ld	(ix-16),c
+438   014B  DD 70 F1    	ld	(ix-15),b
+439   014E  DD 71 F2    	ld	(ix-14),c
+440   0151  DD 70 F3    	ld	(ix-13),b
+441   0154  DD 75 F4    	ld	(ix-12),l
+442   0157  DD 74 F5    	ld	(ix-11),h
+443   015A  DD 75 F6    	ld	(ix-10),l
+444   015D  DD 74 F7    	ld	(ix-9),h
+445   0160  AF          	xor	a, a
+446   0161  DD 77 FE    	ld	(ix-2),a
+447   0164  DD 77 FF    	ld	(ix-1),a
+448   0167              l_main_00106:
+449   0167  DD 6E DC    	ld	l,(ix-36)
+450   016A  DD 66 DD    	ld	h,(ix-35)
+451   016D  CD 18 00    	call	_setFloat
+452   0170  DD 6E DE    	ld	l,(ix-34)
+453   0173  DD 66 DF    	ld	h,(ix-33)
+454   0176  CD 35 00    	call	_mulFloat
+455   0179  21 10 00    	ld	hl,16
+456   017C  39          	add	hl, sp
+457   017D  DD 75 F8    	ld	(ix-8),l
+458   0180  DD 74 F9    	ld	(ix-7),h
+459   0183  DD 6E F8    	ld	l,(ix-8)
+460   0186  DD 66 F9    	ld	h,(ix-7)
+461   0189  CD 0B 00    	call	_getFloat
+462   018C  DD 6E E0    	ld	l,(ix-32)
+463   018F  DD 66 E1    	ld	h,(ix-31)
+464   0192  CD 18 00    	call	_setFloat
+465   0195  DD 6E E2    	ld	l,(ix-30)
+466   0198  DD 66 E3    	ld	h,(ix-29)
+467   019B  CD 35 00    	call	_mulFloat
+468   019E  DD 6E F8    	ld	l,(ix-8)
+469   01A1  DD 66 F9    	ld	h,(ix-7)
+470   01A4  CD 2F 00    	call	_subFloat
+471   01A7  DD 6E E4    	ld	l,(ix-28)
+472   01AA  DD 66 E5    	ld	h,(ix-27)
+473   01AD  CD 29 00    	call	_addFloat
+474   01B0  DD 6E F8    	ld	l,(ix-8)
+475   01B3  DD 66 F9    	ld	h,(ix-7)
+476   01B6  CD 0B 00    	call	_getFloat
+477   01B9  21 02 00    	ld	hl,0x0002
+478   01BC  CD 43 00    	call	_setShort
+479   01BF  DD 6E E6    	ld	l,(ix-26)
+480   01C2  DD 66 E7    	ld	h,(ix-25)
+481   01C5  CD 35 00    	call	_mulFloat
+482   01C8  DD 6E E8    	ld	l,(ix-24)
+483   01CB  DD 66 E9    	ld	h,(ix-23)
+484   01CE  CD 35 00    	call	_mulFloat
+485   01D1  DD 6E EA    	ld	l,(ix-22)
+486   01D4  DD 66 EB    	ld	h,(ix-21)
+487   01D7  CD 29 00    	call	_addFloat
+488   01DA  DD 6E EC    	ld	l,(ix-20)
+489   01DD  DD 66 ED    	ld	h,(ix-19)
+490   01E0  CD 0B 00    	call	_getFloat
+491   01E3  DD 6E F8    	ld	l,(ix-8)
+492   01E6  DD 66 F9    	ld	h,(ix-7)
+493   01E9  CD 18 00    	call	_setFloat
+494   01EC  DD 6E EE    	ld	l,(ix-18)
+495   01EF  DD 66 EF    	ld	h,(ix-17)
+496   01F2  CD 0B 00    	call	_getFloat
+497   01F5  DD 6E F0    	ld	l,(ix-16)
+498   01F8  DD 66 F1    	ld	h,(ix-15)
+499   01FB  CD 18 00    	call	_setFloat
+500   01FE  DD 6E F2    	ld	l,(ix-14)
+501   0201  DD 66 F3    	ld	h,(ix-13)
+502   0204  CD 35 00    	call	_mulFloat
+503   0207  DD 6E F8    	ld	l,(ix-8)
+504   020A  DD 66 F9    	ld	h,(ix-7)
+505   020D  CD 0B 00    	call	_getFloat
+506   0210  DD 6E F4    	ld	l,(ix-12)
+507   0213  DD 66 F5    	ld	h,(ix-11)
+508   0216  CD 18 00    	call	_setFloat
+509   0219  DD 6E F6    	ld	l,(ix-10)
+510   021C  DD 66 F7    	ld	h,(ix-9)
+511   021F  CD 35 00    	call	_mulFloat
+512   0222  DD 6E F8    	ld	l,(ix-8)
+513   0225  DD 66 F9    	ld	h,(ix-7)
+514   0228  CD 29 00    	call	_addFloat
+515   022B  21 14 00    	ld	hl,20
+516   022E  39          	add	hl, sp
+517   022F  CD 3B 00    	call	_cmpFloat
+518   0232  AF          	xor	a, a
+519   0233  95          	sub	a, l
+520   0234  E2 39 02    	jp	PO, l_main_00142
+521   0237  EE 80       	xor	a,0x80
+522   0239              l_main_00142:
+523   0239  FA 56 02    	jp	M, l_main_00103
+524   023C  DD 34 FE    	inc	(ix-2)
+525   023F  20 03       	jr	NZ,l_main_00143
+526   0241  DD 34 FF    	inc	(ix-1)
+527   0244              l_main_00143:
+528   0244  3E 0F       	ld	a,0x0f
+529   0246  DD BE FE    	cp	a,(ix-2)
+530   0249  3E 00       	ld	a,0x00
+531   024B  DD 9E FF    	sbc	a,(ix-1)
+532   024E  E2 53 02    	jp	PO, l_main_00144
+533   0251  EE 80       	xor	a,0x80
+534   0253              l_main_00144:
+535   0253  F2 67 01    	jp	P, l_main_00106
+536   0256              l_main_00103:
+537   0256  DD 7E FE    	ld	a,(ix-2)
+538   0259  C6 00       	add	a, +((___str_0) & 0xFF)
+539   025B  DD 77 F8    	ld	(ix-8),a
+540   025E  DD 7E FF    	ld	a,(ix-1)
+541   0261  CE 00       	adc	a, +((___str_0) / 256)
+542   0263  DD 77 F9    	ld	(ix-7),a
+543   0266  DD 6E F8    	ld	l,(ix-8)
+544   0269  DD 66 F9    	ld	h,(ix-7)
+545   026C  7E          	ld	a, (hl)
+546   026D  DD 77 FF    	ld	(ix-1),a
+547   0270  6F          	ld	l, a
+548   0271  CD 00 00    	call	_putch
+549   0274  DD 34 FC    	inc	(ix-4)
+550   0277  20 03       	jr	NZ,l_main_00145
+551   0279  DD 34 FD    	inc	(ix-3)
+552   027C              l_main_00145:
+553   027C  3E 27       	ld	a,0x27
+554   027E  DD BE FC    	cp	a,(ix-4)
+555   0281  3E 00       	ld	a,0x00
+556   0283  DD 9E FD    	sbc	a,(ix-3)
+557   0286  E2 8B 02    	jp	PO, l_main_00146
+558   0289  EE 80       	xor	a,0x80
+559   028B              l_main_00146:
+560   028B  F2 9F 00    	jp	P, l_main_00108
+561   028E  2E 0D       	ld	l,0x0d
+562   0290  CD 00 00    	call	_putch
+563   0293  2E 0A       	ld	l,0x0a
+564   0295  CD 00 00    	call	_putch
+565   0298  DD 34 FA    	inc	(ix-6)
+566   029B  20 03       	jr	NZ,l_main_00147
+567   029D  DD 34 FB    	inc	(ix-5)
+568   02A0              l_main_00147:
+569   02A0  3E 0C       	ld	a,0x0c
+570   02A2  DD BE FA    	cp	a,(ix-6)
+571   02A5  3E 00       	ld	a,0x00
+572   02A7  DD 9E FB    	sbc	a,(ix-5)
+573   02AA  E2 AF 02    	jp	PO, l_main_00148
+574   02AD  EE 80       	xor	a,0x80
+575   02AF              l_main_00148:
+576   02AF  F2 97 00    	jp	P, l_main_00116
+577   02B2  DD F9       	ld	sp, ix
+578   02B4  DD E1       	pop	ix
+579   02B6  C9          	ret
+580   02B7              	SECTION rodata_compiler
+581   0000              ___str_0:
+582   0000  30 31 32 33 34 35 36 37 38 39 41 42 43 44 45 46 20 
+                        	DEFM "0123456789ABCDEF "
+583   0011  00          	DEFB 0x00
+584   0012              	SECTION IGNORE
+585   0000              
