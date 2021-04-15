@@ -25,7 +25,7 @@ int muli(int x, int y) __naked
 	inc	hl
 	ld	h, (hl)
 	ld	l, a
-	jp	28fdh		; ®”æZ
+	jp	28fdh		; ®”æZ.
 	__endasm;
 }
 
