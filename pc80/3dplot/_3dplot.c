@@ -134,11 +134,17 @@ const FLOAT f30 = 0x85700000;
 
 void main()
 {
+	BYTE yt[160];
+	BYTE yb[160];
 	FLOAT rad, t;
-	BYTE px, py;
-	int x, y, z;
+	BYTE px, py, draw;
+	int i, x, y, z;
 
 	init();
+	for (i = 0; i < 160; i++) {
+		yt[i] = 100;
+		yb[i] = 0;
+	}
 	for (y = -180; y <= 180; y += 8) {
 		for (x = -180; x <= 180; x += 8) {
 
@@ -165,7 +171,18 @@ void main()
 
 			px = 80 + x/4 - y/8;
 			py = 42 - (y/8 + z/4);
-			pset(px, py);
+			draw = 0;
+			if (yt[px] > py) {
+				yt[px] = py;
+				draw = 1;
+			}
+			if (yb[px] < py) {
+				yb[px] = py;
+				draw = 1;
+			}
+			if (draw) {
+				pset(px, py);
+			}
 		}
 	}
 }

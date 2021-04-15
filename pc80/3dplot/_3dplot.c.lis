@@ -443,208 +443,276 @@
 439   00E2  DD E5       	push	ix
 440   00E4  DD 21 00 00 	ld	ix,0
 441   00E8  DD 39       	add	ix,sp
-442   00EA  21 E8 FF    	ld	hl, -24
+442   00EA  21 A3 FE    	ld	hl, -349
 443   00ED  39          	add	hl, sp
 444   00EE  F9          	ld	sp, hl
 445   00EF  CD 50 00    	call	_init
-446   00F2  DD 36 FC 4C 	ld	(ix-4),0x4c
-447   00F6  DD 36 FD FF 	ld	(ix-3),0xff
-448   00FA              l_main_00117:
-449   00FA  DD 7E FC    	ld	a,(ix-4)
-450   00FD  C6 07       	add	a,0x07
-451   00FF  DD 77 F0    	ld	(ix-16),a
-452   0102  DD 7E FD    	ld	a,(ix-3)
-453   0105  CE 00       	adc	a,0x00
-454   0107  DD 77 F1    	ld	(ix-15),a
-455   010A  DD 7E FD    	ld	a,(ix-3)
-456   010D  07          	rlca
-457   010E  E6 01       	and	a,0x01
-458   0110  DD 77 F2    	ld	(ix-14),a
-459   0113  DD 7E F0    	ld	a,(ix-16)
-460   0116  DD 77 F3    	ld	(ix-13),a
-461   0119  DD 7E F1    	ld	a,(ix-15)
-462   011C  DD 77 F4    	ld	(ix-12),a
-463   011F  DD 7E F2    	ld	a,(ix-14)
-464   0122  DD 77 F5    	ld	(ix-11),a
-465   0125  DD 6E FC    	ld	l,(ix-4)
-466   0128  DD 66 FD    	ld	h,(ix-3)
-467   012B  E5          	push	hl
-468   012C  DD 6E FC    	ld	l,(ix-4)
-469   012F  DD 66 FD    	ld	h,(ix-3)
-470   0132  E5          	push	hl
-471   0133  CD 00 00    	call	__mulint_callee
-472   0136  DD 75 F6    	ld	(ix-10),l
-473   0139  DD 74 F7    	ld	(ix-9),h
-474   013C  DD 36 FE 4C 	ld	(ix-2),0x4c
-475   0140  DD 36 FF FF 	ld	(ix-1),0xff
-476   0144              l_main_00103:
-477   0144  DD 6E FE    	ld	l,(ix-2)
-478   0147  DD 66 FF    	ld	h,(ix-1)
-479   014A  E5          	push	hl
-480   014B  DD 6E FE    	ld	l,(ix-2)
-481   014E  DD 66 FF    	ld	h,(ix-1)
-482   0151  E5          	push	hl
-483   0152  CD 00 00    	call	__mulint_callee
-484   0155  CD 07 00    	call	_seti
-485   0158  21 04 00    	ld	hl,4
-486   015B  39          	add	hl, sp
-487   015C  DD 75 FA    	ld	(ix-6),l
-488   015F  DD 74 FB    	ld	(ix-5),h
-489   0162  DD 6E FA    	ld	l,(ix-6)
-490   0165  DD 66 FB    	ld	h,(ix-5)
-491   0168  CD 1A 00    	call	_getf
-492   016B  DD 6E F6    	ld	l,(ix-10)
-493   016E  DD 66 F7    	ld	h,(ix-9)
-494   0171  CD 07 00    	call	_seti
-495   0174  DD 6E FA    	ld	l,(ix-6)
-496   0177  DD 66 FB    	ld	h,(ix-5)
-497   017A  CD 38 00    	call	_addf
-498   017D  CD 4D 00    	call	_sqr
-499   0180  21 00 00    	ld	hl,_torad
-500   0183  CD 44 00    	call	_mulf
-501   0186  21 00 00    	ld	hl,0
-502   0189  39          	add	hl, sp
-503   018A  EB          	ex	de, hl
-504   018B  6B          	ld	l, e
-505   018C  62          	ld	h, d
-506   018D  D5          	push	de
-507   018E  CD 1A 00    	call	_getf
-508   0191  CD 4A 00    	call	_cos
-509   0194  21 04 00    	ld	hl,_f100
-510   0197  CD 44 00    	call	_mulf
-511   019A  D1          	pop	de
-512   019B  DD 6E FA    	ld	l,(ix-6)
-513   019E  DD 66 FB    	ld	h,(ix-5)
-514   01A1  D5          	push	de
-515   01A2  CD 1A 00    	call	_getf
-516   01A5  21 03 00    	ld	hl,0x0003
-517   01A8  CD 07 00    	call	_seti
-518   01AB  D1          	pop	de
-519   01AC  EB          	ex	de, hl
-520   01AD  CD 44 00    	call	_mulf
-521   01B0  CD 4A 00    	call	_cos
-522   01B3  21 08 00    	ld	hl,_f30
-523   01B6  CD 44 00    	call	_mulf
-524   01B9  DD 6E FA    	ld	l,(ix-6)
-525   01BC  DD 66 FB    	ld	h,(ix-5)
-526   01BF  CD 3E 00    	call	_subf
-527   01C2  CD 00 00    	call	_geti
-528   01C5  DD 75 F8    	ld	(ix-8),l
-529   01C8  DD 74 F9    	ld	(ix-7),h
-530   01CB  DD 7E FE    	ld	a,(ix-2)
-531   01CE  DD 77 FA    	ld	(ix-6),a
-532   01D1  DD 7E FF    	ld	a,(ix-1)
-533   01D4  DD 77 FB    	ld	(ix-5),a
-534   01D7  DD CB FF 7E 	bit	7,(ix-1)
-535   01DB  28 10       	jr	Z,l_main_00109
-536   01DD  DD 7E FE    	ld	a,(ix-2)
-537   01E0  C6 03       	add	a,0x03
-538   01E2  DD 77 FA    	ld	(ix-6),a
-539   01E5  DD 7E FF    	ld	a,(ix-1)
-540   01E8  CE 00       	adc	a,0x00
-541   01EA  DD 77 FB    	ld	(ix-5),a
-542   01ED              l_main_00109:
-543   01ED  DD 4E FA    	ld	c,(ix-6)
-544   01F0  DD 46 FB    	ld	b,(ix-5)
-545   01F3  CB 28       	sra	b
-546   01F5  CB 19       	rr	c
-547   01F7  CB 28       	sra	b
-548   01F9  CB 19       	rr	c
-549   01FB  79          	ld	a, c
-550   01FC  C6 50       	add	a,0x50
-551   01FE  4F          	ld	c, a
-552   01FF  DD 5E FC    	ld	e,(ix-4)
-553   0202  DD 56 FD    	ld	d,(ix-3)
-554   0205  DD 7E F2    	ld	a,(ix-14)
-555   0208  B7          	or	a, a
-556   0209  28 06       	jr	Z,l_main_00110
-557   020B  DD 5E F0    	ld	e,(ix-16)
-558   020E  DD 56 F1    	ld	d,(ix-15)
-559   0211              l_main_00110:
-560   0211  CB 2A       	sra	d
-561   0213  CB 1B       	rr	e
-562   0215  CB 2A       	sra	d
-563   0217  CB 1B       	rr	e
-564   0219  CB 2A       	sra	d
-565   021B  CB 1B       	rr	e
-566   021D  79          	ld	a, c
-567   021E  93          	sub	a, e
-568   021F  4F          	ld	c, a
-569   0220  DD 6E FC    	ld	l,(ix-4)
-570   0223  DD 66 FD    	ld	h,(ix-3)
-571   0226  DD 7E F5    	ld	a,(ix-11)
-572   0229  B7          	or	a, a
-573   022A  28 06       	jr	Z,l_main_00111
-574   022C  DD 6E F3    	ld	l,(ix-13)
-575   022F  DD 66 F4    	ld	h,(ix-12)
-576   0232              l_main_00111:
-577   0232  CB 2C       	sra	h
-578   0234  CB 1D       	rr	l
-579   0236  CB 2C       	sra	h
-580   0238  CB 1D       	rr	l
-581   023A  CB 2C       	sra	h
-582   023C  CB 1D       	rr	l
-583   023E  DD 5E F8    	ld	e,(ix-8)
-584   0241  DD 56 F9    	ld	d,(ix-7)
-585   0244  DD CB F9 7E 	bit	7,(ix-7)
-586   0248  28 09       	jr	Z,l_main_00112
-587   024A  DD 5E F8    	ld	e,(ix-8)
-588   024D  DD 56 F9    	ld	d,(ix-7)
-589   0250  13          	inc	de
-590   0251  13          	inc	de
-591   0252  13          	inc	de
-592   0253              l_main_00112:
-593   0253  CB 2A       	sra	d
-594   0255  CB 1B       	rr	e
-595   0257  CB 2A       	sra	d
-596   0259  CB 1B       	rr	e
-597   025B  19          	add	hl, de
-598   025C  3E 2A       	ld	a,0x2a
-599   025E  95          	sub	a, l
-600   025F  F5          	push	af
-601   0260  33          	inc	sp
-602   0261  79          	ld	a, c
-603   0262  F5          	push	af
-604   0263  33          	inc	sp
-605   0264  CD 63 00    	call	_pset
-606   0267  F1          	pop	af
-607   0268  DD 7E FE    	ld	a,(ix-2)
-608   026B  C6 08       	add	a,0x08
-609   026D  DD 77 FE    	ld	(ix-2),a
-610   0270  30 03       	jr	NC,l_main_00150
-611   0272  DD 34 FF    	inc	(ix-1)
-612   0275              l_main_00150:
-613   0275  3E B4       	ld	a,0xb4
-614   0277  DD BE FE    	cp	a,(ix-2)
-615   027A  3E 00       	ld	a,0x00
-616   027C  DD 9E FF    	sbc	a,(ix-1)
-617   027F  E2 84 02    	jp	PO, l_main_00151
-618   0282  EE 80       	xor	a,0x80
-619   0284              l_main_00151:
-620   0284  F2 44 01    	jp	P, l_main_00103
-621   0287  DD 7E FC    	ld	a,(ix-4)
-622   028A  C6 08       	add	a,0x08
-623   028C  DD 77 FC    	ld	(ix-4),a
-624   028F  30 03       	jr	NC,l_main_00152
-625   0291  DD 34 FD    	inc	(ix-3)
-626   0294              l_main_00152:
-627   0294  3E B4       	ld	a,0xb4
-628   0296  DD BE FC    	cp	a,(ix-4)
-629   0299  3E 00       	ld	a,0x00
-630   029B  DD 9E FD    	sbc	a,(ix-3)
-631   029E  E2 A3 02    	jp	PO, l_main_00153
-632   02A1  EE 80       	xor	a,0x80
-633   02A3              l_main_00153:
-634   02A3  F2 FA 00    	jp	P, l_main_00117
-635   02A6  DD F9       	ld	sp, ix
-636   02A8  DD E1       	pop	ix
-637   02AA  C9          	ret
-638   02AB              	SECTION rodata_compiler
-639   0000              _torad:
-640   0000  35 FA 0E 7B 	DEFB +0x35,0xfa, +0x0e, +0x7b
-641   0004              _f100:
-642   0004  00 00 48 87 	DEFB +0x00,0x00, +0x48, +0x87
-643   0008              _f30:
-644   0008  00 00 70 85 	DEFB +0x00,0x00, +0x70, +0x85
-645   000C              	SECTION IGNORE
-646   0000              
+446   00F2  21 00 00    	ld	hl,0
+447   00F5  39          	add	hl, sp
+448   00F6  DD 75 EB    	ld	(ix-21),l
+449   00F9  DD 74 EC    	ld	(ix-20),h
+450   00FC  21 A0 00    	ld	hl,160
+451   00FF  39          	add	hl, sp
+452   0100  DD 75 ED    	ld	(ix-19),l
+453   0103  DD 74 EE    	ld	(ix-18),h
+454   0106  01 00 00    	ld	bc,0x0000
+455   0109              l_main_00110:
+456   0109  DD 6E EB    	ld	l,(ix-21)
+457   010C  DD 66 EC    	ld	h,(ix-20)
+458   010F  09          	add	hl, bc
+459   0110  36 64       	ld	(hl),0x64
+460   0112  DD 6E ED    	ld	l,(ix-19)
+461   0115  DD 66 EE    	ld	h,(ix-18)
+462   0118  09          	add	hl, bc
+463   0119  36 00       	ld	(hl),0x00
+464   011B  03          	inc	bc
+465   011C  79          	ld	a, c
+466   011D  D6 A0       	sub	a,0xa0
+467   011F  78          	ld	a, b
+468   0120  17          	rla
+469   0121  3F          	ccf
+470   0122  1F          	rra
+471   0123  DE 80       	sbc	a,0x80
+472   0125  38 E2       	jr	C,l_main_00110
+473   0127  DD 36 FC 4C 	ld	(ix-4),0x4c
+474   012B  DD 36 FD FF 	ld	(ix-3),0xff
+475   012F              l_main_00131:
+476   012F  DD 7E FC    	ld	a,(ix-4)
+477   0132  C6 07       	add	a,0x07
+478   0134  DD 77 EF    	ld	(ix-17),a
+479   0137  DD 7E FD    	ld	a,(ix-3)
+480   013A  CE 00       	adc	a,0x00
+481   013C  DD 77 F0    	ld	(ix-16),a
+482   013F  DD 7E FD    	ld	a,(ix-3)
+483   0142  07          	rlca
+484   0143  E6 01       	and	a,0x01
+485   0145  DD 77 F1    	ld	(ix-15),a
+486   0148  DD 7E EF    	ld	a,(ix-17)
+487   014B  DD 77 F2    	ld	(ix-14),a
+488   014E  DD 7E F0    	ld	a,(ix-16)
+489   0151  DD 77 F3    	ld	(ix-13),a
+490   0154  DD 7E F1    	ld	a,(ix-15)
+491   0157  DD 77 F4    	ld	(ix-12),a
+492   015A  DD 6E FC    	ld	l,(ix-4)
+493   015D  DD 66 FD    	ld	h,(ix-3)
+494   0160  E5          	push	hl
+495   0161  DD 6E FC    	ld	l,(ix-4)
+496   0164  DD 66 FD    	ld	h,(ix-3)
+497   0167  E5          	push	hl
+498   0168  CD 00 00    	call	__mulint_callee
+499   016B  DD 75 F5    	ld	(ix-11),l
+500   016E  DD 74 F6    	ld	(ix-10),h
+501   0171  DD 36 FE 4C 	ld	(ix-2),0x4c
+502   0175  DD 36 FF FF 	ld	(ix-1),0xff
+503   0179              l_main_00112:
+504   0179  DD 6E FE    	ld	l,(ix-2)
+505   017C  DD 66 FF    	ld	h,(ix-1)
+506   017F  E5          	push	hl
+507   0180  DD 6E FE    	ld	l,(ix-2)
+508   0183  DD 66 FF    	ld	h,(ix-1)
+509   0186  E5          	push	hl
+510   0187  CD 00 00    	call	__mulint_callee
+511   018A  CD 07 00    	call	_seti
+512   018D  21 44 01    	ld	hl,324
+513   0190  39          	add	hl, sp
+514   0191  DD 75 FA    	ld	(ix-6),l
+515   0194  DD 74 FB    	ld	(ix-5),h
+516   0197  DD 6E FA    	ld	l,(ix-6)
+517   019A  DD 66 FB    	ld	h,(ix-5)
+518   019D  CD 1A 00    	call	_getf
+519   01A0  DD 6E F5    	ld	l,(ix-11)
+520   01A3  DD 66 F6    	ld	h,(ix-10)
+521   01A6  CD 07 00    	call	_seti
+522   01A9  DD 6E FA    	ld	l,(ix-6)
+523   01AC  DD 66 FB    	ld	h,(ix-5)
+524   01AF  CD 38 00    	call	_addf
+525   01B2  CD 4D 00    	call	_sqr
+526   01B5  21 00 00    	ld	hl,_torad
+527   01B8  CD 44 00    	call	_mulf
+528   01BB  21 40 01    	ld	hl,320
+529   01BE  39          	add	hl, sp
+530   01BF  EB          	ex	de, hl
+531   01C0  6B          	ld	l, e
+532   01C1  62          	ld	h, d
+533   01C2  D5          	push	de
+534   01C3  CD 1A 00    	call	_getf
+535   01C6  CD 4A 00    	call	_cos
+536   01C9  21 04 00    	ld	hl,_f100
+537   01CC  CD 44 00    	call	_mulf
+538   01CF  D1          	pop	de
+539   01D0  DD 6E FA    	ld	l,(ix-6)
+540   01D3  DD 66 FB    	ld	h,(ix-5)
+541   01D6  D5          	push	de
+542   01D7  CD 1A 00    	call	_getf
+543   01DA  21 03 00    	ld	hl,0x0003
+544   01DD  CD 07 00    	call	_seti
+545   01E0  D1          	pop	de
+546   01E1  EB          	ex	de, hl
+547   01E2  CD 44 00    	call	_mulf
+548   01E5  CD 4A 00    	call	_cos
+549   01E8  21 08 00    	ld	hl,_f30
+550   01EB  CD 44 00    	call	_mulf
+551   01EE  DD 6E FA    	ld	l,(ix-6)
+552   01F1  DD 66 FB    	ld	h,(ix-5)
+553   01F4  CD 3E 00    	call	_subf
+554   01F7  CD 00 00    	call	_geti
+555   01FA  DD 75 FA    	ld	(ix-6),l
+556   01FD  DD 74 FB    	ld	(ix-5),h
+557   0200  DD 7E FE    	ld	a,(ix-2)
+558   0203  DD 77 F8    	ld	(ix-8),a
+559   0206  DD 7E FF    	ld	a,(ix-1)
+560   0209  DD 77 F9    	ld	(ix-7),a
+561   020C  DD CB FF 7E 	bit	7,(ix-1)
+562   0210  28 10       	jr	Z,l_main_00118
+563   0212  DD 7E FE    	ld	a,(ix-2)
+564   0215  C6 03       	add	a,0x03
+565   0217  DD 77 F8    	ld	(ix-8),a
+566   021A  DD 7E FF    	ld	a,(ix-1)
+567   021D  CE 00       	adc	a,0x00
+568   021F  DD 77 F9    	ld	(ix-7),a
+569   0222              l_main_00118:
+570   0222  DD 4E F8    	ld	c,(ix-8)
+571   0225  DD 46 F9    	ld	b,(ix-7)
+572   0228  CB 28       	sra	b
+573   022A  CB 19       	rr	c
+574   022C  CB 28       	sra	b
+575   022E  CB 19       	rr	c
+576   0230  79          	ld	a, c
+577   0231  C6 50       	add	a,0x50
+578   0233  4F          	ld	c, a
+579   0234  DD 5E FC    	ld	e,(ix-4)
+580   0237  DD 56 FD    	ld	d,(ix-3)
+581   023A  DD 7E F1    	ld	a,(ix-15)
+582   023D  B7          	or	a, a
+583   023E  28 06       	jr	Z,l_main_00119
+584   0240  DD 5E EF    	ld	e,(ix-17)
+585   0243  DD 56 F0    	ld	d,(ix-16)
+586   0246              l_main_00119:
+587   0246  CB 2A       	sra	d
+588   0248  CB 1B       	rr	e
+589   024A  CB 2A       	sra	d
+590   024C  CB 1B       	rr	e
+591   024E  CB 2A       	sra	d
+592   0250  CB 1B       	rr	e
+593   0252  79          	ld	a, c
+594   0253  93          	sub	a, e
+595   0254  DD 77 F7    	ld	(ix-9),a
+596   0257  DD 4E FC    	ld	c,(ix-4)
+597   025A  DD 46 FD    	ld	b,(ix-3)
+598   025D  DD 7E F4    	ld	a,(ix-12)
+599   0260  B7          	or	a, a
+600   0261  28 06       	jr	Z,l_main_00120
+601   0263  DD 4E F2    	ld	c,(ix-14)
+602   0266  DD 46 F3    	ld	b,(ix-13)
+603   0269              l_main_00120:
+604   0269  CB 28       	sra	b
+605   026B  CB 19       	rr	c
+606   026D  CB 28       	sra	b
+607   026F  CB 19       	rr	c
+608   0271  CB 28       	sra	b
+609   0273  CB 19       	rr	c
+610   0275  DD 5E FA    	ld	e,(ix-6)
+611   0278  DD 56 FB    	ld	d,(ix-5)
+612   027B  DD CB FB 7E 	bit	7,(ix-5)
+613   027F  28 09       	jr	Z,l_main_00121
+614   0281  DD 5E FA    	ld	e,(ix-6)
+615   0284  DD 56 FB    	ld	d,(ix-5)
+616   0287  13          	inc	de
+617   0288  13          	inc	de
+618   0289  13          	inc	de
+619   028A              l_main_00121:
+620   028A  CB 2A       	sra	d
+621   028C  CB 1B       	rr	e
+622   028E  CB 2A       	sra	d
+623   0290  CB 1B       	rr	e
+624   0292  7B          	ld	a, e
+625   0293  81          	add	a, c
+626   0294  4F          	ld	c, a
+627   0295  3E 2A       	ld	a,0x2a
+628   0297  91          	sub	a, c
+629   0298  DD 77 F8    	ld	(ix-8),a
+630   029B  AF          	xor	a, a
+631   029C  DD 77 F9    	ld	(ix-7),a
+632   029F  DD 7E EB    	ld	a,(ix-21)
+633   02A2  DD 86 F7    	add	a,(ix-9)
+634   02A5  DD 77 FA    	ld	(ix-6),a
+635   02A8  DD 7E EC    	ld	a,(ix-20)
+636   02AB  CE 00       	adc	a,0x00
+637   02AD  DD 77 FB    	ld	(ix-5),a
+638   02B0  DD 6E FA    	ld	l,(ix-6)
+639   02B3  DD 66 FB    	ld	h,(ix-5)
+640   02B6  DD 7E F8    	ld	a,(ix-8)
+641   02B9  96          	sub	a,(hl)
+642   02BA  30 0E       	jr	NC,l_main_00103
+643   02BC  DD 6E FA    	ld	l,(ix-6)
+644   02BF  DD 66 FB    	ld	h,(ix-5)
+645   02C2  DD 7E F8    	ld	a,(ix-8)
+646   02C5  77          	ld	(hl), a
+647   02C6  DD 36 F9 01 	ld	(ix-7),0x01
+648   02CA              l_main_00103:
+649   02CA  DD 7E ED    	ld	a,(ix-19)
+650   02CD  DD 86 F7    	add	a,(ix-9)
+651   02D0  DD 77 FA    	ld	(ix-6),a
+652   02D3  DD 7E EE    	ld	a,(ix-18)
+653   02D6  CE 00       	adc	a,0x00
+654   02D8  DD 77 FB    	ld	(ix-5),a
+655   02DB  DD 6E FA    	ld	l,(ix-6)
+656   02DE  DD 66 FB    	ld	h,(ix-5)
+657   02E1  7E          	ld	a, (hl)
+658   02E2  DD 96 F8    	sub	a,(ix-8)
+659   02E5  30 0E       	jr	NC,l_main_00105
+660   02E7  DD 6E FA    	ld	l,(ix-6)
+661   02EA  DD 66 FB    	ld	h,(ix-5)
+662   02ED  DD 7E F8    	ld	a,(ix-8)
+663   02F0  77          	ld	(hl), a
+664   02F1  DD 36 F9 01 	ld	(ix-7),0x01
+665   02F5              l_main_00105:
+666   02F5  DD 7E F9    	ld	a,(ix-7)
+667   02F8  B7          	or	a, a
+668   02F9  28 0B       	jr	Z,l_main_00113
+669   02FB  DD 66 F8    	ld	h,(ix-8)
+670   02FE  DD 6E F7    	ld	l,(ix-9)
+671   0301  E5          	push	hl
+672   0302  CD 63 00    	call	_pset
+673   0305  F1          	pop	af
+674   0306              l_main_00113:
+675   0306  DD 7E FE    	ld	a,(ix-2)
+676   0309  C6 08       	add	a,0x08
+677   030B  DD 77 FE    	ld	(ix-2),a
+678   030E  30 03       	jr	NC,l_main_00185
+679   0310  DD 34 FF    	inc	(ix-1)
+680   0313              l_main_00185:
+681   0313  3E B4       	ld	a,0xb4
+682   0315  DD BE FE    	cp	a,(ix-2)
+683   0318  3E 00       	ld	a,0x00
+684   031A  DD 9E FF    	sbc	a,(ix-1)
+685   031D  E2 22 03    	jp	PO, l_main_00186
+686   0320  EE 80       	xor	a,0x80
+687   0322              l_main_00186:
+688   0322  F2 79 01    	jp	P, l_main_00112
+689   0325  DD 7E FC    	ld	a,(ix-4)
+690   0328  C6 08       	add	a,0x08
+691   032A  DD 77 FC    	ld	(ix-4),a
+692   032D  30 03       	jr	NC,l_main_00187
+693   032F  DD 34 FD    	inc	(ix-3)
+694   0332              l_main_00187:
+695   0332  3E B4       	ld	a,0xb4
+696   0334  DD BE FC    	cp	a,(ix-4)
+697   0337  3E 00       	ld	a,0x00
+698   0339  DD 9E FD    	sbc	a,(ix-3)
+699   033C  E2 41 03    	jp	PO, l_main_00188
+700   033F  EE 80       	xor	a,0x80
+701   0341              l_main_00188:
+702   0341  F2 2F 01    	jp	P, l_main_00131
+703   0344  DD F9       	ld	sp, ix
+704   0346  DD E1       	pop	ix
+705   0348  C9          	ret
+706   0349              	SECTION rodata_compiler
+707   0000              _torad:
+708   0000  35 FA 0E 7B 	DEFB +0x35,0xfa, +0x0e, +0x7b
+709   0004              _f100:
+710   0004  00 00 48 87 	DEFB +0x00,0x00, +0x48, +0x87
+711   0008              _f30:
+712   0008  00 00 70 85 	DEFB +0x00,0x00, +0x70, +0x85
+713   000C              	SECTION IGNORE
+714   0000              
