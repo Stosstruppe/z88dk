@@ -1,0 +1,379 @@
+1     0000              MODULE pset2_c
+2     0000              LINE 0, "pset2.c"
+0     0000              
+1     0000              ;--------------------------------------------------------
+2     0000              ; File Created by SDCC : free open source ANSI-C Compiler
+3     0000              ; Version 4.1.0 #12069 (MINGW64)
+4     0000              ;--------------------------------------------------------
+5     0000              ; Processed by Z88DK
+6     0000              ;--------------------------------------------------------
+7     0000              
+8     0000              	EXTERN __divschar
+9     0000              	EXTERN __divschar_callee
+10    0000              	EXTERN __divsint
+11    0000              	EXTERN __divsint_callee
+12    0000              	EXTERN __divslong
+13    0000              	EXTERN __divslong_callee
+14    0000              	EXTERN __divslonglong
+15    0000              	EXTERN __divslonglong_callee
+16    0000              	EXTERN __divsuchar
+17    0000              	EXTERN __divsuchar_callee
+18    0000              	EXTERN __divuchar
+19    0000              	EXTERN __divuchar_callee
+20    0000              	EXTERN __divuint
+21    0000              	EXTERN __divuint_callee
+22    0000              	EXTERN __divulong
+23    0000              	EXTERN __divulong_callee
+24    0000              	EXTERN __divulonglong
+25    0000              	EXTERN __divulonglong_callee
+26    0000              	EXTERN __divuschar
+27    0000              	EXTERN __divuschar_callee
+28    0000              	EXTERN __modschar
+29    0000              	EXTERN __modschar_callee
+30    0000              	EXTERN __modsint
+31    0000              	EXTERN __modsint_callee
+32    0000              	EXTERN __modslong
+33    0000              	EXTERN __modslong_callee
+34    0000              	EXTERN __modslonglong
+35    0000              	EXTERN __modslonglong_callee
+36    0000              	EXTERN __modsuchar
+37    0000              	EXTERN __modsuchar_callee
+38    0000              	EXTERN __moduchar
+39    0000              	EXTERN __moduchar_callee
+40    0000              	EXTERN __moduint
+41    0000              	EXTERN __moduint_callee
+42    0000              	EXTERN __modulong
+43    0000              	EXTERN __modulong_callee
+44    0000              	EXTERN __modulonglong
+45    0000              	EXTERN __modulonglong_callee
+46    0000              	EXTERN __moduschar
+47    0000              	EXTERN __moduschar_callee
+48    0000              	EXTERN __mulint
+49    0000              	EXTERN __mulint_callee
+50    0000              	EXTERN __mullong
+51    0000              	EXTERN __mullong_callee
+52    0000              	EXTERN __mullonglong
+53    0000              	EXTERN __mullonglong_callee
+54    0000              	EXTERN __mulschar
+55    0000              	EXTERN __mulschar_callee
+56    0000              	EXTERN __mulsuchar
+57    0000              	EXTERN __mulsuchar_callee
+58    0000              	EXTERN __muluchar
+59    0000              	EXTERN __muluchar_callee
+60    0000              	EXTERN __muluschar
+61    0000              	EXTERN __muluschar_callee
+62    0000              	EXTERN __rlslonglong
+63    0000              	EXTERN __rlslonglong_callee
+64    0000              	EXTERN __rlulonglong
+65    0000              	EXTERN __rlulonglong_callee
+66    0000              	EXTERN __rrslonglong
+67    0000              	EXTERN __rrslonglong_callee
+68    0000              	EXTERN __rrulonglong
+69    0000              	EXTERN __rrulonglong_callee
+70    0000              	EXTERN ___sdcc_call_hl
+71    0000              	EXTERN ___sdcc_call_iy
+72    0000              	EXTERN ___sdcc_enter_ix
+73    0000              	EXTERN banked_call
+74    0000              	EXTERN _banked_ret
+75    0000              	EXTERN ___fs2schar
+76    0000              	EXTERN ___fs2schar_callee
+77    0000              	EXTERN ___fs2sint
+78    0000              	EXTERN ___fs2sint_callee
+79    0000              	EXTERN ___fs2slong
+80    0000              	EXTERN ___fs2slong_callee
+81    0000              	EXTERN ___fs2slonglong
+82    0000              	EXTERN ___fs2slonglong_callee
+83    0000              	EXTERN ___fs2uchar
+84    0000              	EXTERN ___fs2uchar_callee
+85    0000              	EXTERN ___fs2uint
+86    0000              	EXTERN ___fs2uint_callee
+87    0000              	EXTERN ___fs2ulong
+88    0000              	EXTERN ___fs2ulong_callee
+89    0000              	EXTERN ___fs2ulonglong
+90    0000              	EXTERN ___fs2ulonglong_callee
+91    0000              	EXTERN ___fsadd
+92    0000              	EXTERN ___fsadd_callee
+93    0000              	EXTERN ___fsdiv
+94    0000              	EXTERN ___fsdiv_callee
+95    0000              	EXTERN ___fseq
+96    0000              	EXTERN ___fseq_callee
+97    0000              	EXTERN ___fsgt
+98    0000              	EXTERN ___fsgt_callee
+99    0000              	EXTERN ___fslt
+100   0000              	EXTERN ___fslt_callee
+101   0000              	EXTERN ___fsmul
+102   0000              	EXTERN ___fsmul_callee
+103   0000              	EXTERN ___fsneq
+104   0000              	EXTERN ___fsneq_callee
+105   0000              	EXTERN ___fssub
+106   0000              	EXTERN ___fssub_callee
+107   0000              	EXTERN ___schar2fs
+108   0000              	EXTERN ___schar2fs_callee
+109   0000              	EXTERN ___sint2fs
+110   0000              	EXTERN ___sint2fs_callee
+111   0000              	EXTERN ___slong2fs
+112   0000              	EXTERN ___slong2fs_callee
+113   0000              	EXTERN ___slonglong2fs
+114   0000              	EXTERN ___slonglong2fs_callee
+115   0000              	EXTERN ___uchar2fs
+116   0000              	EXTERN ___uchar2fs_callee
+117   0000              	EXTERN ___uint2fs
+118   0000              	EXTERN ___uint2fs_callee
+119   0000              	EXTERN ___ulong2fs
+120   0000              	EXTERN ___ulong2fs_callee
+121   0000              	EXTERN ___ulonglong2fs
+122   0000              	EXTERN ___ulonglong2fs_callee
+123   0000              	EXTERN ____sdcc_2_copy_src_mhl_dst_deix
+124   0000              	EXTERN ____sdcc_2_copy_src_mhl_dst_bcix
+125   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_deix
+126   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_bcix
+127   0000              	EXTERN ____sdcc_4_copy_src_mhl_dst_mbc
+128   0000              	EXTERN ____sdcc_4_ldi_nosave_bc
+129   0000              	EXTERN ____sdcc_4_ldi_save_bc
+130   0000              	EXTERN ____sdcc_4_push_hlix
+131   0000              	EXTERN ____sdcc_4_push_mhl
+132   0000              	EXTERN ____sdcc_lib_setmem_hl
+133   0000              	EXTERN ____sdcc_ll_add_de_bc_hl
+134   0000              	EXTERN ____sdcc_ll_add_de_bc_hlix
+135   0000              	EXTERN ____sdcc_ll_add_de_hlix_bc
+136   0000              	EXTERN ____sdcc_ll_add_de_hlix_bcix
+137   0000              	EXTERN ____sdcc_ll_add_deix_bc_hl
+138   0000              	EXTERN ____sdcc_ll_add_deix_hlix
+139   0000              	EXTERN ____sdcc_ll_add_hlix_bc_deix
+140   0000              	EXTERN ____sdcc_ll_add_hlix_deix_bc
+141   0000              	EXTERN ____sdcc_ll_add_hlix_deix_bcix
+142   0000              	EXTERN ____sdcc_ll_asr_hlix_a
+143   0000              	EXTERN ____sdcc_ll_asr_mbc_a
+144   0000              	EXTERN ____sdcc_ll_copy_src_de_dst_hlix
+145   0000              	EXTERN ____sdcc_ll_copy_src_de_dst_hlsp
+146   0000              	EXTERN ____sdcc_ll_copy_src_deix_dst_hl
+147   0000              	EXTERN ____sdcc_ll_copy_src_deix_dst_hlix
+148   0000              	EXTERN ____sdcc_ll_copy_src_deixm_dst_hlsp
+149   0000              	EXTERN ____sdcc_ll_copy_src_desp_dst_hlsp
+150   0000              	EXTERN ____sdcc_ll_copy_src_hl_dst_de
+151   0000              	EXTERN ____sdcc_ll_copy_src_hlsp_dst_de
+152   0000              	EXTERN ____sdcc_ll_copy_src_hlsp_dst_deixm
+153   0000              	EXTERN ____sdcc_ll_lsl_hlix_a
+154   0000              	EXTERN ____sdcc_ll_lsl_mbc_a
+155   0000              	EXTERN ____sdcc_ll_lsr_hlix_a
+156   0000              	EXTERN ____sdcc_ll_lsr_mbc_a
+157   0000              	EXTERN ____sdcc_ll_push_hlix
+158   0000              	EXTERN ____sdcc_ll_push_mhl
+159   0000              	EXTERN ____sdcc_ll_sub_de_bc_hl
+160   0000              	EXTERN ____sdcc_ll_sub_de_bc_hlix
+161   0000              	EXTERN ____sdcc_ll_sub_de_hlix_bc
+162   0000              	EXTERN ____sdcc_ll_sub_de_hlix_bcix
+163   0000              	EXTERN ____sdcc_ll_sub_deix_bc_hl
+164   0000              	EXTERN ____sdcc_ll_sub_deix_hlix
+165   0000              	EXTERN ____sdcc_ll_sub_hlix_bc_deix
+166   0000              	EXTERN ____sdcc_ll_sub_hlix_deix_bc
+167   0000              	EXTERN ____sdcc_ll_sub_hlix_deix_bcix
+168   0000              	EXTERN ____sdcc_load_debc_deix
+169   0000              	EXTERN ____sdcc_load_dehl_deix
+170   0000              	EXTERN ____sdcc_load_debc_mhl
+171   0000              	EXTERN ____sdcc_load_hlde_mhl
+172   0000              	EXTERN ____sdcc_store_dehl_bcix
+173   0000              	EXTERN ____sdcc_store_debc_hlix
+174   0000              	EXTERN ____sdcc_store_debc_mhl
+175   0000              	EXTERN ____sdcc_cpu_pop_ei
+176   0000              	EXTERN ____sdcc_cpu_pop_ei_jp
+177   0000              	EXTERN ____sdcc_cpu_push_di
+178   0000              	EXTERN ____sdcc_outi
+179   0000              	EXTERN ____sdcc_outi_128
+180   0000              	EXTERN ____sdcc_outi_256
+181   0000              	EXTERN ____sdcc_ldi
+182   0000              	EXTERN ____sdcc_ldi_128
+183   0000              	EXTERN ____sdcc_ldi_256
+184   0000              	EXTERN ____sdcc_4_copy_srcd_hlix_dst_deix
+185   0000              	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_deix
+186   0000              	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_deix
+187   0000              	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_deix
+188   0000              	EXTERN ____sdcc_4_or_src_dehl_dst_bcix
+189   0000              	EXTERN ____sdcc_4_xor_src_dehl_dst_bcix
+190   0000              	EXTERN ____sdcc_4_and_src_dehl_dst_bcix
+191   0000              	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_debc
+192   0000              	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_debc
+193   0000              	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_debc
+194   0000              	EXTERN ____sdcc_4_cpl_src_mhl_dst_debc
+195   0000              	EXTERN ____sdcc_4_xor_src_debc_mhl_dst_debc
+196   0000              	EXTERN ____sdcc_4_or_src_debc_mhl_dst_debc
+197   0000              	EXTERN ____sdcc_4_and_src_debc_mhl_dst_debc
+198   0000              	EXTERN ____sdcc_4_and_src_debc_hlix_dst_debc
+199   0000              	EXTERN ____sdcc_4_or_src_debc_hlix_dst_debc
+200   0000              	EXTERN ____sdcc_4_xor_src_debc_hlix_dst_debc
+201   0000              
+202   0000              ;--------------------------------------------------------
+203   0000              ; Public variables in this module
+204   0000              ;--------------------------------------------------------
+205   0000              	GLOBAL _main
+206   0000              	GLOBAL _pset
+207   0000              	GLOBAL _init
+208   0000              ;--------------------------------------------------------
+209   0000              ; Externals used
+210   0000              ;--------------------------------------------------------
+211   0000              ;--------------------------------------------------------
+212   0000              ; special function registers
+213   0000              ;--------------------------------------------------------
+214   0000              ;--------------------------------------------------------
+215   0000              ; ram data
+216   0000              ;--------------------------------------------------------
+217   0000              	SECTION bss_compiler
+218   0000              ;--------------------------------------------------------
+219   0000              ; ram data
+220   0000              ;--------------------------------------------------------
+221   0000              
+222   0000              IF 0
+223   0000              
+224   0000              ; .area _INITIALIZED removed by z88dk
+225   0000              
+226   0000              
+227   0000              ENDIF
+228   0000              
+229   0000              ;--------------------------------------------------------
+230   0000              ; absolute external ram data
+231   0000              ;--------------------------------------------------------
+232   0000              	SECTION IGNORE
+233   0000              ;--------------------------------------------------------
+234   0000              ; global & static initialisations
+235   0000              ;--------------------------------------------------------
+236   0000              	SECTION code_crt_init
+237   0000              ;--------------------------------------------------------
+238   0000              ; Home
+239   0000              ;--------------------------------------------------------
+240   0000              	SECTION IGNORE
+241   0000              ;--------------------------------------------------------
+242   0000              ; code
+243   0000              ;--------------------------------------------------------
+244   0000              	SECTION code_compiler
+245   0000              ;	---------------------------------
+246   0000              ; Function init
+247   0000              ; ---------------------------------
+248   0000              _init:
+249   0000  21 0D 00    	ld	hl, color
+250   0003  CD 51 09    	call	0951h
+251   0006  01 19 50    	ld	bc, 80*256+25
+252   0009  CD 3A 09    	call	093ah
+253   000C  C9          	ret
+254   000D              	color:
+255   000D  30 2C 30 2C 31 00 
+                        	db "0,0,1",0
+256   0013              ;	---------------------------------
+257   0013              ; Function pset
+258   0013              ; ---------------------------------
+259   0013              _pset:
+260   0013  DD E5       	push	ix
+261   0015  DD 21 00 00 	ld	ix,0
+262   0019  DD 39       	add	ix,sp
+263   001B  F5          	push	af
+264   001C  DD 7E 04    	ld	a,(ix+4)
+265   001F  D6 A0       	sub	a,0xa0
+266   0021  30 6A       	jr	NC,l_pset_00104
+267   0023  DD 7E 05    	ld	a,(ix+5)
+268   0026  D6 64       	sub	a,0x64
+269   0028  30 63       	jr	NC,l_pset_00104
+270   002A  DD 4E 05    	ld	c,(ix+5)
+271   002D  06 00       	ld	b,0x00
+272   002F  59          	ld	e, c
+273   0030  50          	ld	d, b
+274   0031  CB 78       	bit	7, b
+275   0033  28 05       	jr	Z,l_pset_00106
+276   0035  59          	ld	e, c
+277   0036  50          	ld	d, b
+278   0037  13          	inc	de
+279   0038  13          	inc	de
+280   0039  13          	inc	de
+281   003A              l_pset_00106:
+282   003A  CB 2A       	sra	d
+283   003C  CB 1B       	rr	e
+284   003E  CB 2A       	sra	d
+285   0040  CB 1B       	rr	e
+286   0042  6B          	ld	l, e
+287   0043  62          	ld	h, d
+288   0044  29          	add	hl, hl
+289   0045  19          	add	hl, de
+290   0046  29          	add	hl, hl
+291   0047  19          	add	hl, de
+292   0048  29          	add	hl, hl
+293   0049  19          	add	hl, de
+294   004A  29          	add	hl, hl
+295   004B  29          	add	hl, hl
+296   004C  29          	add	hl, hl
+297   004D  DD 75 FE    	ld	(ix-2),l
+298   0050  7C          	ld	a, h
+299   0051  C6 F3       	add	a,0xf3
+300   0053  DD 77 FF    	ld	(ix-1),a
+301   0056  DD 5E 04    	ld	e,(ix+4)
+302   0059  16 00       	ld	d,0x00
+303   005B  6B          	ld	l, e
+304   005C  62          	ld	h, d
+305   005D  CB 7A       	bit	7, d
+306   005F  28 03       	jr	Z,l_pset_00107
+307   0061  6B          	ld	l, e
+308   0062  62          	ld	h, d
+309   0063  23          	inc	hl
+310   0064              l_pset_00107:
+311   0064  CB 2C       	sra	h
+312   0066  CB 1D       	rr	l
+313   0068  7D          	ld	a, l
+314   0069  DD 86 FE    	add	a,(ix-2)
+315   006C  6F          	ld	l, a
+316   006D  7C          	ld	a, h
+317   006E  DD 8E FF    	adc	a,(ix-1)
+318   0071  67          	ld	h, a
+319   0072  7E          	ld	a, (hl)
+320   0073  DD 77 FF    	ld	(ix-1),a
+321   0076  7B          	ld	a, e
+322   0077  E6 01       	and	a,0x01
+323   0079  87          	add	a, a
+324   007A  87          	add	a, a
+325   007B  5F          	ld	e, a
+326   007C  79          	ld	a, c
+327   007D  E6 03       	and	a,0x03
+328   007F  83          	add	a, e
+329   0080  47          	ld	b, a
+330   0081  3E 01       	ld	a,0x01
+331   0083  04          	inc	b
+332   0084  18 01       	jr	l_pset_00124
+333   0086              l_pset_00123:
+334   0086  87          	add	a, a
+335   0087              l_pset_00124:
+336   0087  10 FD       	djnz	l_pset_00123
+337   0089  DD B6 FF    	or	a,(ix-1)
+338   008C  77          	ld	(hl), a
+339   008D              l_pset_00104:
+340   008D  DD F9       	ld	sp, ix
+341   008F  DD E1       	pop	ix
+342   0091  C9          	ret
+343   0092              	SECTION code_compiler
+344   0092              ;	---------------------------------
+345   0092              ; Function main
+346   0092              ; ---------------------------------
+347   0092              _main:
+348   0092  CD 00 00    	call	_init
+349   0095  01 00 00    	ld	bc,0x0000
+350   0098              l_main_00102:
+351   0098  59          	ld	e, c
+352   0099  3E 63       	ld	a,0x63
+353   009B  93          	sub	a, e
+354   009C  57          	ld	d, a
+355   009D  79          	ld	a, c
+356   009E  C5          	push	bc
+357   009F  D5          	push	de
+358   00A0  33          	inc	sp
+359   00A1  F5          	push	af
+360   00A2  33          	inc	sp
+361   00A3  CD 13 00    	call	_pset
+362   00A6  F1          	pop	af
+363   00A7  C1          	pop	bc
+364   00A8  03          	inc	bc
+365   00A9  79          	ld	a, c
+366   00AA  D6 64       	sub	a,0x64
+367   00AC  78          	ld	a, b
+368   00AD  17          	rla
+369   00AE  3F          	ccf
+370   00AF  1F          	rra
+371   00B0  DE 80       	sbc	a,0x80
+372   00B2  38 E4       	jr	C,l_main_00102
+373   00B4  C9          	ret
+374   00B5              	SECTION IGNORE
+375   0000              
