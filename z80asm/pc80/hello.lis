@@ -1,0 +1,9 @@
+1     0000              	org	$d000
+2     0000              
+3     0000  21 09 00    	ld	hl, msg
+4     0003  CD ED 52    	call	$52ed		; puts
+5     0006  C3 66 5C    	jp	$5c66		; monitor
+6     0009              
+7     0009  68 65 6C 6C 6F 2C 20 77 6F 72 6C 64 0D 0A 00 
+                        msg:	db	"hello, world\r\n", 0
+8     0018              
