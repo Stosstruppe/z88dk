@@ -1,4 +1,4 @@
-@set target=mul16
+@set target=mul16b
 
 z80asm -b -l %target%
 @if errorlevel 1 goto end

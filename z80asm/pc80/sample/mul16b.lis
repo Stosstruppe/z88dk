@@ -1,0 +1,44 @@
+1     0000              ; intel 8080 アセンブラ 16bit乗算 - Qiita
+2     0000              ; https://qiita.com/ohisama@github/items/bdebca416501f9fa1201
+3     0000              
+4     0000              	org	$d000
+5     0000              
+6     0000  21 B4 00    	ld	hl, 180
+7     0003  11 B4 00    	ld	de, 180
+8     0006  CD 0F 00    	call	mul16
+9     0009  CD 26 00    	call	printi
+10    000C  C3 66 5C    	jp	$5c66		; monitor
+11    000F              
+12    000F              ; hl = hl * de
+13    000F              mul16:
+14    000F  44          	ld	b, h
+15    0010  4D          	ld	c, l
+16    0011  21 00 00    	ld	hl, 0
+17    0014              L1:
+18    0014  CB 38       	srl	b
+19    0016  CB 19       	rr	c
+20    0018  30 01       	jr	nc, L2
+21    001A  19          	add	hl, de
+22    001B              L2:
+23    001B  A8          	xor	b
+24    001C  C8          	ret	z
+25    001D  EB          	ex	de, hl
+26    001E  29          	add	hl, hl
+27    001F  EB          	ex	de, hl
+28    0020  7A          	ld	a, d
+29    0021  B3          	or	e
+30    0022  C2 14 00    	jp	nz, L1
+31    0025  C9          	ret
+32    0026              
+33    0026              printi:
+34    0026  22 A8 F0    	ld	($0f0a8), hl	; FAcc
+35    0029  3E 02       	ld	a, 2		; 整数
+36    002B  32 45 EF    	ld	($0ef45), a
+37    002E  CD 22 2D    	call	$2d22		; FAccの内容を文字列に置き換える
+38    0031  CD ED 52    	call	$52ed		; puts
+39    0034  3E 0D       	ld	a, $0d
+40    0036  DF          	rst	$18
+41    0037  3E 0A       	ld	a, $0a
+42    0039  DF          	rst	$18
+43    003A  C9          	ret
+44    003B              
