@@ -1,0 +1,52 @@
+	org	0000h
+
+	ld	c, 3
+	ld	b, 5
+	ld	b, b
+	call	pset
+	ld	c, c
+	ret
+
+; b: y (0-99)  yh=y/4 hl=y%4
+; c; x (0-159) xh=x/2 xl=x%2
+; addr = $f300 + yh*120 + xh
+; mask = $01 << (xl*4 + yl)
+pset:
+	ld	a, c
+	cp	160
+	ret	nc		; if (x >= 160) return
+	ld	a, b
+	cp	100
+	ret	nc		; if (y >= 100) return
+	rra
+	and	3eh		; a = yh*2
+	add	a, 75h
+	ld	l, a
+	ld	h, 06h		; hl = $0675 + a
+	ld	e, (hl)
+	inc	l
+	ld	d, (hl)		; de = $f300 + yh*120
+	ld	a, c		; de += xh
+	rra
+	add	a, e
+	ld	e, a
+	jr	nc, pset1
+	inc	d
+pset1:
+	ld	a, b
+	rr	c		; cy = x>>1
+	rla			; a = y<<1 + cy
+	and	07h		; a = yyx
+	ld	l, a
+	ld	h, mask/256
+	ld	a, (hl)		; a = mask[a]
+	ex	de, hl
+	or	(hl)
+	ld	(hl), a
+	ret
+
+	org	0100h
+mask:	db	01h,10h,02h,20h,04h,40h,08h,80h
+
+	org	0675h
+	dw	0f300h,0f378h
