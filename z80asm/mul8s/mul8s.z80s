@@ -21,7 +21,7 @@ mul:
 	ld	a, d
 mul1:
 	ld	h, a
-	rr	h
+	srl	h
 	rr	l
 				; 2-7
 	ld	b, 6
