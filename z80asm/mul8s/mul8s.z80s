@@ -10,129 +10,118 @@
 
 ; hl = c * a
 mul:
-	ld	b, 0
-	ld	hl, 0
+	ld	hl, 8100h
+	ld	b, l
 
-	ld	d, b
-	ld	e, c
+	ld	de, 0080h
 	rra
-	jr	c, L1
-	ld	de, 0
+	jr	nc, L1
+	ex	af, af'
+	ld	a, c
+	xor	e
+	ld	e, a
+	ex	af, af'
+;	ld	d, b
 L1:
-	ex	af, af'
-	ld	a, e
-	xor	80h
-	ld	e, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 0100h
 	rra
-	jr	c, L2
-	ld	de, 0
+	jr	nc, L2
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
 L2:
-	ex	af, af'
-	ld	a, d
-	xor	01h
-	ld	d, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 0200h
 	rra
-	jr	c, L3
-	ld	de, 0
+	jr	nc, L3
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
 L3:
-	ex	af, af'
-	ld	a, d
-	xor	02h
-	ld	d, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 0400h
 	rra
-	jr	c, L4
-	ld	de, 0
+	jr	nc, L4
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
 L4:
-	ex	af, af'
-	ld	a, d
-	xor	04h
-	ld	d, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 0800h
 	rra
-	jr	c, L5
-	ld	de, 0
+	jr	nc, L5
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
 L5:
-	ex	af, af'
-	ld	a, d
-	xor	08h
-	ld	d, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 1000h
 	rra
-	jr	c, L6
-	ld	de, 0
+	jr	nc, L6
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
 L6:
-	ex	af, af'
-	ld	a, d
-	xor	10h
-	ld	d, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 2000h
 	rra
-	jr	c, L7
-	ld	de, 0
+	jr	nc, L7
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
 L7:
-	ex	af, af'
-	ld	a, d
-	xor	20h
-	ld	d, a
-	ex	af, af'
 	add	hl, de
 	sla	c
 	rl	b
 
-	ld	d, b
-	ld	e, c
+	ld	de, 3f80h
 	rra
-	jr	c, L8
-	ld	de, 0
-L8:
+	jr	nc, L8
 	ex	af, af'
-	ld	a, e
-	xor	80h
+	ld	a, c
+	xor	e
 	ld	e, a
-	ld	a, d
-	xor	3fh
+	ld	a, b
+	xor	d
 	ld	d, a
 	ex	af, af'
-	add	hl, de
-	ld	de, 8100h
+L8:
 	add	hl, de
 	ret
