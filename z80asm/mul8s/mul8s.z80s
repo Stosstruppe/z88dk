@@ -38,11 +38,11 @@ mul3:
 	djnz	mul2
 				; final
 	ld	a, e
-	cpl
 	srl	c
 	jr	c, mul4
-	ld	a, 7fh
+	ld	a, d
 mul4:
+	cpl
 	add	a, h
 	ld	h, a
 	rr	h
