@@ -1,0 +1,127 @@
+	org	0010h
+
+	ld	c, 98
+	ld	a, -88
+	ld	b, b
+	call	mul
+	ld	c, c
+	ld	(0000h), hl
+	ret
+
+; hl = c * a
+mul:
+	ld	hl, 8100h
+	ld	b, l
+
+	ld	de, 0080h
+	rra
+	jr	nc, L1
+	ex	af, af'
+	ld	a, c
+	xor	e
+	ld	e, a
+	ex	af, af'
+;	ld	d, b
+L1:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 0100h
+	rra
+	jr	nc, L2
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L2:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 0200h
+	rra
+	jr	nc, L3
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L3:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 0400h
+	rra
+	jr	nc, L4
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L4:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 0800h
+	rra
+	jr	nc, L5
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L5:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 1000h
+	rra
+	jr	nc, L6
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L6:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 2000h
+	rra
+	jr	nc, L7
+	ld	e, c
+	ex	af, af'
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L7:
+	add	hl, de
+	sla	c
+	rl	b
+
+	ld	de, 3f80h
+	rra
+	jr	nc, L8
+	ex	af, af'
+	ld	a, c
+	xor	e
+	ld	e, a
+	ld	a, b
+	xor	d
+	ld	d, a
+	ex	af, af'
+L8:
+	add	hl, de
+	ret
