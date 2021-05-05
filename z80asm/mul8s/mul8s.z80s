@@ -13,14 +13,12 @@ mul:
 	ld	b, 0
 	ld	hl, 0
 
-	rra
-	jr	nc, L1a
 	ld	d, b
 	ld	e, c
-	jp	L1b
-L1a:
+	rra
+	jr	c, L1
 	ld	de, 0
-L1b:
+L1:
 	ex	af, af'
 	ld	a, e
 	xor	80h
@@ -30,14 +28,12 @@ L1b:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L2a
 	ld	d, b
 	ld	e, c
-	jp	L2b
-L2a:
+	rra
+	jr	c, L2
 	ld	de, 0
-L2b:
+L2:
 	ex	af, af'
 	ld	a, d
 	xor	01h
@@ -47,14 +43,12 @@ L2b:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L3a
 	ld	d, b
 	ld	e, c
-	jp	L3b
-L3a:
+	rra
+	jr	c, L3
 	ld	de, 0
-L3b:
+L3:
 	ex	af, af'
 	ld	a, d
 	xor	02h
@@ -64,14 +58,12 @@ L3b:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L4a
 	ld	d, b
 	ld	e, c
-	jp	L4b
-L4a:
+	rra
+	jr	c, L4
 	ld	de, 0
-L4b:
+L4:
 	ex	af, af'
 	ld	a, d
 	xor	04h
@@ -81,14 +73,12 @@ L4b:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L5a
 	ld	d, b
 	ld	e, c
-	jp	L5b
-L5a:
+	rra
+	jr	c, L5
 	ld	de, 0
-L5b:
+L5:
 	ex	af, af'
 	ld	a, d
 	xor	08h
@@ -98,14 +88,12 @@ L5b:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L6a
 	ld	d, b
 	ld	e, c
-	jp	L6b
-L6a:
+	rra
+	jr	c, L6
 	ld	de, 0
-L6b:
+L6:
 	ex	af, af'
 	ld	a, d
 	xor	10h
@@ -115,14 +103,12 @@ L6b:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L7a
 	ld	d, b
 	ld	e, c
-	jp	L7b
-L7a:
+	rra
+	jr	c, L7
 	ld	de, 0
-L7b:
+L7:
 	ex	af, af'
 	ld	a, d
 	xor	20h
