@@ -118,14 +118,12 @@ L7:
 	sla	c
 	rl	b
 
-	rra
-	jr	nc, L8a
 	ld	d, b
 	ld	e, c
-	jp	L8b
-L8a:
+	rra
+	jr	c, L8
 	ld	de, 0
-L8b:
+L8:
 	ex	af, af'
 	ld	a, e
 	xor	80h
