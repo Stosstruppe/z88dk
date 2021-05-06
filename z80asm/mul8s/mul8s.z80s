@@ -3,38 +3,41 @@
 	ld	e, 98
 	ld	c, -88
 	ld	b, b
-	call	mul
+	call	mul8s
 	ld	c, c
 	ld	(0000h), hl
 	ret
 
 ; hl = e * c
-mul:
-	ld	hl, 0
+mul8s:
+	ld	hl, 81h
 	ld	d, 80h
 	ld	a, e
 	xor	d
 	ld	e, a
-	ld	b, 8
-mul2:
-	ld	a, e
-	srl	c
-	jr	c, mul3
+				; 1st
+	sla	c
+	jr	c, L1
 	ld	a, d
-mul3:
-	dec	b
-	jr	z, mul4
-	add	a, h
-	ld	h, a
-	rr	h
-	rr	l
-	jp	mul2
-mul4:
+L1:
 	cpl
-	add	a, h
-	ld	h, a
-	rr	h
-	rr	l
+	ld	l, a
+				; 2-8
+	ld	b, 7
+L3:
+	add	hl, hl
+	ld	a, e
+	sla	c
+	jr	c, L4
+	ld	a, d
+L4:
+	add	a, l
+	ld	l, a
+	jr	nc, L5
+	inc	h
+L5:
+	djnz	L3
+
 	ld	a, h
 	add	a, 81h
 	ld	h, a

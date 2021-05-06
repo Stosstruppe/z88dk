@@ -1,0 +1,41 @@
+	org	0010h
+
+	ld	e, 98
+	ld	c, -88
+	ld	b, b
+	call	mul
+	ld	c, c
+	ld	(0000h), hl
+	ret
+
+; hl = e * c
+mul:
+	ld	hl, 0
+	ld	d, 80h
+	ld	a, e
+	xor	d
+	ld	e, a
+	ld	b, 8
+mul2:
+	ld	a, e
+	srl	c
+	jr	c, mul3
+	ld	a, d
+mul3:
+	dec	b
+	jr	z, mul4
+	add	a, h
+	ld	h, a
+	rr	h
+	rr	l
+	jp	mul2
+mul4:
+	cpl
+	add	a, h
+	ld	h, a
+	rr	h
+	rr	l
+	ld	a, h
+	add	a, 81h
+	ld	h, a
+	ret
