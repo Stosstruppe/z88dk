@@ -10,7 +10,7 @@
 
 ; hl = e * c
 mul8s:
-	ld	hl, 81h
+	ld	h, 0
 	ld	d, 80h
 	ld	a, e
 	xor	d
