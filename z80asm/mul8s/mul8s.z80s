@@ -10,44 +10,31 @@
 
 ; hl = e * c
 mul:
-	ld	l, 0
+	ld	hl, 0
 	ld	d, 80h
 	ld	a, e
 	xor	d
 	ld	e, a
-				; 1st
-	srl	c
-	jr	c, mul1
-	ld	a, d
-mul1:
-	ld	h, a
-	srl	h
-	rr	l
-				; 2-7
-	ld	b, 6
+	ld	b, 8
 mul2:
 	ld	a, e
 	srl	c
 	jr	c, mul3
 	ld	a, d
 mul3:
+	dec	b
+	jr	z, mul4
 	add	a, h
 	ld	h, a
 	rr	h
 	rr	l
-	djnz	mul2
-				; final
-	ld	a, e
-	srl	c
-	jr	c, mul4
-	ld	a, d
+	jp	mul2
 mul4:
 	cpl
 	add	a, h
 	ld	h, a
 	rr	h
 	rr	l
-
 	ld	a, h
 	add	a, 81h
 	ld	h, a
