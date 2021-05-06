@@ -1,50 +1,45 @@
 	org	0010h
 
 	ld	e, 98
-	ld	l, -88
+	ld	c, -88
 	ld	b, b
 	call	mul8s
 	ld	c, c
 	ld	(0000h), hl
 	ret
 
-; hl = e * l
+; hl = e * c
 mul8s:
+	ld	h, 0
 	ld	d, 80h
 	ld	a, e
 	xor	d
 	ld	e, a
 				; 1st
-	srl	l
+	sla	c
 	jr	c, L1
 	ld	a, d
 L1:
-	srl	a
-	rr	l
-				; 2-7
-	ld	b, 6
+	cpl
+				; 2-8
+	ld	b, 7
 L2:
+	sla	a
+	rl	h
+	sla	c
 	jr	nc, L3
 	add	a, e
 	jp	L4
 L3:
 	add	a, d
 L4:
-	rra
-	rr	l
-	djnz	L2
-				; final
 	jr	nc, L5
-	ld	h, a
-	ld	a, e
-	cpl
-	add	a, h
-	jp	L6
+	inc	h
 L5:
-	add	a, 7fh
-L6:
-	rra
-	rr	l
+	djnz	L2
+
+	ld	l, a
+	ld	a, h
 	add	a, 81h
 	ld	h, a
 	ret

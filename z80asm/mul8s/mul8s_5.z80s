@@ -1,48 +1,45 @@
+; 8*8=16bit符号つき乗算
+
 	org	0010h
 
 	ld	e, 98
-	ld	l, -88
+	ld	c, -88
 	ld	b, b
 	call	mul8s
 	ld	c, c
 	ld	(0000h), hl
 	ret
 
-; hl = e * l
+; hl = e * c
 mul8s:
 	ld	d, 80h
 	ld	a, e
 	xor	d
 	ld	e, a
-				; 1st
-	srl	l
-	jr	c, L1
-	ld	a, d
+	cpl
+	ld	h, a
+	xor	a
+				; 1-7
+	ld	b, 7
 L1:
-	srl	a
-	rr	l
-				; 2-7
-	ld	b, 6
-L2:
-	jr	nc, L3
+	srl	c
+	jr	nc, L2
 	add	a, e
-	jp	L4
-L3:
+	jp	L3
+L2:
 	add	a, d
-L4:
+L3:
 	rra
 	rr	l
-	djnz	L2
+	djnz	L1
 				; final
-	jr	nc, L5
-	ld	h, a
-	ld	a, e
-	cpl
+	srl	c
+	jr	nc, L4
 	add	a, h
-	jp	L6
-L5:
+	jp	L5
+L4:
 	add	a, 7fh
-L6:
+L5:
 	rra
 	rr	l
 	add	a, 81h
