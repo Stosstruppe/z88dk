@@ -1,50 +1,51 @@
+; 8*8=16bit•„†‚Â‚«æZ
+
 	org	0010h
 
-	ld	e, 98
-	ld	l, -88
+	ld	e, -9
+	ld	d, 0ah
 	ld	b, b
-	call	mul8s
+	call	mul
 	ld	c, c
 	ld	(0000h), hl
 	ret
 
-; hl = e * l
-mul8s:
-	ld	d, 80h
+; hl = e * d
+mul:
+	ld	hl, 0
+	ld	c, l
+				; ”íæ”‚Ìâ‘Î’l
 	ld	a, e
-	xor	d
+	neg
+	jp	m, L1
 	ld	e, a
-				; 1st
-	srl	l
-	jr	c, L1
+	inc	c
+L1:				; æ”‚Ìâ‘Î’l
 	ld	a, d
-L1:
-	srl	a
-	rr	l
-				; 2-7
-	ld	b, 6
-L2:
-	jr	nc, L3
-	add	a, e
+	neg
+	jp	p, L2
+	ld	a, d
+	inc	c
+L2:				; •„†‚È‚µæZ
+	ld	d, l
+	or	a		; cy=0
 	jp	L4
 L3:
-	add	a, d
+	or	a
+	jr	z, L5
+	sla	e
+	rl	d
 L4:
-	rra
-	rr	l
-	djnz	L2
-				; final
-	jr	nc, L5
-	ld	h, a
-	ld	a, e
-	cpl
-	add	a, h
-	jp	L6
-L5:
-	add	a, 7fh
-L6:
-	rra
-	rr	l
-	add	a, 81h
+	rra			; cy=0‚Ì‚Í‚¸
+	jr	nc, L3
+	add	hl, de
+	jp	L3
+L5:				; •„†’²®
+	bit	0, c
+	ret	nz
+	sub	l		; a=0‚Ì‚Í‚¸
+	ld	l, a
+	ld	a, 0		; cyÁ‚³‚È‚¢
+	sbc	a, h
 	ld	h, a
 	ret
