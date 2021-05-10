@@ -1,4 +1,4 @@
-@set target=raytrace1
+@set target=raytrace2
 
 z80asm -b -l %target%
 @if errorlevel 1 goto end
