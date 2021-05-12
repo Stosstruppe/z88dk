@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>normals</title>
+</head>
+
+<body>
+<pre id="output"></pre>
+<script>
+
+"use strict";
+
+onload = function() {
+	let log = "norm:";
+
+	for (let sy = 0; sy < 100; sy += 4) {
+		log += "\tdb\t";
+		for (let sx = 0; sx < 100; sx += 2) {
+			if (sx) {
+				log += ", ";
+			}
+			let x = Math.round((sx-50+1)*64/48);
+			let y = Math.round((sy-50+2)*64/48);
+			let zz = 64**2 - (x**2 + y**2);
+			if (zz < 0) {
+				log += "$80,0,0";
+			} else {
+				let z = Math.round(Math.sqrt(zz));
+				let d = dimple(x, y);
+				if (d) {
+					let [dz, dn] = d;
+					if (z > dz) {
+						x = Math.round(dn[0]*64);
+						y = Math.round(dn[1]*64);
+						z = Math.round(dn[2]*64);
+					}
+				}
+				log += `${x},${y},${z}`;
+			}
+		}
+		log += "\n";
+	}
+
+	output.textContent = log;
+};
+
+function dimple(x, y) {
+	x -= 25;
+	y += 25;
+	let zz = 25**2 - (x**2 + y**2);
+	if (zz < 0) return;
+
+	let z = Math.round(Math.sqrt(zz));
+	z = -z;
+	let n = normalize(-x, -y, -z);
+	return [z + 60, n];
+}
+
+function normalize(x, y, z) {
+	let len = Math.sqrt(x**2 + y**2 + z**2);
+	return [x/len, y/len, z/len];
+}
+
+</script>
+</body>
+</html>

@@ -4,5 +4,5 @@
 ```
 mon
 *L
-*GD3xx
+*Gxxxx
 ```
