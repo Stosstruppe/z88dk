@@ -3,32 +3,55 @@
 mask:	db	$01,$05,$25,$a5, $b5,$f5,$f7,$ff
 
 	include	"norm.asm"
+	include	"light.asm"
 
-	;	$deae
+	;	$e1ae
 	call	init
+	ld	hl, frame
+	ld	(hl), 0
+loop:
+	ld	hl, frame
+	ld	a, (hl)
+	inc	(hl)
+	ld	l, a
+	ld	h, 0
+	ld	e, l
+	ld	d, h
+	add	hl, hl
+	add	hl, de
+	ld	de, light
+	add	hl, de		; hl = light + a*3
+	ld	de, vlight
+	ldi
+	ldi
+	ldi
+	call	draw
+	jp	loop
+L9:
+	halt
+	jp	L9
 
+draw:
 	ld	hl, norm
 	ld	(pnorm), hl
 	xor	a
-Lout:
+draw1:
 	ld	(sy), a		; for (sy = 0; sy < 100; sy += 4)
 	xor	a
-Lin:
+draw2:
 	ld	(sx), a		; for (sx = 0; sx < 100; sx += 2)
 	call	calc
 
 	ld	a, (sx)
 	add	a, 2
 	cp	100
-	jp	c, Lin
+	jp	c, draw2
 
 	ld	a, (sy)
 	add	a, 4
 	cp	100
-	jp	c, Lout
-L9:
-	halt
-	jp	L9
+	jp	c, draw1
+	ret
 
 calc:
 	ld	de, (pnorm)
@@ -40,10 +63,8 @@ calc:
 	cp	$80
 	ret	z
 
-	ld	de, px
-	ldi
-	ldi
-	ldi
+	push	hl
+	pop	ix
 	call	dot
 	or	a
 	jp	p, calc1	; if (z < 0) z = 0
@@ -62,18 +83,18 @@ calc2:
 	ret
 
 dot:
-	ld	a, (px)
-	ld	l, 43
+	ld	l, (ix)
+	ld	a, (vlight)
 	call	mul8s
 	ld	a, h
 	ld	(tmp), a
-	ld	a, (py)
-	ld	l, -21
+	ld	l, (ix+1)
+	ld	a, (vlight+1)
 	call	mul8s
 	ld	a, h
 	ld	(tmp+1), a
-	ld	a, (pz)
-	ld	l, 43
+	ld	l, (ix+2)
+	ld	a, (vlight+2)
 	call	mul8s
 	ld	a, h
 	ld	hl, (tmp)
@@ -164,8 +185,7 @@ color:	db	"0,0,1", 0	; 低解像度グラフィック
 
 sx:	ds	1	; screen 0..99
 sy:	ds	1
-px:	ds	1
-py:	ds	1
-pz:	ds	1
+vlight:	ds	3
+frame:	ds	1
 pnorm:	ds	2
 tmp:	ds	2

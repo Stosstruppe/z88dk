@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>lights</title>
+</head>
+
+<body>
+<pre id="output"></pre>
+<script>
+
+"use strict";
+
+onload = function() {
+	let log = "light:";
+
+	for (let t = 0; t < 256; t++) {
+		let rad = (t / 128) * Math.PI;
+		let x = Math.cos(rad);
+		let y = -.25;
+		let z = Math.sin(rad);
+		let n = normalize(x, y, z);
+		log += `\tdb\t${base(x)},${base(y)},${base(z)}\n`;
+	}
+
+	output.textContent = log;
+};
+
+function base(x) {
+	return Math.round(x * 64);
+}
+
+function normalize(x, y, z) {
+	let len = Math.sqrt(x**2 + y**2 + z**2);
+	return [x/len, y/len, z/len];
+}
+
+</script>
+</body>
+</html>
