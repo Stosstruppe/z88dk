@@ -4,17 +4,16 @@ POS	equ	$cf00
 
 mask:	db	$01,$10,$02,$20,$04,$40,$08,$80
 
-sintbl:	dw	0,6,13,19,25,31,38,44
-	dw	50,56,62,68,74,80,86,92
-	dw	98,104,109,115,121,126,132,137
-	dw	142,147,152,157,162,167,172,177
-	dw	181,185,190,194,198,202,206,209
-	dw	213,216,220,223,226,229,231,234
-	dw	237,239,241,243,245,247,248,250
-	dw	251,252,253,254,255,255,256,256
-	dw	256
+sintbl:	db	5,12,18,24,30,37,43,49
+	db	55,61,67,73,79,85,91,97
+	db	103,108,114,120,125,131,136,141
+	db	146,151,156,161,166,171,176,180
+	db	184,189,193,197,201,205,208,212
+	db	215,219,222,225,228,230,233,236
+	db	238,240,242,244,246,247,249,250
+	db	251,252,253,254,254,255,255,255
 
-	;	$d08a
+	;	$d048
 	call	init
 	ld	hl, frame
 	ld	(hl), 0
@@ -245,27 +244,33 @@ div2:
 ; use: af de hl
 sin:
 	cp	128
-	jr	nc, sin3
+	jr	nc, sin4
 sin1:
+	or	a
+	jr	nz, sin2
+	ld	de, 0
+	ret
+sin2:
 	cp	64
-	jr	c, sin2		; if (x >= 64)
+	jr	c, sin3		; if (x > 63)
 	ld	l, a		; x = 128 - x
 	ld	a, 128
 	sub	l
-sin2:
+sin3:
 	ld	l, a
 	ld	h, 0
-	add	hl, hl
-	ld	de, sintbl
+	ld	de, sintbl-1
 	add	hl, de
 	ld	e, (hl)
-	inc	hl
-	ld	d, (hl)
+	ld	d, 0
+	inc	e
+	ret	nz
+	inc	d
 	ret
-sin3:				; if (x >= 128)
+sin4:				; if (x > 127)
 	sub	128		; x -= 128
 	call	sin1
-	sub	a
+	sub	a		; y = -y
 	sub	e
 	ld	e, a
 	sbc	a, a
