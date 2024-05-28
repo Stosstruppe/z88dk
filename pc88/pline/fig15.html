@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#canvas {
+	width: 640px;
+	image-rendering: pixelated;
+}
+
+</style>
+</head>
+
+<body>
+<canvas id="canvas"></canvas>
+<script>
+
+"use strict";
+
+const WIDTH = 160;
+const HEIGHT = 100;
+
+let ctx;
+
+onload = function() {
+	canvas.width = WIDTH;
+	canvas.height = HEIGHT;
+	ctx = canvas.getContext("2d");
+
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, WIDTH, HEIGHT);
+
+	for (let i = 0; i < 24; i++) {
+		const t = 2 * Math.PI * i / 24;
+		const x0 = Math.floor(80 + Math.sin(t) * 20);
+		const y0 = Math.floor(50 - Math.cos(t) * 20);
+		const x1 = Math.floor(80 + Math.sin(t) * 40);
+		const y1 = Math.floor(50 - Math.cos(t) * 40);
+		line(x0, y0, x1, y1);
+	}
+};
+
+function line(x0, y0, x1, y1) {
+	const steep = Math.abs(y1 - y0) > Math.abs(x1 - x0);
+	if (steep) {
+		[x0, y0] = [y0, x0];
+		[x1, y1] = [y1, x1];
+	}
+	if (x0 > x1) {
+		[x0, x1] = [x1, x0];
+		[y0, y1] = [y1, y0];
+	}
+	let dx = x1 - x0;
+	let dy = y1 - y0;
+	let sy = 1;
+	if (dy < 0) {
+		dy = -dy;
+		sy = -1;
+	}
+	let err = Math.floor(dx / 2);
+	for ( ; x0 <= x1; x0++) {
+		if (steep) pset(y0, x0); else pset(x0, y0);
+		err -= dy;
+		if (err < 0) {
+			y0 += sy;
+			err += dx;
+		}
+	}
+}
+
+function pset(x, y) {
+	ctx.fillStyle = "#ffffff";
+	ctx.fillRect(x, y, 1, 1);
+}
+
+</script>
+</body>
+</html>

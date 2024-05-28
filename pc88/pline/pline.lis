@@ -1,0 +1,245 @@
+pline.asm:
+     1                          ; z80asm -b pline
+     2                          ; z88dk-appmake +pc88 -b pline.bin --org 0xb000
+     3                          
+     4                          swap macro p1, p2
+     5                          	ld	hl, (p1)
+     6                          	ld	de, (p2)
+     7                          	ld	(p2), hl
+     8                          	ld	(p1), de
+     9                          endm
+    10                          
+    11                          	org	$b000
+    12                          
+    13                          ; void pline(x0, y0, x1, y1, plane)
+    14                          
+    15  0000  ed730000          	ld	(svsp), sp
+    16  0004  c5                	push	bc		; [
+    17  0005  4e                	ld	c, (hl)
+    18  0006  23                	inc	hl
+    19  0007  46                	ld	b, (hl)
+    20  0008  ed434f01          	ld	(_x0), bc	; x0
+    21  000c  eb                	ex	de, hl
+    22  000d  4e                	ld	c, (hl)
+    23  000e  23                	inc	hl
+    24  000f  46                	ld	b, (hl)
+    25  0010  ed435101          	ld	(_y0), bc	; y0
+    26  0014  e1                	pop	hl		; ]
+    27                          
+    28  0015  f3                	di
+    29  0016  f9                	ld	sp, hl
+    30  0017  e1                	pop	hl
+    31  0018  4e                	ld	c, (hl)
+    32  0019  23                	inc	hl
+    33  001a  46                	ld	b, (hl)
+    34  001b  ed435301          	ld	(_x1), bc	; x1
+    35  001f  e1                	pop	hl
+    36  0020  4e                	ld	c, (hl)
+    37  0021  23                	inc	hl
+    38  0022  46                	ld	b, (hl)
+    39  0023  ed435501          	ld	(_y1), bc	; y1
+    40  0027  e1                	pop	hl
+    41  0028  7e                	ld	a, (hl)
+    42  0029  325701            	ld	(_plane), a	; plane
+    43  002c  310000            	ld	sp, 0
+    44                          svsp	equ	$ - 2
+    45  002f  fb                	ei
+    46                          
+    47                          	; プレーン port
+    48  0030  3a5701            	ld	a, (_plane)
+    49  0033  c65c              	add	a, $5c
+    50  0035  320000            	ld	(oplane), a
+    51                          
+    52                          ;	const steep = Math.abs(y1 - y0) > Math.abs(x1 - x0);
+    53                          ;	if (steep) {
+    54                          ;		[x0, y0] = [y0, x0];
+    55                          ;		[x1, y1] = [y1, x1];
+    56                          ;	}
+    57                          
+    58  0038  2a5501            	ld	hl, (_y1)	; abs(y1 - y0)
+    59  003b  ed5b5101          	ld	de, (_y0)
+    60  003f  b7                	or	a
+    61  0040  ed52              	sbc	hl, de
+    62  0042  3007              	jr	nc, L1
+    63                          
+    64  0044  eb                	ex	de, hl
+    65  0045  210000            	ld	hl, 0
+    66  0048  b7                	or	a
+    67  0049  ed52              	sbc	hl, de
+    68                          L1:
+    69  004b  e5                	push	hl	; [
+    70                          
+    71  004c  2a5301            	ld	hl, (_x1)	; abs(x1 - x0)
+    72  004f  ed5b4f01          	ld	de, (_x0)
+    73  0053  b7                	or	a
+    74  0054  ed52              	sbc	hl, de
+    75  0056  3007              	jr	nc, L2
+    76                          
+    77  0058  eb                	ex	de, hl
+    78  0059  210000            	ld	hl, 0
+    79  005c  b7                	or	a
+    80  005d  ed52              	sbc	hl, de
+    81                          L2:
+    82  005f  d1                	pop	de	; ]
+    83  0060  af                	xor	a		; nop
+    84  0061  ed52              	sbc	hl, de		; abs(dx) - abs(dy)
+    85  0063  301e              	jr	nc, L3
+    86                          
+    87  0065  2a4f01ed5b510122  	swap _x0, _y0
+              5101ed534f01      
+    88  0073  2a5301ed5b550122  	swap _x1, _y1
+              5501ed535301      
+    89  0081  3eeb              	ld	a, $eb		; ex de,hl
+    90                          L3:
+    91  0083  320000            	ld	(steep), a
+    92                          
+    93                          ;	if (x0 > x1) {
+    94                          ;		[x0, x1] = [x1, x0];
+    95                          ;		[y0, y1] = [y1, y0];
+    96                          ;	}
+    97                          ;	let dx = x1 - x0;
+    98                          ;	let err = Math.floor(dx / 2);
+    99                          
+   100  0086  2a5301            	ld	hl, (_x1)
+   101  0089  ed5b4f01          	ld	de, (_x0)
+   102  008d  b7                	or	a
+   103  008e  ed52              	sbc	hl, de
+   104  0090  301f              	jr	nc, L4
+   105                          
+   106  0092  2a5101ed5b550122  	swap _y0, _y1
+              5501ed535101      
+   107  00a0  2a4f01            	ld	hl, (_x0)
+   108  00a3  ed5b5301          	ld	de, (_x1)
+   109  00a7  225301            	ld	(_x1), hl
+   110  00aa  ed534f01          	ld	(_x0), de
+   111  00ae  b7                	or	a
+   112  00af  ed52              	sbc	hl, de
+   113                          L4:
+   114  00b1  225801            	ld	(_dx), hl
+   115  00b4  cb2c              	sra	h
+   116  00b6  cb1d              	rr	l
+   117  00b8  225c01            	ld	(_err), hl
+   118                          
+   119                          ;	let dy = y1 - y0;
+   120                          ;	let sy = 1;
+   121                          ;	if (dy < 0) {
+   122                          ;		dy = -dy;
+   123                          ;		sy = -1;
+   124                          ;	}
+   125                          
+   126  00bb  2a5501            	ld	hl, (_y1)
+   127  00be  ed5b5101          	ld	de, (_y0)
+   128  00c2  b7                	or	a
+   129  00c3  ed52              	sbc	hl, de
+   130  00c5  3e34              	ld	a, $34		; inc (hl)
+   131  00c7  3009              	jr	nc, L5
+   132                          
+   133  00c9  eb                	ex	de, hl
+   134  00ca  210000            	ld	hl, 0
+   135  00cd  b7                	or	a
+   136  00ce  ed52              	sbc	hl, de
+   137  00d0  3e35              	ld	a, $35		; dec (hl)
+   138                          L5:
+   139  00d2  225a01            	ld	(_dy), hl
+   140  00d5  320000            	ld	(step_y), a
+   141                          
+   142                          ;	for ( ; x0 <= x1; x0++) {
+   143                          ;		if (steep) pset(y0, x0); else pset(x0, y0);
+   144                          ;		err -= dy;
+   145                          ;		if (err < 0) {
+   146                          ;			y0 += sy;
+   147                          ;			err += dx;
+   148                          ;		}
+   149                          ;	}
+   150                          
+   151                          loop:
+   152  00d8  2a4f01            	ld	hl, (_x0)
+   153  00db  ed5b5101          	ld	de, (_y0)
+   154  00df  00                	nop			; / ex de,hl
+   155                          steep	equ	$ - 1
+   156  00e0  cd1101            	call	ppset
+   157                          
+   158  00e3  2a5c01            	ld	hl, (_err)
+   159  00e6  ed5b5a01          	ld	de, (_dy)
+   160  00ea  b7                	or	a
+   161  00eb  ed52              	sbc	hl, de		; err += (-dy)
+   162  00ed  225c01            	ld	(_err), hl	; err -= dy
+   163  00f0  300c              	jr	nc, L11		; if (err < 0)
+   164                          
+   165  00f2  ed5b5801          	ld	de, (_dx)
+   166  00f6  19                	add	hl, de
+   167  00f7  225c01            	ld	(_err), hl	; err += dx
+   168  00fa  215101            	ld	hl, _y0		; y0 += sy
+   169  00fd  00                	nop			; inc/dec (hl) $34/$35
+   170                          step_y	equ	$ - 1
+   171                          
+   172                          L11:
+   173  00fe  2a5301            	ld	hl, (_x1)
+   174  0101  ed5b4f01          	ld	de, (_x0)
+   175  0105  b7                	or	a
+   176  0106  ed52              	sbc	hl, de		; x0 + (-x1)
+   177  0108  13                	inc	de
+   178  0109  ed534f01          	ld	(_x0), de
+   179  010d  c2d800            	jp	nz, loop	; x0 <= x1
+   180                          
+   181  0110  c9                	ret
+   182                          
+   183                          ; hl = px, de = py
+   184                          ppset:
+   185  0111  e5                	push	hl	; [
+   186  0112  d5                	push	de	; [[
+   187                          
+   188                          	; ビット計算
+   189  0113  7d                	ld	a, l
+   190  0114  e607              	and	$07
+   191  0116  214701            	ld	hl, _btbl
+   192  0119  85                	add	a, l
+   193  011a  6f                	ld	l, a
+   194  011b  3001              	jr	nc, ppset1
+   195  011d  24                	inc	h
+   196                          ppset1:
+   197  011e  7e                	ld	a, (hl)		; ビットマスク
+   198                          
+   199                          	; アドレス計算 $c000 + 80 * y + x/8
+   200  011f  e1                	pop	hl	; ]]
+   201  0120  29                	add	hl, hl
+   202  0121  29                	add	hl, hl
+   203  0122  29                	add	hl, hl
+   204  0123  29                	add	hl, hl
+   205  0124  5d                	ld	e, l
+   206  0125  54                	ld	d, h
+   207  0126  29                	add	hl, hl
+   208  0127  29                	add	hl, hl
+   209  0128  19                	add	hl, de		; (64 + 16)倍
+   210  0129  eb                	ex	de, hl
+   211                          
+   212  012a  e1                	pop	hl	; ]
+   213                          	rept 3
+   214                          	srl	h
+   215                          	rr	l
+   216  012b  cb3ccb1dcb3ccb1d  	endr
+              cb3ccb1d          
+   217  0137  19                	add	hl, de
+   218  0138  d51100c019d1      	add	hl, $c000
+   219                          
+   220  013e  f3                	di
+   221  013f  d300              	out	(0), a
+   222                          oplane	equ	$ - 1
+   223  0141  b6                	or	(hl)
+   224  0142  77                	ld	(hl), a
+   225  0143  d35f              	out	($5f), a
+   226  0145  fb                	ei
+   227  0146  c9                	ret
+   228                          
+   229  0147  8040201008040201  _btbl:	db	$80,$40,$20,$10, $08,$04,$02,$01
+   230                          
+   231  014f  0000              _x0:	ds	2
+   232  0151  0000              _y0:	ds	2
+   233  0153  0000              _x1:	ds	2
+   234  0155  0000              _y1:	ds	2
+   235  0157  00                _plane:	ds	1
+   236                          
+   237  0158  0000              _dx:	ds	2
+   238  015a  0000              _dy:	ds	2
+   239  015c  0000              _err:	ds	2
+   240                          
