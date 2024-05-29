@@ -94,17 +94,7 @@ void pline(int x0, int y0, int x1, int y1, char plane)
 
 void color(int pal, int code)
 {
-	static int p;
-
-	p  = 0x54 + pal;
-	if (code) {
-		outp(p, 0x00);
-		outp(p, 0x47);
-	}
-	else {
-		outp(p, 0x00);
-		outp(p, 0x40);
-	}
+	outp(0x54 + pal, code);
 }
 
 void main(void)
@@ -114,17 +104,18 @@ void main(void)
 	static int i, a, b;
 	static char plane = 0;
 
-//	color(0x32, 0x09);
-	color(3, 1);
+	outp(0x32, inp(0x32) & 0xdf);	// digital mode
+	color(3, 4);
+
 	for (t = 0; ; t += .1) {
 		plane = 1 - plane;
 		if (plane) {
 			color(2, 0);
-			color(1, 1);
+			color(1, 4);
 		}
 		else {
 			color(1, 0);
-			color(2, 1);
+			color(2, 4);
 		}
 		pcls(plane);
 		s = sin(t);
