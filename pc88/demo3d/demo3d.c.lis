@@ -1,0 +1,1391 @@
+C:/Users/lance/AppData/Local/Temp/zcc000018647B232.asm:
+     1                          MODULE demo3d_c
+     2                          LINE 0, "demo3d.c"
+demo3d.c:
+                                
+     1                          ;--------------------------------------------------------
+     2                          ; File Created by SDCC : free open source ISO C Compiler
+     3                          ; Version 4.4.0 #14648 (MINGW64)
+     4                          ;--------------------------------------------------------
+     5                          ; Processed by Z88DK
+     6                          ;--------------------------------------------------------
+     7                          
+     8                          	EXTERN __divschar
+     9                          	EXTERN __divschar_callee
+    10                          	EXTERN __divsint
+    11                          	EXTERN __divsint_callee
+    12                          	EXTERN __divslong
+    13                          	EXTERN __divslong_callee
+    14                          	EXTERN __divslonglong
+    15                          	EXTERN __divslonglong_callee
+    16                          	EXTERN __divsuchar
+    17                          	EXTERN __divsuchar_callee
+    18                          	EXTERN __divuchar
+    19                          	EXTERN __divuchar_callee
+    20                          	EXTERN __divuint
+    21                          	EXTERN __divuint_callee
+    22                          	EXTERN __divulong
+    23                          	EXTERN __divulong_callee
+    24                          	EXTERN __divulonglong
+    25                          	EXTERN __divulonglong_callee
+    26                          	EXTERN __divuschar
+    27                          	EXTERN __divuschar_callee
+    28                          	EXTERN __modschar
+    29                          	EXTERN __modschar_callee
+    30                          	EXTERN __modsint
+    31                          	EXTERN __modsint_callee
+    32                          	EXTERN __modslong
+    33                          	EXTERN __modslong_callee
+    34                          	EXTERN __modslonglong
+    35                          	EXTERN __modslonglong_callee
+    36                          	EXTERN __modsuchar
+    37                          	EXTERN __modsuchar_callee
+    38                          	EXTERN __moduchar
+    39                          	EXTERN __moduchar_callee
+    40                          	EXTERN __moduint
+    41                          	EXTERN __moduint_callee
+    42                          	EXTERN __modulong
+    43                          	EXTERN __modulong_callee
+    44                          	EXTERN __modulonglong
+    45                          	EXTERN __modulonglong_callee
+    46                          	EXTERN __moduschar
+    47                          	EXTERN __moduschar_callee
+    48                          	EXTERN __mulint
+    49                          	EXTERN __mulint_callee
+    50                          	EXTERN __mullong
+    51                          	EXTERN __mullong_callee
+    52                          	EXTERN __mullonglong
+    53                          	EXTERN __mullonglong_callee
+    54                          	EXTERN __mulschar
+    55                          	EXTERN __mulschar_callee
+    56                          	EXTERN __mulsuchar
+    57                          	EXTERN __mulsuchar_callee
+    58                          	EXTERN __muluchar
+    59                          	EXTERN __muluchar_callee
+    60                          	EXTERN __muluschar
+    61                          	EXTERN __muluschar_callee
+    62                          	EXTERN __rlslonglong
+    63                          	EXTERN __rlslonglong_callee
+    64                          	EXTERN __rlulonglong
+    65                          	EXTERN __rlulonglong_callee
+    66                          	EXTERN __rrslonglong
+    67                          	EXTERN __rrslonglong_callee
+    68                          	EXTERN __rrulonglong
+    69                          	EXTERN __rrulonglong_callee
+    70                          	EXTERN ___mulsint2slong
+    71                          	EXTERN ___mulsint2slong_callee
+    72                          	EXTERN ___muluint2ulong
+    73                          	EXTERN ___muluint2ulong_callee
+    74                          	EXTERN ___sdcc_call_hl
+    75                          	EXTERN ___sdcc_call_iy
+    76                          	EXTERN ___sdcc_enter_ix
+    77                          	EXTERN banked_call
+    78                          	EXTERN _banked_ret
+    79                          	EXTERN ___fs2schar
+    80                          	EXTERN ___fs2schar_callee
+    81                          	EXTERN ___fs2sint
+    82                          	EXTERN ___fs2sint_callee
+    83                          	EXTERN ___fs2slong
+    84                          	EXTERN ___fs2slong_callee
+    85                          	EXTERN ___fs2slonglong
+    86                          	EXTERN ___fs2slonglong_callee
+    87                          	EXTERN ___fs2uchar
+    88                          	EXTERN ___fs2uchar_callee
+    89                          	EXTERN ___fs2uint
+    90                          	EXTERN ___fs2uint_callee
+    91                          	EXTERN ___fs2ulong
+    92                          	EXTERN ___fs2ulong_callee
+    93                          	EXTERN ___fs2ulonglong
+    94                          	EXTERN ___fs2ulonglong_callee
+    95                          	EXTERN ___fsadd
+    96                          	EXTERN ___fsadd_callee
+    97                          	EXTERN ___fsdiv
+    98                          	EXTERN ___fsdiv_callee
+    99                          	EXTERN ___fseq
+   100                          	EXTERN ___fseq_callee
+   101                          	EXTERN ___fsgt
+   102                          	EXTERN ___fsgt_callee
+   103                          	EXTERN ___fslt
+   104                          	EXTERN ___fslt_callee
+   105                          	EXTERN ___fsmul
+   106                          	EXTERN ___fsmul_callee
+   107                          	EXTERN ___fsneq
+   108                          	EXTERN ___fsneq_callee
+   109                          	EXTERN ___fssub
+   110                          	EXTERN ___fssub_callee
+   111                          	EXTERN ___schar2fs
+   112                          	EXTERN ___schar2fs_callee
+   113                          	EXTERN ___sint2fs
+   114                          	EXTERN ___sint2fs_callee
+   115                          	EXTERN ___slong2fs
+   116                          	EXTERN ___slong2fs_callee
+   117                          	EXTERN ___slonglong2fs
+   118                          	EXTERN ___slonglong2fs_callee
+   119                          	EXTERN ___uchar2fs
+   120                          	EXTERN ___uchar2fs_callee
+   121                          	EXTERN ___uint2fs
+   122                          	EXTERN ___uint2fs_callee
+   123                          	EXTERN ___ulong2fs
+   124                          	EXTERN ___ulong2fs_callee
+   125                          	EXTERN ___ulonglong2fs
+   126                          	EXTERN ___ulonglong2fs_callee
+   127                          	EXTERN ____sdcc_2_copy_src_mhl_dst_deix
+   128                          	EXTERN ____sdcc_2_copy_src_mhl_dst_bcix
+   129                          	EXTERN ____sdcc_4_copy_src_mhl_dst_deix
+   130                          	EXTERN ____sdcc_4_copy_src_mhl_dst_bcix
+   131                          	EXTERN ____sdcc_4_copy_src_mhl_dst_mbc
+   132                          	EXTERN ____sdcc_4_ldi_nosave_bc
+   133                          	EXTERN ____sdcc_4_ldi_save_bc
+   134                          	EXTERN ____sdcc_4_push_hlix
+   135                          	EXTERN ____sdcc_4_push_mhl
+   136                          	EXTERN ____sdcc_lib_setmem_hl
+   137                          	EXTERN ____sdcc_ll_add_de_bc_hl
+   138                          	EXTERN ____sdcc_ll_add_de_bc_hlix
+   139                          	EXTERN ____sdcc_ll_add_de_hlix_bc
+   140                          	EXTERN ____sdcc_ll_add_de_hlix_bcix
+   141                          	EXTERN ____sdcc_ll_add_deix_bc_hl
+   142                          	EXTERN ____sdcc_ll_add_deix_hlix
+   143                          	EXTERN ____sdcc_ll_add_hlix_bc_deix
+   144                          	EXTERN ____sdcc_ll_add_hlix_deix_bc
+   145                          	EXTERN ____sdcc_ll_add_hlix_deix_bcix
+   146                          	EXTERN ____sdcc_ll_asr_hlix_a
+   147                          	EXTERN ____sdcc_ll_asr_mbc_a
+   148                          	EXTERN ____sdcc_ll_copy_src_de_dst_hlix
+   149                          	EXTERN ____sdcc_ll_copy_src_de_dst_hlsp
+   150                          	EXTERN ____sdcc_ll_copy_src_deix_dst_hl
+   151                          	EXTERN ____sdcc_ll_copy_src_deix_dst_hlix
+   152                          	EXTERN ____sdcc_ll_copy_src_deixm_dst_hlsp
+   153                          	EXTERN ____sdcc_ll_copy_src_desp_dst_hlsp
+   154                          	EXTERN ____sdcc_ll_copy_src_hl_dst_de
+   155                          	EXTERN ____sdcc_ll_copy_src_hlsp_dst_de
+   156                          	EXTERN ____sdcc_ll_copy_src_hlsp_dst_deixm
+   157                          	EXTERN ____sdcc_ll_lsl_hlix_a
+   158                          	EXTERN ____sdcc_ll_lsl_mbc_a
+   159                          	EXTERN ____sdcc_ll_lsr_hlix_a
+   160                          	EXTERN ____sdcc_ll_lsr_mbc_a
+   161                          	EXTERN ____sdcc_ll_push_hlix
+   162                          	EXTERN ____sdcc_ll_push_mhl
+   163                          	EXTERN ____sdcc_ll_sub_de_bc_hl
+   164                          	EXTERN ____sdcc_ll_sub_de_bc_hlix
+   165                          	EXTERN ____sdcc_ll_sub_de_hlix_bc
+   166                          	EXTERN ____sdcc_ll_sub_de_hlix_bcix
+   167                          	EXTERN ____sdcc_ll_sub_deix_bc_hl
+   168                          	EXTERN ____sdcc_ll_sub_deix_hlix
+   169                          	EXTERN ____sdcc_ll_sub_hlix_bc_deix
+   170                          	EXTERN ____sdcc_ll_sub_hlix_deix_bc
+   171                          	EXTERN ____sdcc_ll_sub_hlix_deix_bcix
+   172                          	EXTERN ____sdcc_load_debc_deix
+   173                          	EXTERN ____sdcc_load_dehl_deix
+   174                          	EXTERN ____sdcc_load_debc_mhl
+   175                          	EXTERN ____sdcc_load_hlde_mhl
+   176                          	EXTERN ____sdcc_store_dehl_bcix
+   177                          	EXTERN ____sdcc_store_debc_hlix
+   178                          	EXTERN ____sdcc_store_debc_mhl
+   179                          	EXTERN ____sdcc_cpu_pop_ei
+   180                          	EXTERN ____sdcc_cpu_pop_ei_jp
+   181                          	EXTERN ____sdcc_cpu_push_di
+   182                          	EXTERN ____sdcc_outi
+   183                          	EXTERN ____sdcc_outi_128
+   184                          	EXTERN ____sdcc_outi_256
+   185                          	EXTERN ____sdcc_ldi
+   186                          	EXTERN ____sdcc_ldi_128
+   187                          	EXTERN ____sdcc_ldi_256
+   188                          	EXTERN ____sdcc_4_copy_srcd_hlix_dst_deix
+   189                          	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_deix
+   190                          	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_deix
+   191                          	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_deix
+   192                          	EXTERN ____sdcc_4_or_src_dehl_dst_bcix
+   193                          	EXTERN ____sdcc_4_xor_src_dehl_dst_bcix
+   194                          	EXTERN ____sdcc_4_and_src_dehl_dst_bcix
+   195                          	EXTERN ____sdcc_4_xor_src_mbc_mhl_dst_debc
+   196                          	EXTERN ____sdcc_4_or_src_mbc_mhl_dst_debc
+   197                          	EXTERN ____sdcc_4_and_src_mbc_mhl_dst_debc
+   198                          	EXTERN ____sdcc_4_cpl_src_mhl_dst_debc
+   199                          	EXTERN ____sdcc_4_xor_src_debc_mhl_dst_debc
+   200                          	EXTERN ____sdcc_4_or_src_debc_mhl_dst_debc
+   201                          	EXTERN ____sdcc_4_and_src_debc_mhl_dst_debc
+   202                          	EXTERN ____sdcc_4_and_src_debc_hlix_dst_debc
+   203                          	EXTERN ____sdcc_4_or_src_debc_hlix_dst_debc
+   204                          	EXTERN ____sdcc_4_xor_src_debc_hlix_dst_debc
+   205                          
+   206                          ;--------------------------------------------------------
+   207                          ; Public variables in this module
+   208                          ;--------------------------------------------------------
+   209                          	GLOBAL _main
+   210                          	GLOBAL _color
+   211                          	GLOBAL _pline
+   212                          	GLOBAL _ppset
+   213                          	GLOBAL _pcls
+   214                          	GLOBAL _l1
+   215                          	GLOBAL _l0
+   216                          	GLOBAL _vz
+   217                          	GLOBAL _vy
+   218                          	GLOBAL _vx
+   219                          	GLOBAL _bits
+   220                          	GLOBAL _svsp
+   221                          	GLOBAL _port
+   222                          	GLOBAL _mask
+   223                          	GLOBAL _addr
+   224                          ;--------------------------------------------------------
+   225                          ; Externals used
+   226                          ;--------------------------------------------------------
+   227                          	GLOBAL _unbcd
+   228                          	GLOBAL _wcmatch
+   229                          	GLOBAL _extract_bits_callee
+   230                          	GLOBAL _extract_bits
+   231                          	GLOBAL _msleep_fastcall
+   232                          	GLOBAL _msleep
+   233                          	GLOBAL _sleep_fastcall
+   234                          	GLOBAL _sleep
+   235                          	GLOBAL _t_delay
+   236                          	GLOBAL _wpoke_callee
+   237                          	GLOBAL _bpoke_callee
+   238                          	GLOBAL _wpeek_fastcall
+   239                          	GLOBAL _bpeek_fastcall
+   240                          	GLOBAL _wpeek
+   241                          	GLOBAL _bpeek
+   242                          	GLOBAL _wpoke
+   243                          	GLOBAL _bpoke
+   244                          	GLOBAL _swapendian
+   245                          	GLOBAL _outp_callee
+   246                          	GLOBAL _outp
+   247                          	GLOBAL _inp_fastcall
+   248                          	GLOBAL _inp
+   249                          	GLOBAL _isqrt_fastcall
+   250                          	GLOBAL _isqrt
+   251                          	GLOBAL _labs_fastcall
+   252                          	GLOBAL _labs
+   253                          	GLOBAL _abs_fastcall
+   254                          	GLOBAL _abs
+   255                          	GLOBAL __ldivu__callee
+   256                          	GLOBAL __ldivu_
+   257                          	GLOBAL __ldiv__callee
+   258                          	GLOBAL __ldiv_
+   259                          	GLOBAL __divu__callee
+   260                          	GLOBAL __divu_
+   261                          	GLOBAL __div__callee
+   262                          	GLOBAL __div_
+   263                          	GLOBAL _qsort_sdcc_callee
+   264                          	GLOBAL _qsort_sdcc
+   265                          	GLOBAL _qsort_sccz80_callee
+   266                          	GLOBAL _qsort_sccz80
+   267                          	GLOBAL _l_qsort_callee
+   268                          	GLOBAL _l_qsort
+   269                          	GLOBAL _l_bsearch_callee
+   270                          	GLOBAL _l_bsearch
+   271                          	GLOBAL _getopt
+   272                          	GLOBAL _unsetenv
+   273                          	GLOBAL _setenv
+   274                          	GLOBAL _getenv_r
+   275                          	GLOBAL _getenv
+   276                          	GLOBAL _atexit_fastcall
+   277                          	GLOBAL _exit_fastcall
+   278                          	GLOBAL _atexit
+   279                          	GLOBAL _exit
+   280                          	GLOBAL _HeapInfo_callee
+   281                          	GLOBAL _HeapInfo
+   282                          	GLOBAL _HeapRealloc_callee
+   283                          	GLOBAL _HeapRealloc
+   284                          	GLOBAL _HeapAlloc_callee
+   285                          	GLOBAL _HeapAlloc
+   286                          	GLOBAL _HeapFree_callee
+   287                          	GLOBAL _HeapFree
+   288                          	GLOBAL _HeapCalloc_callee
+   289                          	GLOBAL _HeapCalloc
+   290                          	GLOBAL _HeapSbrk_callee
+   291                          	GLOBAL _HeapSbrk
+   292                          	GLOBAL _HeapCreate
+   293                          	GLOBAL _mallinfo_callee
+   294                          	GLOBAL _realloc_callee
+   295                          	GLOBAL _calloc_callee
+   296                          	GLOBAL _sbrk_callee
+   297                          	GLOBAL _free_fastcall
+   298                          	GLOBAL _malloc_fastcall
+   299                          	GLOBAL _mallinfo
+   300                          	GLOBAL _realloc
+   301                          	GLOBAL _malloc
+   302                          	GLOBAL _free
+   303                          	GLOBAL _calloc
+   304                          	GLOBAL _sbrk
+   305                          	GLOBAL _mallinit
+   306                          	GLOBAL _srand_fastcall
+   307                          	GLOBAL _srand
+   308                          	GLOBAL _rand
+   309                          	GLOBAL _ulltoa_callee
+   310                          	GLOBAL _ulltoa
+   311                          	GLOBAL _strtoull_callee
+   312                          	GLOBAL _strtoull
+   313                          	GLOBAL _strtoll_callee
+   314                          	GLOBAL _strtoll
+   315                          	GLOBAL _lltoa_callee
+   316                          	GLOBAL _lltoa
+   317                          	GLOBAL _atoll_callee
+   318                          	GLOBAL _atoll
+   319                          	GLOBAL _utoa_callee
+   320                          	GLOBAL _utoa
+   321                          	GLOBAL _ultoa_callee
+   322                          	GLOBAL _ultoa
+   323                          	GLOBAL _strtoul_callee
+   324                          	GLOBAL _strtoul
+   325                          	GLOBAL _strtol_callee
+   326                          	GLOBAL _strtol
+   327                          	GLOBAL _ltoa_callee
+   328                          	GLOBAL _ltoa
+   329                          	GLOBAL _itoa_callee
+   330                          	GLOBAL _itoa
+   331                          	GLOBAL _atol_fastcall
+   332                          	GLOBAL _atol
+   333                          	GLOBAL _atoi_fastcall
+   334                          	GLOBAL _atoi
+   335                          	GLOBAL _fpclassify
+   336                          	GLOBAL _fpseed
+   337                          	GLOBAL _fprand
+   338                          	GLOBAL _ftoe
+   339                          	GLOBAL _ftoa
+   340                          	GLOBAL _atof
+   341                          	GLOBAL _pi
+   342                          	GLOBAL _halfpi
+   343                          	GLOBAL _fmin
+   344                          	GLOBAL _fmax
+   345                          	GLOBAL _fmod
+   346                          	GLOBAL _fabs
+   347                          	GLOBAL _frexp
+   348                          	GLOBAL _ldexp
+   349                          	GLOBAL _modf
+   350                          	GLOBAL _ceil
+   351                          	GLOBAL _floor
+   352                          	GLOBAL _log10
+   353                          	GLOBAL _log
+   354                          	GLOBAL _exp
+   355                          	GLOBAL _sqrt
+   356                          	GLOBAL _pow
+   357                          	GLOBAL _atanh
+   358                          	GLOBAL _acosh
+   359                          	GLOBAL _asinh
+   360                          	GLOBAL _tanh
+   361                          	GLOBAL _sinh
+   362                          	GLOBAL _cosh
+   363                          	GLOBAL _atan2
+   364                          	GLOBAL _atan
+   365                          	GLOBAL _asin
+   366                          	GLOBAL _acos
+   367                          	GLOBAL _sin
+   368                          	GLOBAL _tan
+   369                          	GLOBAL _cos
+   370                          	GLOBAL _negf16
+   371                          	GLOBAL _fabsf16
+   372                          	GLOBAL _invsqrtf16
+   373                          	GLOBAL _invf16
+   374                          	GLOBAL _ldexpf16
+   375                          	GLOBAL _frexpf16
+   376                          	GLOBAL _floorf16
+   377                          	GLOBAL _ceilf16
+   378                          	GLOBAL _powf16
+   379                          	GLOBAL _log10f16
+   380                          	GLOBAL _log2f16
+   381                          	GLOBAL _logf16
+   382                          	GLOBAL _exp10f16
+   383                          	GLOBAL _exp2f16
+   384                          	GLOBAL _expf16
+   385                          	GLOBAL _tanf16
+   386                          	GLOBAL _sinf16
+   387                          	GLOBAL _cosf16
+   388                          	GLOBAL _atan2f16
+   389                          	GLOBAL _atanf16
+   390                          	GLOBAL _asinf16
+   391                          	GLOBAL _acosf16
+   392                          	GLOBAL _mul10f16
+   393                          	GLOBAL _mul2f16
+   394                          	GLOBAL _div2f16
+   395                          	GLOBAL _sqrtf16
+   396                          	GLOBAL _hypotf16
+   397                          	GLOBAL _polyf16
+   398                          	GLOBAL _fmaf16
+   399                          	GLOBAL _divf16
+   400                          	GLOBAL _mulf16
+   401                          	GLOBAL _subf16
+   402                          	GLOBAL _addf16
+   403                          	GLOBAL _f16_u32_fastcall
+   404                          	GLOBAL _f16_u32
+   405                          	GLOBAL _f16_u16_fastcall
+   406                          	GLOBAL _f16_u16
+   407                          	GLOBAL _f16_u8_fastcall
+   408                          	GLOBAL _f16_u8
+   409                          	GLOBAL _f16_i32_fastcall
+   410                          	GLOBAL _f16_i32
+   411                          	GLOBAL _f16_i16_fastcall
+   412                          	GLOBAL _f16_i16
+   413                          	GLOBAL _f16_i8_fastcall
+   414                          	GLOBAL _f16_i8
+   415                          	GLOBAL _u32_f16_fastcall
+   416                          	GLOBAL _u32_f16
+   417                          	GLOBAL _i32_f16_fastcall
+   418                          	GLOBAL _i32_f16
+   419                          	GLOBAL _u16_f16_fastcall
+   420                          	GLOBAL _u16_f16
+   421                          	GLOBAL _i16_f16_fastcall
+   422                          	GLOBAL _i16_f16
+   423                          	GLOBAL _f32_f16_fastcall
+   424                          	GLOBAL _f32_f16
+   425                          	GLOBAL _f16_f32_fastcall
+   426                          	GLOBAL _f16_f32
+   427                          	GLOBAL _f48_f16_fastcall
+   428                          	GLOBAL _f48_f16
+   429                          	GLOBAL _f16_f48_fastcall
+   430                          	GLOBAL _f16_f48
+   431                          	GLOBAL _optreset
+   432                          	GLOBAL _optopt
+   433                          	GLOBAL _optind
+   434                          	GLOBAL _opterr
+   435                          	GLOBAL _optarg
+   436                          ;--------------------------------------------------------
+   437                          ; special function registers
+   438                          ;--------------------------------------------------------
+   439                          ;--------------------------------------------------------
+   440                          ; ram data
+   441                          ;--------------------------------------------------------
+   442                          	SECTION bss_compiler
+   443                          _addr:
+   444  0000  0000              	DEFS 2
+   445                          _mask:
+   446  0002  00                	DEFS 1
+   447                          _port:
+   448  0003  00                	DEFS 1
+   449                          _svsp:
+   450  0004  0000              	DEFS 2
+   451                          _pline_steep_10000_212:
+   452  0006  0000              	DEFS 2
+   453                          _pline_dx_10000_212:
+   454  0008  0000              	DEFS 2
+   455                          _pline_dy_10000_212:
+   456  000a  0000              	DEFS 2
+   457                          _pline_sy_10000_212:
+   458  000c  0000              	DEFS 2
+   459                          _pline_x_10000_212:
+   460  000e  0000              	DEFS 2
+   461                          _pline_y_10000_212:
+   462  0010  0000              	DEFS 2
+   463                          _pline_err_10000_212:
+   464  0012  0000              	DEFS 2
+   465                          _pline_t_10000_212:
+   466  0014  0000              	DEFS 2
+   467                          _color_p_10000_219:
+   468  0016  0000              	DEFS 2
+   469                          _main_px_10000_223:
+   470  0018  0000000000000000  	DEFS 16
+              0000000000000000  
+   471                          _main_py_10000_223:
+   472  0028  0000000000000000  	DEFS 16
+              0000000000000000  
+   473                          _main_t_10000_223:
+   474  0038  00000000          	DEFS 4
+   475                          _main_s_10000_223:
+   476  003c  00000000          	DEFS 4
+   477                          _main_c_10000_223:
+   478  0040  00000000          	DEFS 4
+   479                          _main_x_10000_223:
+   480  0044  00000000          	DEFS 4
+   481                          _main_y_10000_223:
+   482  0048  00000000          	DEFS 4
+   483                          _main_z_10000_223:
+   484  004c  00000000          	DEFS 4
+   485                          _main_i_10000_223:
+   486  0050  0000              	DEFS 2
+   487                          _main_a_10000_223:
+   488  0052  0000              	DEFS 2
+   489                          _main_b_10000_223:
+   490  0054  0000              	DEFS 2
+   491                          _main_plane_10000_223:
+   492  0056  00                	DEFS 1
+   493                          ;--------------------------------------------------------
+   494                          ; ram data
+   495                          ;--------------------------------------------------------
+   496                          
+   497                          IF 0
+   498                          
+   499                          ; .area _INITIALIZED removed by z88dk
+   500                          
+   501                          _bits:
+   502                          	DEFS 8
+   503                          _vx:
+   504                          	DEFS 16
+   505                          _vy:
+   506                          	DEFS 16
+   507                          _vz:
+   508                          	DEFS 16
+   509                          _l0:
+   510                          	DEFS 24
+   511                          _l1:
+   512                          	DEFS 24
+   513                          
+   514                          ENDIF
+   515                          
+   516                          ;--------------------------------------------------------
+   517                          ; absolute external ram data
+   518                          ;--------------------------------------------------------
+   519                          	SECTION IGNORE
+   520                          ;--------------------------------------------------------
+   521                          ; global & static initialisations
+   522                          ;--------------------------------------------------------
+   523                          	SECTION code_crt_init
+   524  0000  fd210000          	ld	iy,_main_plane_10000_223
+   525  0004  fd360000          	ld	(iy+0),0x00
+   526                          ;--------------------------------------------------------
+   527                          ; Home
+   528                          ;--------------------------------------------------------
+   529                          	SECTION IGNORE
+   530                          ;--------------------------------------------------------
+   531                          ; code
+   532                          ;--------------------------------------------------------
+   533                          	SECTION code_compiler
+   534                          ;	---------------------------------
+   535                          ; Function pcls
+   536                          ; ---------------------------------
+   537                          _pcls:
+   538  0000  fd210000          	ld	iy,2
+   539  0004  fd39              	add	iy, sp
+   540  0006  fd7e00            	ld	a,(iy+0)
+   541  0009  c600              	add	a,0x5c
+   542  000b  320000            	ld	(_port+0), a
+   543  000e  3a0000            	ld	a, (_port)
+   544  0011  4f                	ld	c, a
+   545  0012  210000            	ld	hl, 0
+   546  0015  0600              	ld	b, 200
+   547  0017  f3                	di
+   548  0018  ed730000          	ld	(_svsp), sp
+   549  001c  310000            	ld	sp, 0xc000 + 80 * 200
+   550  001f  ed79              	out	(c), a
+   551                          L1:
+   552                          	rept	40
+   553                          	push	hl
+   554  0021  e5e5e5e5e5e5e5e5  	endr
+              e5e5e5e5e5e5e5e5  
+              e5e5e5e5e5e5e5e5  
+              e5e5e5e5e5e5e5e5  
+              e5e5e5e5e5e5e5e5  
+   555  0049  1000              	djnz	L1
+   556  004b  d300              	out	(0x5f), a
+   557  004d  ed7b0000          	ld	sp, (_svsp)
+   558  0051  fb                	ei
+   559  0052  c9                	ret
+   560                          ;	---------------------------------
+   561                          ; Function ppset
+   562                          ; ---------------------------------
+   563                          _ppset:
+   564  0053  dde5              	push	ix
+   565  0055  dd210000          	ld	ix,0
+   566  0059  dd39              	add	ix,sp
+   567  005b  dd4e00            	ld	c,(ix+6)
+   568  005e  dd4600            	ld	b,(ix+7)
+   569  0061  69                	ld	l, c
+   570  0062  60                	ld	h, b
+   571  0063  29                	add	hl, hl
+   572  0064  29                	add	hl, hl
+   573  0065  09                	add	hl, bc
+   574  0066  29                	add	hl, hl
+   575  0067  29                	add	hl, hl
+   576  0068  29                	add	hl, hl
+   577  0069  29                	add	hl, hl
+   578  006a  4d                	ld	c, l
+   579  006b  7c                	ld	a, h
+   580  006c  c6c0              	add	a,0xc0
+   581  006e  47                	ld	b, a
+   582  006f  dd5e04            	ld	e,(ix+4)
+   583  0072  dd5605            	ld	d,(ix+5)
+   584  0075  cb2a              	sra	d
+   585  0077  cb1b              	rr	e
+   586  0079  cb2a              	sra	d
+   587  007b  cb1b              	rr	e
+   588  007d  cb2a              	sra	d
+   589  007f  cb1b              	rr	e
+   590  0081  7b                	ld	a, e
+   591  0082  210000            	ld	hl,_addr
+   592  0085  81                	add	a, c
+   593  0086  77                	ld	(hl), a
+   594  0087  7a                	ld	a, d
+   595  0088  88                	adc	a, b
+   596  0089  23                	inc	hl
+   597  008a  77                	ld	(hl), a
+   598  008b  010000            	ld	bc,_bits+0
+   599  008e  dd7e04            	ld	a,(ix+4)
+   600  0091  e607              	and	a,0x07
+   601  0093  2600              	ld	h,0x00
+   602  0095  6f                	ld	l, a
+   603  0096  09                	add	hl, bc
+   604  0097  7e                	ld	a, (hl)
+   605  0098  320200            	ld	(_mask+0), a
+   606  009b  2a0000            	ld	hl, (_addr)
+   607  009e  3a0300            	ld	a, (_port)
+   608  00a1  4f                	ld	c, a
+   609  00a2  3a0200            	ld	a, (_mask)
+   610  00a5  f3                	di
+   611  00a6  ed79              	out	(c), a
+   612  00a8  b6                	or	(hl)
+   613  00a9  77                	ld	(hl), a
+   614  00aa  d35f              	out	(0x5f), a
+   615  00ac  fb                	ei
+   616  00ad  dde1              	pop	ix
+   617  00af  c9                	ret
+   618                          ;	---------------------------------
+   619                          ; Function pline
+   620                          ; ---------------------------------
+   621                          _pline:
+   622  00b0  dde5              	push	ix
+   623  00b2  dd210000          	ld	ix,0
+   624  00b6  dd39              	add	ix,sp
+   625  00b8  dd7e0c            	ld	a,(ix+12)
+   626  00bb  c65c              	add	a,0x5c
+   627  00bd  320300            	ld	(_port+0), a
+   628  00c0  dd7e0a            	ld	a,(ix+10)
+   629  00c3  dd9606            	sub	a,(ix+6)
+   630  00c6  6f                	ld	l, a
+   631  00c7  dd7e0b            	ld	a,(ix+11)
+   632  00ca  dd9e07            	sbc	a,(ix+7)
+   633  00cd  67                	ld	h, a
+   634  00ce  cd0000            	call	_abs_fastcall
+   635  00d1  eb                	ex	de, hl
+   636  00d2  dd7e08            	ld	a,(ix+8)
+   637  00d5  dd9604            	sub	a,(ix+4)
+   638  00d8  6f                	ld	l, a
+   639  00d9  dd7e09            	ld	a,(ix+9)
+   640  00dc  dd9e05            	sbc	a,(ix+5)
+   641  00df  67                	ld	h, a
+   642  00e0  d5                	push	de
+   643  00e1  cd0000            	call	_abs_fastcall
+   644  00e4  d1                	pop	de
+   645  00e5  7d                	ld	a, l
+   646  00e6  93                	sub	a, e
+   647  00e7  7c                	ld	a, h
+   648  00e8  9a                	sbc	a, d
+   649  00e9  e2ee00            	jp	PO, l_pline_00175
+   650  00ec  ee80              	xor	a,0x80
+   651                          l_pline_00175:
+   652  00ee  07                	rlca
+   653  00ef  e601              	and	a,0x01
+   654  00f1  320600            	ld	(_pline_steep_10000_212+0), a
+   655  00f4  fd210600          	ld	iy,_pline_steep_10000_212
+   656  00f8  fd360100          	ld	(iy+1),0x00
+   657  00fc  3a0700            	ld	a, (_pline_steep_10000_212+1)
+   658  00ff  fdb600            	or	a,(iy+0)
+   659  0102  283c              	jr	Z,l_pline_00102
+   660  0104  dd6e04            	ld	l,(ix+4)
+   661  0107  dd6605            	ld	h,(ix+5)
+   662  010a  221400            	ld	(_pline_t_10000_212), hl
+   663  010d  dd7e06            	ld	a,(ix+6)
+   664  0110  dd7704            	ld	(ix+4),a
+   665  0113  dd7e07            	ld	a,(ix+7)
+   666  0116  dd7705            	ld	(ix+5),a
+   667  0119  2a1400            	ld	hl, (_pline_t_10000_212)
+   668  011c  dd7506            	ld	(ix+6),l
+   669  011f  dd7407            	ld	(ix+7),h
+   670  0122  dd6e08            	ld	l,(ix+8)
+   671  0125  dd6609            	ld	h,(ix+9)
+   672  0128  221400            	ld	(_pline_t_10000_212), hl
+   673  012b  dd7e0a            	ld	a,(ix+10)
+   674  012e  dd7708            	ld	(ix+8),a
+   675  0131  dd7e0b            	ld	a,(ix+11)
+   676  0134  dd7709            	ld	(ix+9),a
+   677  0137  2a1400            	ld	hl, (_pline_t_10000_212)
+   678  013a  dd750a            	ld	(ix+10),l
+   679  013d  dd740b            	ld	(ix+11),h
+   680                          l_pline_00102:
+   681  0140  dd7e08            	ld	a,(ix+8)
+   682  0143  dd9604            	sub	a,(ix+4)
+   683  0146  dd7e09            	ld	a,(ix+9)
+   684  0149  dd9e05            	sbc	a,(ix+5)
+   685  014c  e25101            	jp	PO, l_pline_00176
+   686  014f  ee80              	xor	a,0x80
+   687                          l_pline_00176:
+   688  0151  f29001            	jp	P, l_pline_00104
+   689  0154  dd6e04            	ld	l,(ix+4)
+   690  0157  dd6605            	ld	h,(ix+5)
+   691  015a  221400            	ld	(_pline_t_10000_212), hl
+   692  015d  dd7e08            	ld	a,(ix+8)
+   693  0160  dd7704            	ld	(ix+4),a
+   694  0163  dd7e09            	ld	a,(ix+9)
+   695  0166  dd7705            	ld	(ix+5),a
+   696  0169  2a1400            	ld	hl, (_pline_t_10000_212)
+   697  016c  dd7508            	ld	(ix+8),l
+   698  016f  dd7409            	ld	(ix+9),h
+   699  0172  dd6e06            	ld	l,(ix+6)
+   700  0175  dd6607            	ld	h,(ix+7)
+   701  0178  221400            	ld	(_pline_t_10000_212), hl
+   702  017b  dd7e0a            	ld	a,(ix+10)
+   703  017e  dd7706            	ld	(ix+6),a
+   704  0181  dd7e0b            	ld	a,(ix+11)
+   705  0184  dd7707            	ld	(ix+7),a
+   706  0187  2a1400            	ld	hl, (_pline_t_10000_212)
+   707  018a  dd750a            	ld	(ix+10),l
+   708  018d  dd740b            	ld	(ix+11),h
+   709                          l_pline_00104:
+   710  0190  210800            	ld	hl,_pline_dx_10000_212
+   711  0193  dd7e08            	ld	a,(ix+8)
+   712  0196  dd9604            	sub	a,(ix+4)
+   713  0199  77                	ld	(hl), a
+   714  019a  dd7e09            	ld	a,(ix+9)
+   715  019d  dd9e05            	sbc	a,(ix+5)
+   716  01a0  23                	inc	hl
+   717  01a1  77                	ld	(hl), a
+   718  01a2  dd7e0a            	ld	a,(ix+10)
+   719  01a5  dd9606            	sub	a,(ix+6)
+   720  01a8  6f                	ld	l, a
+   721  01a9  dd7e0b            	ld	a,(ix+11)
+   722  01ac  dd9e07            	sbc	a,(ix+7)
+   723  01af  67                	ld	h, a
+   724  01b0  cd0000            	call	_abs_fastcall
+   725  01b3  220a00            	ld	(_pline_dy_10000_212), hl
+   726  01b6  ed4b0800          	ld	bc, (_pline_dx_10000_212)
+   727  01ba  cb78              	bit	7, b
+   728  01bc  2801              	jr	Z,l_pline_00116
+   729  01be  03                	inc	bc
+   730                          l_pline_00116:
+   731  01bf  ed431200          	ld	(_pline_err_10000_212), bc
+   732  01c3  fd211200          	ld	iy,_pline_err_10000_212
+   733  01c7  fdcb012e          	sra	(iy+1)
+   734  01cb  fdcb001e          	rr	(iy+0)
+   735  01cf  dd7e06            	ld	a,(ix+6)
+   736  01d2  dd960a            	sub	a,(ix+10)
+   737  01d5  dd7e07            	ld	a,(ix+7)
+   738  01d8  dd9e0b            	sbc	a,(ix+11)
+   739  01db  e2e001            	jp	PO, l_pline_00177
+   740  01de  ee80              	xor	a,0x80
+   741                          l_pline_00177:
+   742  01e0  f2e801            	jp	P, l_pline_00117
+   743  01e3  210100            	ld	hl,0x0001
+   744  01e6  1803              	jr	l_pline_00118
+   745                          l_pline_00117:
+   746  01e8  21ffff            	ld	hl,0xffff
+   747                          l_pline_00118:
+   748  01eb  220c00            	ld	(_pline_sy_10000_212), hl
+   749  01ee  dd6e06            	ld	l,(ix+6)
+   750  01f1  dd6607            	ld	h,(ix+7)
+   751  01f4  221000            	ld	(_pline_y_10000_212), hl
+   752  01f7  dd6e04            	ld	l,(ix+4)
+   753  01fa  dd6605            	ld	h,(ix+5)
+   754  01fd  220e00            	ld	(_pline_x_10000_212), hl
+   755                          l_pline_00112:
+   756  0200  dd7e08            	ld	a,(ix+8)
+   757  0203  fd210e00          	ld	iy,_pline_x_10000_212
+   758  0207  fd9600            	sub	a,(iy+0)
+   759  020a  dd7e09            	ld	a,(ix+9)
+   760  020d  fd9e01            	sbc	a,(iy+1)
+   761  0210  e21502            	jp	PO, l_pline_00178
+   762  0213  ee80              	xor	a,0x80
+   763                          l_pline_00178:
+   764  0215  fa8a02            	jp	M, l_pline_00114
+   765  0218  3a0700            	ld	a, (_pline_steep_10000_212+1)
+   766  021b  210600            	ld	hl,_pline_steep_10000_212 + 0
+   767  021e  b6                	or	a,(hl)
+   768  021f  280f              	jr	Z,l_pline_00106
+   769  0221  2a0e00            	ld	hl, (_pline_x_10000_212)
+   770  0224  e5                	push	hl
+   771  0225  2a1000            	ld	hl, (_pline_y_10000_212)
+   772  0228  e5                	push	hl
+   773  0229  cd5300            	call	_ppset
+   774  022c  f1                	pop	af
+   775  022d  f1                	pop	af
+   776  022e  180d              	jr	l_pline_00107
+   777                          l_pline_00106:
+   778  0230  2a1000            	ld	hl, (_pline_y_10000_212)
+   779  0233  e5                	push	hl
+   780  0234  2a0e00            	ld	hl, (_pline_x_10000_212)
+   781  0237  e5                	push	hl
+   782  0238  cd5300            	call	_ppset
+   783  023b  f1                	pop	af
+   784  023c  f1                	pop	af
+   785                          l_pline_00107:
+   786  023d  210a00            	ld	hl,_pline_dy_10000_212
+   787  0240  d5                	push	de
+   788  0241  fd211200          	ld	iy,_pline_err_10000_212
+   789  0245  fde5              	push	iy
+   790  0247  d1                	pop	de
+   791  0248  1a                	ld	a, (de)
+   792  0249  96                	sub	a, (hl)
+   793  024a  12                	ld	(de), a
+   794  024b  13                	inc	de
+   795  024c  1a                	ld	a, (de)
+   796  024d  23                	inc	hl
+   797  024e  9e                	sbc	a, (hl)
+   798  024f  12                	ld	(de), a
+   799  0250  d1                	pop	de
+   800  0251  3a1300            	ld	a, (_pline_err_10000_212+1)
+   801  0254  cb7f              	bit	7, a
+   802  0256  2828              	jr	Z,l_pline_00113
+   803  0258  210c00            	ld	hl,_pline_sy_10000_212
+   804  025b  d5                	push	de
+   805  025c  fd211000          	ld	iy,_pline_y_10000_212
+   806  0260  fde5              	push	iy
+   807  0262  d1                	pop	de
+   808  0263  1a                	ld	a, (de)
+   809  0264  86                	add	a, (hl)
+   810  0265  12                	ld	(de), a
+   811  0266  13                	inc	de
+   812  0267  1a                	ld	a, (de)
+   813  0268  23                	inc	hl
+   814  0269  8e                	adc	a, (hl)
+   815  026a  12                	ld	(de), a
+   816  026b  d1                	pop	de
+   817  026c  210800            	ld	hl,_pline_dx_10000_212
+   818  026f  d5                	push	de
+   819  0270  fd211200          	ld	iy,_pline_err_10000_212
+   820  0274  fde5              	push	iy
+   821  0276  d1                	pop	de
+   822  0277  1a                	ld	a, (de)
+   823  0278  86                	add	a, (hl)
+   824  0279  12                	ld	(de), a
+   825  027a  13                	inc	de
+   826  027b  1a                	ld	a, (de)
+   827  027c  23                	inc	hl
+   828  027d  8e                	adc	a, (hl)
+   829  027e  12                	ld	(de), a
+   830  027f  d1                	pop	de
+   831                          l_pline_00113:
+   832  0280  2a0e00            	ld	hl, (_pline_x_10000_212)
+   833  0283  23                	inc	hl
+   834  0284  220e00            	ld	(_pline_x_10000_212), hl
+   835  0287  c30002            	jp	l_pline_00112
+   836                          l_pline_00114:
+   837  028a  dde1              	pop	ix
+   838  028c  c9                	ret
+   839                          ;	---------------------------------
+   840                          ; Function color
+   841                          ; ---------------------------------
+   842                          _color:
+   843  028d  211600            	ld	hl,_color_p_10000_219
+   844  0290  fd210200          	ld	iy,2
+   845  0294  fd39              	add	iy, sp
+   846  0296  fd7e00            	ld	a,(iy+0)
+   847  0299  c654              	add	a,0x54
+   848  029b  77                	ld	(hl), a
+   849  029c  fd7e01            	ld	a,(iy+1)
+   850  029f  ce00              	adc	a,0x00
+   851  02a1  23                	inc	hl
+   852  02a2  77                	ld	(hl), a
+   853  02a3  fd23              	inc	iy
+   854  02a5  fd23              	inc	iy
+   855  02a7  fd7e01            	ld	a,(iy+1)
+   856  02aa  fdb600            	or	a,(iy+0)
+   857  02ad  2818              	jr	Z,l_color_00102
+   858  02af  2a1600            	ld	hl, (_color_p_10000_219)
+   859  02b2  e5                	push	hl
+   860  02b3  210000            	ld	hl,0x0000
+   861  02b6  e5                	push	hl
+   862  02b7  cd0000            	call	_outp_callee
+   863  02ba  2a1600            	ld	hl, (_color_p_10000_219)
+   864  02bd  e5                	push	hl
+   865  02be  214700            	ld	hl,0x0047
+   866  02c1  e5                	push	hl
+   867  02c2  cd0000            	call	_outp_callee
+   868  02c5  1816              	jr	l_color_00104
+   869                          l_color_00102:
+   870  02c7  2a1600            	ld	hl, (_color_p_10000_219)
+   871  02ca  e5                	push	hl
+   872  02cb  210000            	ld	hl,0x0000
+   873  02ce  e5                	push	hl
+   874  02cf  cd0000            	call	_outp_callee
+   875  02d2  2a1600            	ld	hl, (_color_p_10000_219)
+   876  02d5  e5                	push	hl
+   877  02d6  214000            	ld	hl,0x0040
+   878  02d9  e5                	push	hl
+   879  02da  cd0000            	call	_outp_callee
+   880                          l_color_00104:
+   881  02dd  c9                	ret
+   882                          ;	---------------------------------
+   883                          ; Function main
+   884                          ; ---------------------------------
+   885                          _main:
+   886  02de  dde5              	push	ix
+   887  02e0  dd210000          	ld	ix,0
+   888  02e4  dd39              	add	ix,sp
+   889  02e6  21f6ff            	ld	hl, -10
+   890  02e9  39                	add	hl, sp
+   891  02ea  f9                	ld	sp, hl
+   892  02eb  210100            	ld	hl,0x0001
+   893  02ee  e5                	push	hl
+   894  02ef  2e03              	ld	l,0x03
+   895  02f1  e5                	push	hl
+   896  02f2  cd8d02            	call	_color
+   897  02f5  f1                	pop	af
+   898  02f6  f1                	pop	af
+   899  02f7  af                	xor	a, a
+   900  02f8  323800            	ld	(_main_t_10000_223+0), a
+   901  02fb  323900            	ld	(_main_t_10000_223+1), a
+   902  02fe  323a00            	ld	(_main_t_10000_223+2), a
+   903  0301  323b00            	ld	(_main_t_10000_223+3), a
+   904                          l_main_00111:
+   905  0304  3a5600            	ld	a, (_main_plane_10000_223+0)
+   906  0307  4f                	ld	c, a
+   907  0308  215600            	ld	hl,_main_plane_10000_223
+   908  030b  3e01              	ld	a,0x01
+   909  030d  91                	sub	a, c
+   910  030e  77                	ld	(hl), a
+   911  030f  3a5600            	ld	a, (_main_plane_10000_223+0)
+   912  0312  b7                	or	a, a
+   913  0313  2818              	jr	Z,l_main_00102
+   914  0315  210000            	ld	hl,0x0000
+   915  0318  e5                	push	hl
+   916  0319  2e02              	ld	l,0x02
+   917  031b  e5                	push	hl
+   918  031c  cd8d02            	call	_color
+   919  031f  f1                	pop	af
+   920  0320  f1                	pop	af
+   921  0321  210100            	ld	hl,0x0001
+   922  0324  e5                	push	hl
+   923  0325  e5                	push	hl
+   924  0326  cd8d02            	call	_color
+   925  0329  f1                	pop	af
+   926  032a  f1                	pop	af
+   927  032b  1818              	jr	l_main_00103
+   928                          l_main_00102:
+   929  032d  210000            	ld	hl,0x0000
+   930  0330  e5                	push	hl
+   931  0331  2e01              	ld	l,0x01
+   932  0333  e5                	push	hl
+   933  0334  cd8d02            	call	_color
+   934  0337  f1                	pop	af
+   935  0338  f1                	pop	af
+   936  0339  210100            	ld	hl,0x0001
+   937  033c  e5                	push	hl
+   938  033d  2e02              	ld	l,0x02
+   939  033f  e5                	push	hl
+   940  0340  cd8d02            	call	_color
+   941  0343  f1                	pop	af
+   942  0344  f1                	pop	af
+   943                          l_main_00103:
+   944  0345  3a5600            	ld	a, (_main_plane_10000_223+0)
+   945  0348  f5                	push	af
+   946  0349  33                	inc	sp
+   947  034a  cd0000            	call	_pcls
+   948  034d  33                	inc	sp
+   949  034e  2a3a00            	ld	hl, (_main_t_10000_223 + 2)
+   950  0351  e5                	push	hl
+   951  0352  2a3800            	ld	hl, (_main_t_10000_223)
+   952  0355  e5                	push	hl
+   953  0356  cd0000            	call	_sin
+   954  0359  f1                	pop	af
+   955  035a  f1                	pop	af
+   956  035b  223c00            	ld	(_main_s_10000_223), hl
+   957  035e  ed533e00          	ld	(_main_s_10000_223 + 2), de
+   958  0362  2a3a00            	ld	hl, (_main_t_10000_223 + 2)
+   959  0365  e5                	push	hl
+   960  0366  2a3800            	ld	hl, (_main_t_10000_223)
+   961  0369  e5                	push	hl
+   962  036a  cd0000            	call	_cos
+   963  036d  f1                	pop	af
+   964  036e  f1                	pop	af
+   965  036f  224000            	ld	(_main_c_10000_223), hl
+   966  0372  ed534200          	ld	(_main_c_10000_223 + 2), de
+   967  0376  210000            	ld	hl,0x0000
+   968  0379  225000            	ld	(_main_i_10000_223), hl
+   969                          l_main_00107:
+   970  037c  ed4b5000          	ld	bc, (_main_i_10000_223)
+   971  0380  cb21              	sla	c
+   972  0382  cb10              	rl	b
+   973  0384  210800            	ld	hl,_vx
+   974  0387  09                	add	hl, bc
+   975  0388  eb                	ex	de, hl
+   976  0389  6b                	ld	l, e
+   977  038a  62                	ld	h, d
+   978  038b  7e                	ld	a, (hl)
+   979  038c  23                	inc	hl
+   980  038d  66                	ld	h, (hl)
+   981  038e  6f                	ld	l, a
+   982  038f  c5                	push	bc
+   983  0390  d5                	push	de
+   984  0391  e5                	push	hl
+   985  0392  cd0000            	call	___sint2fs_callee
+   986  0395  dd75fc            	ld	(ix-4),l
+   987  0398  dd74fd            	ld	(ix-3),h
+   988  039b  dd73fe            	ld	(ix-2),e
+   989  039e  dd72ff            	ld	(ix-1),d
+   990  03a1  2a4200            	ld	hl, (_main_c_10000_223 + 2)
+   991  03a4  e5                	push	hl
+   992  03a5  2a4000            	ld	hl, (_main_c_10000_223)
+   993  03a8  e5                	push	hl
+   994  03a9  dd6efe            	ld	l,(ix-2)
+   995  03ac  dd66ff            	ld	h,(ix-1)
+   996  03af  e5                	push	hl
+   997  03b0  dd6efc            	ld	l,(ix-4)
+   998  03b3  dd66fd            	ld	h,(ix-3)
+   999  03b6  e5                	push	hl
+  1000  03b7  cd0000            	call	___fsmul_callee
+  1001  03ba  dd75f6            	ld	(ix-10),l
+  1002  03bd  dd74f7            	ld	(ix-9),h
+  1003  03c0  dd73f8            	ld	(ix-8),e
+  1004  03c3  dd72f9            	ld	(ix-7),d
+  1005  03c6  d1                	pop	de
+  1006  03c7  c1                	pop	bc
+  1007  03c8  212800            	ld	hl,_vz
+  1008  03cb  09                	add	hl, bc
+  1009  03cc  dd75fa            	ld	(ix-6),l
+  1010  03cf  dd74fb            	ld	(ix-5),h
+  1011  03d2  dd6efa            	ld	l,(ix-6)
+  1012  03d5  dd66fb            	ld	h,(ix-5)
+  1013  03d8  7e                	ld	a, (hl)
+  1014  03d9  23                	inc	hl
+  1015  03da  66                	ld	h, (hl)
+  1016  03db  6f                	ld	l, a
+  1017  03dc  c5                	push	bc
+  1018  03dd  d5                	push	de
+  1019  03de  e5                	push	hl
+  1020  03df  cd0000            	call	___sint2fs_callee
+  1021  03e2  dd75fc            	ld	(ix-4),l
+  1022  03e5  dd74fd            	ld	(ix-3),h
+  1023  03e8  dd73fe            	ld	(ix-2),e
+  1024  03eb  dd72ff            	ld	(ix-1),d
+  1025  03ee  2a3e00            	ld	hl, (_main_s_10000_223 + 2)
+  1026  03f1  e5                	push	hl
+  1027  03f2  2a3c00            	ld	hl, (_main_s_10000_223)
+  1028  03f5  e5                	push	hl
+  1029  03f6  dd6efe            	ld	l,(ix-2)
+  1030  03f9  dd66ff            	ld	h,(ix-1)
+  1031  03fc  e5                	push	hl
+  1032  03fd  dd6efc            	ld	l,(ix-4)
+  1033  0400  dd66fd            	ld	h,(ix-3)
+  1034  0403  e5                	push	hl
+  1035  0404  cd0000            	call	___fsmul_callee
+  1036  0407  d5                	push	de
+  1037  0408  e5                	push	hl
+  1038  0409  dd6ef8            	ld	l,(ix-8)
+  1039  040c  dd66f9            	ld	h,(ix-7)
+  1040  040f  e5                	push	hl
+  1041  0410  dd6ef6            	ld	l,(ix-10)
+  1042  0413  dd66f7            	ld	h,(ix-9)
+  1043  0416  e5                	push	hl
+  1044  0417  cd0000            	call	___fsadd_callee
+  1045  041a  d5                	push	de
+  1046  041b  fde1              	pop	iy
+  1047  041d  d1                	pop	de
+  1048  041e  c1                	pop	bc
+  1049  041f  224400            	ld	(_main_x_10000_223), hl
+  1050  0422  fd224600          	ld	(_main_x_10000_223 + 2), iy
+  1051  0426  eb                	ex	de,hl
+  1052  0427  5e                	ld	e, (hl)
+  1053  0428  23                	inc	hl
+  1054  0429  56                	ld	d, (hl)
+  1055  042a  c5                	push	bc
+  1056  042b  d5                	push	de
+  1057  042c  cd0000            	call	___sint2fs_callee
+  1058  042f  e5                	push	hl
+  1059  0430  fde1              	pop	iy
+  1060  0432  2a3e00            	ld	hl, (_main_s_10000_223 + 2)
+  1061  0435  e5                	push	hl
+  1062  0436  2a3c00            	ld	hl, (_main_s_10000_223)
+  1063  0439  e5                	push	hl
+  1064  043a  d5                	push	de
+  1065  043b  fde5              	push	iy
+  1066  043d  cd0000            	call	___fsmul_callee
+  1067  0440  e5                	push	hl
+  1068  0441  fde1              	pop	iy
+  1069  0443  c1                	pop	bc
+  1070  0444  dd6efa            	ld	l,(ix-6)
+  1071  0447  dd66fb            	ld	h,(ix-5)
+  1072  044a  7e                	ld	a, (hl)
+  1073  044b  23                	inc	hl
+  1074  044c  66                	ld	h, (hl)
+  1075  044d  6f                	ld	l, a
+  1076  044e  c5                	push	bc
+  1077  044f  d5                	push	de
+  1078  0450  fde5              	push	iy
+  1079  0452  e5                	push	hl
+  1080  0453  cd0000            	call	___sint2fs_callee
+  1081  0456  dd75fc            	ld	(ix-4),l
+  1082  0459  dd74fd            	ld	(ix-3),h
+  1083  045c  dd73fe            	ld	(ix-2),e
+  1084  045f  dd72ff            	ld	(ix-1),d
+  1085  0462  2a4200            	ld	hl, (_main_c_10000_223 + 2)
+  1086  0465  e5                	push	hl
+  1087  0466  2a4000            	ld	hl, (_main_c_10000_223)
+  1088  0469  e5                	push	hl
+  1089  046a  dd6efe            	ld	l,(ix-2)
+  1090  046d  dd66ff            	ld	h,(ix-1)
+  1091  0470  e5                	push	hl
+  1092  0471  dd6efc            	ld	l,(ix-4)
+  1093  0474  dd66fd            	ld	h,(ix-3)
+  1094  0477  e5                	push	hl
+  1095  0478  cd0000            	call	___fsmul_callee
+  1096  047b  dd75fc            	ld	(ix-4),l
+  1097  047e  dd74fd            	ld	(ix-3),h
+  1098  0481  dd73fe            	ld	(ix-2),e
+  1099  0484  dd72ff            	ld	(ix-1),d
+  1100  0487  fde1              	pop	iy
+  1101  0489  d1                	pop	de
+  1102  048a  dd6efe            	ld	l,(ix-2)
+  1103  048d  dd66ff            	ld	h,(ix-1)
+  1104  0490  e5                	push	hl
+  1105  0491  dd6efc            	ld	l,(ix-4)
+  1106  0494  dd66fd            	ld	h,(ix-3)
+  1107  0497  e5                	push	hl
+  1108  0498  d5                	push	de
+  1109  0499  fde5              	push	iy
+  1110  049b  cd0000            	call	___fssub_callee
+  1111  049e  fd21a040          	ld	iy,0x40a0
+  1112  04a2  fde5              	push	iy
+  1113  04a4  fd210000          	ld	iy,0x0000
+  1114  04a8  fde5              	push	iy
+  1115  04aa  d5                	push	de
+  1116  04ab  e5                	push	hl
+  1117  04ac  cd0000            	call	___fsadd_callee
+  1118  04af  c1                	pop	bc
+  1119  04b0  224c00            	ld	(_main_z_10000_223), hl
+  1120  04b3  ed534e00          	ld	(_main_z_10000_223 + 2), de
+  1121  04b7  211800            	ld	hl,_main_px_10000_223
+  1122  04ba  09                	add	hl, bc
+  1123  04bb  dd75fe            	ld	(ix-2),l
+  1124  04be  dd74ff            	ld	(ix-1),h
+  1125  04c1  2a4600            	ld	hl, (_main_x_10000_223 + 2)
+  1126  04c4  e5                	push	hl
+  1127  04c5  2a4400            	ld	hl, (_main_x_10000_223)
+  1128  04c8  e5                	push	hl
+  1129  04c9  211644            	ld	hl,0x4416
+  1130  04cc  e5                	push	hl
+  1131  04cd  210000            	ld	hl,0x0000
+  1132  04d0  e5                	push	hl
+  1133  04d1  cd0000            	call	___fsmul_callee
+  1134  04d4  4d                	ld	c, l
+  1135  04d5  44                	ld	b, h
+  1136  04d6  2a4e00            	ld	hl, (_main_z_10000_223 + 2)
+  1137  04d9  e5                	push	hl
+  1138  04da  2a4c00            	ld	hl, (_main_z_10000_223)
+  1139  04dd  e5                	push	hl
+  1140  04de  d5                	push	de
+  1141  04df  c5                	push	bc
+  1142  04e0  cd0000            	call	___fsdiv_callee
+  1143  04e3  01a043            	ld	bc,0x43a0
+  1144  04e6  c5                	push	bc
+  1145  04e7  010000            	ld	bc,0x0000
+  1146  04ea  c5                	push	bc
+  1147  04eb  d5                	push	de
+  1148  04ec  e5                	push	hl
+  1149  04ed  cd0000            	call	___fsadd_callee
+  1150  04f0  d5                	push	de
+  1151  04f1  e5                	push	hl
+  1152  04f2  cd0000            	call	___fs2sint_callee
+  1153  04f5  eb                	ex	de, hl
+  1154  04f6  dd6efe            	ld	l,(ix-2)
+  1155  04f9  dd66ff            	ld	h,(ix-1)
+  1156  04fc  73                	ld	(hl), e
+  1157  04fd  23                	inc	hl
+  1158  04fe  72                	ld	(hl), d
+  1159  04ff  2a5000            	ld	hl, (_main_i_10000_223)
+  1160  0502  29                	add	hl, hl
+  1161  0503  7d                	ld	a, l
+  1162  0504  c628              	add	a, +((_main_py_10000_223) & 0xFF)
+  1163  0506  dd77fe            	ld	(ix-2),a
+  1164  0509  7c                	ld	a, h
+  1165  050a  ce00              	adc	a, +((_main_py_10000_223) / 256)
+  1166  050c  dd77ff            	ld	(ix-1),a
+  1167  050f  111800            	ld	de,_vy
+  1168  0512  19                	add	hl, de
+  1169  0513  4e                	ld	c, (hl)
+  1170  0514  23                	inc	hl
+  1171  0515  46                	ld	b, (hl)
+  1172  0516  69                	ld	l, c
+  1173  0517  60                	ld	h, b
+  1174  0518  29                	add	hl, hl
+  1175  0519  29                	add	hl, hl
+  1176  051a  29                	add	hl, hl
+  1177  051b  09                	add	hl, bc
+  1178  051c  29                	add	hl, hl
+  1179  051d  29                	add	hl, hl
+  1180  051e  09                	add	hl, bc
+  1181  051f  29                	add	hl, hl
+  1182  0520  09                	add	hl, bc
+  1183  0521  29                	add	hl, hl
+  1184  0522  29                	add	hl, hl
+  1185  0523  e5                	push	hl
+  1186  0524  cd0000            	call	___sint2fs_callee
+  1187  0527  4d                	ld	c, l
+  1188  0528  44                	ld	b, h
+  1189  0529  2a4e00            	ld	hl, (_main_z_10000_223 + 2)
+  1190  052c  e5                	push	hl
+  1191  052d  2a4c00            	ld	hl, (_main_z_10000_223)
+  1192  0530  e5                	push	hl
+  1193  0531  d5                	push	de
+  1194  0532  c5                	push	bc
+  1195  0533  cd0000            	call	___fsdiv_callee
+  1196  0536  d5                	push	de
+  1197  0537  e5                	push	hl
+  1198  0538  21c842            	ld	hl,0x42c8
+  1199  053b  e5                	push	hl
+  1200  053c  210000            	ld	hl,0x0000
+  1201  053f  e5                	push	hl
+  1202  0540  cd0000            	call	___fssub_callee
+  1203  0543  d5                	push	de
+  1204  0544  e5                	push	hl
+  1205  0545  cd0000            	call	___fs2sint_callee
+  1206  0548  eb                	ex	de, hl
+  1207  0549  dd6efe            	ld	l,(ix-2)
+  1208  054c  dd66ff            	ld	h,(ix-1)
+  1209  054f  73                	ld	(hl), e
+  1210  0550  23                	inc	hl
+  1211  0551  72                	ld	(hl), d
+  1212  0552  2a5000            	ld	hl, (_main_i_10000_223)
+  1213  0555  23                	inc	hl
+  1214  0556  225000            	ld	(_main_i_10000_223), hl
+  1215  0559  3a5000            	ld	a, (_main_i_10000_223+0)
+  1216  055c  d608              	sub	a,0x08
+  1217  055e  3a5100            	ld	a, (_main_i_10000_223+1)
+  1218  0561  17                	rla
+  1219  0562  3f                	ccf
+  1220  0563  1f                	rra
+  1221  0564  de80              	sbc	a,0x80
+  1222  0566  da7c03            	jp	C, l_main_00107
+  1223  0569  210000            	ld	hl,0x0000
+  1224  056c  225000            	ld	(_main_i_10000_223), hl
+  1225  056f  013800            	ld	bc,_l0+0
+  1226                          l_main_00109:
+  1227  0572  2a5000            	ld	hl, (_main_i_10000_223)
+  1228  0575  29                	add	hl, hl
+  1229  0576  eb                	ex	de,hl
+  1230  0577  69                	ld	l, c
+  1231  0578  60                	ld	h, b
+  1232  0579  19                	add	hl, de
+  1233  057a  7e                	ld	a, (hl)
+  1234  057b  325200            	ld	(_main_a_10000_223+0), a
+  1235  057e  23                	inc	hl
+  1236  057f  7e                	ld	a, (hl)
+  1237  0580  325300            	ld	(_main_a_10000_223+1), a
+  1238  0583  215000            	ld	hl,_l1
+  1239  0586  19                	add	hl, de
+  1240  0587  7e                	ld	a, (hl)
+  1241  0588  325400            	ld	(_main_b_10000_223+0), a
+  1242  058b  23                	inc	hl
+  1243  058c  7e                	ld	a, (hl)
+  1244  058d  325500            	ld	(_main_b_10000_223+1), a
+  1245  0590  2a5400            	ld	hl, (_main_b_10000_223)
+  1246  0593  29                	add	hl, hl
+  1247  0594  eb                	ex	de,hl
+  1248  0595  fd212800          	ld	iy,_main_py_10000_223
+  1249  0599  fd19              	add	iy, de
+  1250  059b  fd7e00            	ld	a,(iy+0)
+  1251  059e  dd77fa            	ld	(ix-6),a
+  1252  05a1  fd7e01            	ld	a,(iy+1)
+  1253  05a4  dd77fb            	ld	(ix-5),a
+  1254  05a7  fd211800          	ld	iy,_main_px_10000_223
+  1255  05ab  fd19              	add	iy, de
+  1256  05ad  fd7e00            	ld	a,(iy+0)
+  1257  05b0  dd77fc            	ld	(ix-4),a
+  1258  05b3  fd7e01            	ld	a,(iy+1)
+  1259  05b6  dd77fd            	ld	(ix-3),a
+  1260  05b9  2a5200            	ld	hl, (_main_a_10000_223)
+  1261  05bc  29                	add	hl, hl
+  1262  05bd  eb                	ex	de,hl
+  1263  05be  fd212800          	ld	iy,_main_py_10000_223
+  1264  05c2  fd19              	add	iy, de
+  1265  05c4  fd7e00            	ld	a,(iy+0)
+  1266  05c7  dd77fe            	ld	(ix-2),a
+  1267  05ca  fd7e01            	ld	a,(iy+1)
+  1268  05cd  dd77ff            	ld	(ix-1),a
+  1269  05d0  211800            	ld	hl,_main_px_10000_223
+  1270  05d3  19                	add	hl, de
+  1271  05d4  5e                	ld	e, (hl)
+  1272  05d5  23                	inc	hl
+  1273  05d6  56                	ld	d, (hl)
+  1274  05d7  c5                	push	bc
+  1275  05d8  3a5600            	ld	a, (_main_plane_10000_223+0)
+  1276  05db  f5                	push	af
+  1277  05dc  33                	inc	sp
+  1278  05dd  dd6efa            	ld	l,(ix-6)
+  1279  05e0  dd66fb            	ld	h,(ix-5)
+  1280  05e3  e5                	push	hl
+  1281  05e4  dd6efc            	ld	l,(ix-4)
+  1282  05e7  dd66fd            	ld	h,(ix-3)
+  1283  05ea  e5                	push	hl
+  1284  05eb  dd6efe            	ld	l,(ix-2)
+  1285  05ee  dd66ff            	ld	h,(ix-1)
+  1286  05f1  e5                	push	hl
+  1287  05f2  d5                	push	de
+  1288  05f3  cdb000            	call	_pline
+  1289  05f6  210900            	ld	hl,9
+  1290  05f9  39                	add	hl, sp
+  1291  05fa  f9                	ld	sp, hl
+  1292  05fb  c1                	pop	bc
+  1293  05fc  2a5000            	ld	hl, (_main_i_10000_223)
+  1294  05ff  23                	inc	hl
+  1295  0600  225000            	ld	(_main_i_10000_223), hl
+  1296  0603  3a5000            	ld	a, (_main_i_10000_223+0)
+  1297  0606  d60c              	sub	a,0x0c
+  1298  0608  3a5100            	ld	a, (_main_i_10000_223+1)
+  1299  060b  17                	rla
+  1300  060c  3f                	ccf
+  1301  060d  1f                	rra
+  1302  060e  de80              	sbc	a,0x80
+  1303  0610  da7205            	jp	C, l_main_00109
+  1304  0613  21cc3d            	ld	hl,0x3dcc
+  1305  0616  e5                	push	hl
+  1306  0617  21cdcc            	ld	hl,0xcccd
+  1307  061a  e5                	push	hl
+  1308  061b  2a3a00            	ld	hl, (_main_t_10000_223 + 2)
+  1309  061e  e5                	push	hl
+  1310  061f  2a3800            	ld	hl, (_main_t_10000_223)
+  1311  0622  e5                	push	hl
+  1312  0623  cd0000            	call	___fsadd_callee
+  1313  0626  223800            	ld	(_main_t_10000_223), hl
+  1314  0629  ed533a00          	ld	(_main_t_10000_223 + 2), de
+  1315  062d  c30403            	jp	l_main_00111
+  1316                          	SECTION data_compiler
+  1317                          _bits:
+  1318  0000  80                	DEFB +0x80
+  1319  0001  40                	DEFB +0x40
+  1320  0002  20                	DEFB +0x20
+  1321  0003  10                	DEFB +0x10
+  1322  0004  08                	DEFB +0x08
+  1323  0005  04                	DEFB +0x04
+  1324  0006  02                	DEFB +0x02
+  1325  0007  01                	DEFB +0x01
+  1326                          _vx:
+  1327  0008  ffff              	DEFW +0xffff
+  1328  000a  0100              	DEFW +0x0001
+  1329  000c  ffff              	DEFW +0xffff
+  1330  000e  0100              	DEFW +0x0001
+  1331  0010  ffff              	DEFW +0xffff
+  1332  0012  0100              	DEFW +0x0001
+  1333  0014  ffff              	DEFW +0xffff
+  1334  0016  0100              	DEFW +0x0001
+  1335                          _vy:
+  1336  0018  ffff              	DEFW +0xffff
+  1337  001a  ffff              	DEFW +0xffff
+  1338  001c  0100              	DEFW +0x0001
+  1339  001e  0100              	DEFW +0x0001
+  1340  0020  ffff              	DEFW +0xffff
+  1341  0022  ffff              	DEFW +0xffff
+  1342  0024  0100              	DEFW +0x0001
+  1343  0026  0100              	DEFW +0x0001
+  1344                          _vz:
+  1345  0028  ffff              	DEFW +0xffff
+  1346  002a  ffff              	DEFW +0xffff
+  1347  002c  ffff              	DEFW +0xffff
+  1348  002e  ffff              	DEFW +0xffff
+  1349  0030  0100              	DEFW +0x0001
+  1350  0032  0100              	DEFW +0x0001
+  1351  0034  0100              	DEFW +0x0001
+  1352  0036  0100              	DEFW +0x0001
+  1353                          _l0:
+  1354  0038  0000              	DEFW +0x0000
+  1355  003a  0200              	DEFW +0x0002
+  1356  003c  0400              	DEFW +0x0004
+  1357  003e  0600              	DEFW +0x0006
+  1358  0040  0000              	DEFW +0x0000
+  1359  0042  0100              	DEFW +0x0001
+  1360  0044  0400              	DEFW +0x0004
+  1361  0046  0500              	DEFW +0x0005
+  1362  0048  0000              	DEFW +0x0000
+  1363  004a  0100              	DEFW +0x0001
+  1364  004c  0200              	DEFW +0x0002
+  1365  004e  0300              	DEFW +0x0003
+  1366                          _l1:
+  1367  0050  0100              	DEFW +0x0001
+  1368  0052  0300              	DEFW +0x0003
+  1369  0054  0500              	DEFW +0x0005
+  1370  0056  0700              	DEFW +0x0007
+  1371  0058  0200              	DEFW +0x0002
+  1372  005a  0300              	DEFW +0x0003
+  1373  005c  0600              	DEFW +0x0006
+  1374  005e  0700              	DEFW +0x0007
+  1375  0060  0400              	DEFW +0x0004
+  1376  0062  0500              	DEFW +0x0005
+  1377  0064  0600              	DEFW +0x0006
+  1378  0066  0700              	DEFW +0x0007
+  1379                          	SECTION IGNORE
+  1380                          
