@@ -76,6 +76,7 @@ L2:
 	add	hl, bc
 	ld	de, $c000
 	add	hl, de
+	ld	(addr_), hl
 				; mask = 0x80 >> (x0 & 7);
 	ld	b, a
 	inc	b
@@ -83,23 +84,20 @@ L2:
 L3:
 	rrca
 	djnz	L3
+	ld	(mask_), a
 
 	di
-	ld	e, a
 	ld	a, $d9
 	out	($32), a
 	ld	a, $80
 	out	($35), a
 	ld	a, (color_)
 	out	($34), a
-	ld	a, e
 				; if (dx > dy) {
-	ex	de, hl
 	ld	hl, (dy_)
 	ld	bc, (dx_)
 	or	a
 	sbc	hl, bc
-	ex	de, hl
 	jr	nc, L4
 	call	line_x
 	jr	L5
@@ -121,6 +119,8 @@ line_x:
 	srl	h		; err = dx / 2;
 	rr	l
 	exx
+	ld	hl, (addr_)	; addr
+	ld	a, (mask_)	; mask
 	ld	bc, (dx_)	; cnt = dx;
 	inc	bc
 lx1:
@@ -159,6 +159,8 @@ line_y:
 	srl	h		; err = dy / 2;
 	rr	l
 	exx
+	ld	hl, (addr_)	; addr
+	ld	a, (mask_)	; mask
 	ld	bc, (dy_)	; cnt = dy;
 	inc	bc
 ly1:
@@ -176,8 +178,9 @@ ly1:
 	exx
 				; step_x();
 	rrca
-	jr	nc, ly3
+	jr	nc, ly2
 	inc	hl
+ly2:
 ly3:
 	dec	bc		; cnt--;
 	ld	e, a
@@ -205,6 +208,8 @@ x0_:	ds	2
 dx_:	ds	2
 dy_:	ds	2
 ys_:	ds	2
+addr_:	ds	2
+mask_:	ds	1
 #endasm
 
 void main(void)
