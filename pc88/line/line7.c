@@ -41,9 +41,11 @@ void step_y(void);
 _step_y:
 	ld	hl, (_addr)
 	ld	de, (_ys)
+	ld	a, h
 	add	hl, de
 	ld	(_addr), hl	; addr += ys;
-	ret	nc
+	xor	h
+	ret	p
 	call	_plane
 	ret
 #endasm
